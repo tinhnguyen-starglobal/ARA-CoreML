@@ -16,10 +16,12 @@ class YOLO {
     
     struct Prediction {
         let classIndex: Int
+        let name: String?
         let score: Float
         let rect: CGRect
     }
-    
+    var predictionsFE: [Prediction] = []
+
     var model : yolo_model?
     public init() { }
     
@@ -32,7 +34,7 @@ class YOLO {
     }
     
     let theURL = URL(string:"http://10.0.1.137:8888/predict?score_threshold=0.5&iou_threshold=0.5")
-    public func getBBsFromAPI(image: UIImage) throws -> [Prediction] {
+    public func getBBsFromAPI(image: UIImage, imagew: CGFloat, imageh: CGFloat) throws -> [Prediction] {
         // Asynchronous Http call to your api url, using URLSession:
         //guard let imageData = imageData else { return []}
         let boundary = UUID().uuidString
@@ -64,14 +66,49 @@ class YOLO {
 
         urlRequest.httpBody = data
         
-        //dataTask?.cancel()
-        
+//  For reference
+//        struct Prediction {
+//            let classIndex: Int
+//            let score: Float
+//            let rect: CGRect
+//        }
+
         // Send a POST request to the URL, with the data we created earlier
         dataTask = defaultSession.dataTask(with: urlRequest, completionHandler: { responseData, response, error in
             if error == nil {
-                let jsonData = try? JSONSerialization.jsonObject(with: responseData!, options: .allowFragments)
-                if let json = jsonData as? [String: Any] {
-                    print(json)
+                
+                self.predictionsFE.removeAll() // make sure its empty
+                if let responseData = responseData,
+                   let json = try? JSONSerialization.jsonObject(with: responseData, options: []) as? [String:Any] {
+                    let p = json["predictions"] as? [Any]
+                    let len = p?.count
+                    if len ?? 0 > 0 {
+                        for i in 0...(len ?? 1)-1 {
+//                            print("i is ",i)
+                            let thisp = p?[i] as? [String:Any]
+//                            print("gogogo")
+//                            print(thisp)
+//                            print("sososo")
+//                            print(thisp?["bbox"])
+                            let bbox = thisp?["bbox"] as? [Any]
+//                            print("bbbbb")
+//                            print(bbox)
+                            let x = (bbox?[0] as? NSNumber)?.floatValue ?? 0
+                            let y = (bbox?[1] as? NSNumber)?.floatValue ?? 0
+                            let x2 = (bbox?[2] as? NSNumber)?.floatValue ?? 0
+                            let y2 = (bbox?[3] as? NSNumber)?.floatValue ?? 0
+                            let gcx = CGFloat(x) * CGFloat(self.inputWidth) //* imagew
+                            let gcy = CGFloat(y) * CGFloat(self.inputHeight)//* imageh
+                            let gcw = CGFloat(x2) * CGFloat(self.inputWidth) - gcx
+                            let gch = CGFloat(y2) * CGFloat(self.inputHeight) - gcy
+                            
+                            let score = thisp!["confidence"] as! Float
+                            let name = thisp!["name"] as! String
+                            let rect = CGRect(x: gcx, y: gcy, width: gcw, height: gch)
+                            let pred = Prediction(classIndex: 0, name: name, score: score, rect: rect)
+                            self.predictionsFE.append(pred)
+                        }
+                    }
                 }
             }
             else {
@@ -81,8 +118,10 @@ class YOLO {
         
         dataTask?.resume()
         
-        return []
+        return self.predictionsFE
     }
+    
+
     
     public func computeBoundingBoxes( features: MLMultiArray) -> [Prediction] {
         var predictions = [Prediction]()
@@ -114,7 +153,7 @@ class YOLO {
                 let rect = CGRect(x: CGFloat(tx)  - (CGFloat(tw)/2), y: CGFloat(ty) - (CGFloat(th)/2),
                                   width: CGFloat(tw), height: CGFloat(th))
                 
-                let prediction = Prediction(classIndex: detectedClass,score:    confidenceInClass,rect: rect)
+                let prediction = Prediction(classIndex: detectedClass,name:"", score:    confidenceInClass,rect: rect)
                 predictions.append(prediction)
             }
         }
