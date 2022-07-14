@@ -39,7 +39,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     
     var framesDone = 0
     var frameCapturingStartTime = CACurrentMediaTime()
-    let semaphore = DispatchSemaphore(value: 2)
+    let semaphore = DispatchSemaphore(value: 1)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -254,7 +254,10 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         
         // Resize the input to 416x416 and give it to our model.
         
-        
+        let ciResizeImage = CIImage(cvPixelBuffer: resizedPixelBuffer)
+        guard let cgResizeImage = ciContext.createCGImage(ciResizeImage, from: ciResizeImage.extent) else {return}
+        let resizeimage = UIImage(cgImage: cgResizeImage)
+
         DispatchQueue.global().async { [self] in
             if storeImage {
                 let fileManager = FileManager.default
@@ -286,10 +289,10 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                 
                 // let documentsDirectory = appSupportURL.appendingPathComponent("test.png")
                 // to get images of correct dimensions instead of 2x
-                let ciResizeImage = CIImage(cvPixelBuffer: resizedPixelBuffer)
+                //let ciResizeImage = CIImage(cvPixelBuffer: resizedPixelBuffer)
                 //let ciContext = CIContext()
-                guard let cgResizeImage = ciContext.createCGImage(ciResizeImage, from: ciResizeImage.extent) else {return}
-                let resizeimage = UIImage(cgImage: cgResizeImage)
+                //guard let cgResizeImage = ciContext.createCGImage(ciResizeImage, from: ciResizeImage.extent) else {return}
+                //let resizeimage = UIImage(cgImage: cgResizeImage)
                 //let resizeimage = UIImage(ciImage: CIImage(cvPixelBuffer: resizedPixelBuffer))
                 // self.frame_num  = self.frame_num+1
                 
@@ -298,13 +301,13 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                 // create the destination file url to save your image
                 let resizefileURL = documentsDirectory.appendingPathComponent(resizefileName)
                 // get your UIImage jpeg data representation and check if the destination file url already exists
+                let data = resizeimage.pngData()
                 if self.frame_num % 50 == 0,
-                   let data = resizeimage.pngData(),
                    !FileManager.default.fileExists(atPath: resizefileURL.path) {
                     do {
                         // writes the image data to disk
                         
-                        try data.write(to: resizefileURL)
+                        try data!.write(to: resizefileURL)
                         print("file saved : \(resizefileURL)")
                     } catch {
                         print("error saving file:", error)
@@ -314,13 +317,24 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
             }
         }
         
-        
-        if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
+        if let boundingBoxes = try? yolo.getBBsFromAPI(image: resizeimage) {
             let elapsed = CACurrentMediaTime() - startTime
             showOnMainThread(boundingBoxes, elapsed)
         }
+//        if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
+//            let elapsed = CACurrentMediaTime() - startTime
+//            showOnMainThread(boundingBoxes, elapsed)
+//        }
     }
     
+
+//    public func predict(image: CVPixelBuffer) throws -> [Prediction] {
+//        if let output = try? model?.prediction(inputs: image) {
+//            return computeBoundingBoxes(features: output.predictions)
+//        } else {
+//            return []
+//        }
+//    }
     func predictUsingVision(pixelBuffer: CVPixelBuffer) {
         // Measure how long it takes to predict a single video frame. Note that
         // predict() can be called on the next frame while the previous one is
