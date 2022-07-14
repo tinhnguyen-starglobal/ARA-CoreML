@@ -235,8 +235,8 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         // Resize the input with Core Image to 416x416.
         guard let resizedPixelBuffer = resizedPixelBuffer else { return }
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-        let tmpW = CGFloat(CVPixelBufferGetWidth(pixelBuffer))
-        let tmpH = CGFloat(CVPixelBufferGetHeight(pixelBuffer))
+        let inputImageWidth = CGFloat(CVPixelBufferGetWidth(pixelBuffer))
+        let inputImageHeight = CGFloat(CVPixelBufferGetHeight(pixelBuffer))
         let yoloW = CGFloat(yolo.inputWidth)
         let yoloH = CGFloat(yolo.inputHeight)
         let sx = CGFloat(yolo.inputWidth) / CGFloat(CVPixelBufferGetWidth(pixelBuffer))
@@ -286,17 +286,6 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                         print("error saving file:", error)
                     }
                 }
-                
-                // let documentsDirectory = appSupportURL.appendingPathComponent("test.png")
-                // to get images of correct dimensions instead of 2x
-                //let ciResizeImage = CIImage(cvPixelBuffer: resizedPixelBuffer)
-                //let ciContext = CIContext()
-                //guard let cgResizeImage = ciContext.createCGImage(ciResizeImage, from: ciResizeImage.extent) else {return}
-                //let resizeimage = UIImage(cgImage: cgResizeImage)
-                //let resizeimage = UIImage(ciImage: CIImage(cvPixelBuffer: resizedPixelBuffer))
-                // self.frame_num  = self.frame_num+1
-                
-                
                 let resizefileName = "resize_image_\(self.frame_num).png"
                 // create the destination file url to save your image
                 let resizefileURL = documentsDirectory.appendingPathComponent(resizefileName)
@@ -317,7 +306,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
             }
         }
         
-        if let boundingBoxes = try? yolo.getBBsFromAPI(image: resizeimage) {
+        if let boundingBoxes = try? yolo.getBBsFromAPI(image: resizeimage, imagew: inputImageWidth, imageh: inputImageHeight) {
             let elapsed = CACurrentMediaTime() - startTime
             showOnMainThread(boundingBoxes, elapsed)
         }
@@ -431,8 +420,13 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                 
                 
                 // Show the bounding box.
-
-                let label = String(format: "%@ %.2f", yolo.labels.count > prediction.classIndex ? yolo.labels[prediction.classIndex] : "Object_\(prediction.classIndex)", prediction.score)
+                var label: String = ""
+                if prediction.name == "" {
+                    label = String(format: "%@ %.2f", yolo.labels.count > prediction.classIndex ? yolo.labels[prediction.classIndex] : "Object_\(prediction.classIndex)", prediction.score)
+                } else {
+                    label = String(format: "%@ %.2f", prediction.name!, prediction.score)
+                }
+                
                 let color = colors[prediction.classIndex]
                 // print("Printing Calculated Rectangle : \(rect)")
                 boundingBoxes[i].show(frame: rect, label: label, color: color)
@@ -454,7 +448,8 @@ extension CameraVC: VideoCaptureDelegate {
             // For better throughput, perform the prediction on a background queue
             // instead of on the VideoCapture queue. We use the semaphore to block
             // the capture queue and drop frames when Core ML can't keep up.
-            DispatchQueue.global().async { [self] in
+            
+            //DispatchQueue.global().async { [self] in
 //                let fileManager = FileManager.default
 //
 //                let documentsDirectory = fileManager.urls(for: .documentDirectory,
@@ -483,7 +478,7 @@ extension CameraVC: VideoCaptureDelegate {
                 
                 self.predict(pixelBuffer: pixelBuffer)
                 //self.predictUsingVision(pixelBuffer: pixelBuffer)
-            }
+            //}
         }
     }
 }
