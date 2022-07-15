@@ -73,6 +73,8 @@ class YOLO {
 //            let rect: CGRect
 //        }
 
+        // Add a semaphore here to wait on completion
+        let inferenceQuerySemaphore = DispatchSemaphore(value: 0)
         // Send a POST request to the URL, with the data we created earlier
         dataTask = defaultSession.dataTask(with: urlRequest, completionHandler: { responseData, response, error in
             if error == nil {
@@ -114,10 +116,13 @@ class YOLO {
             else {
                 print(error)
             }
+            inferenceQuerySemaphore.signal()
+            print("inferenceQuerySemaphore.signal")
         })
         
         dataTask?.resume()
-        
+        inferenceQuerySemaphore.wait()
+        print("inferenceQuerySemaphore.wait")
         return self.predictionsFE
     }
     

@@ -40,6 +40,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     var framesDone = 0
     var frameCapturingStartTime = CACurrentMediaTime()
     let semaphore = DispatchSemaphore(value: 1)
+    var semaphoreCounter = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -358,7 +359,10 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
             self.timeLabel.text = String(format: "%.5f", elapsed)
             self.fpsLabel.text = String(format: "%.2f", fps)
             
-            self.semaphore.signal()
+            print("before semaphore signal",self.semaphoreCounter)
+            //self.semaphore.signal()
+            self.semaphoreCounter = self.semaphoreCounter + 1
+            print("after semaphore signal", self.semaphoreCounter)
         }
     }
     
@@ -441,9 +445,12 @@ extension CameraVC: VideoCaptureDelegate {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?, timestamp: CMTime) {
         // For debugging.
         //predict(image: UIImage(named: "dog416")!); return
-        
-        semaphore.wait()
-        
+        print("before semaphore wait", semaphoreCounter)
+        if semaphoreCounter <= 0 {return}
+        semaphoreCounter = semaphoreCounter - 1
+        //semaphore.wait()
+        print("after semaphore wait", semaphoreCounter)
+
         if let pixelBuffer = pixelBuffer {
             // For better throughput, perform the prediction on a background queue
             // instead of on the VideoCapture queue. We use the semaphore to block
