@@ -125,12 +125,20 @@ class ExperimentRunVC : UIViewController, UITableViewDelegate, UITableViewDataSo
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
                 if let yolo = yolo {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    
+                    //call the predictVC controller which helps the user pick between local model and
+                    //docker API for the bounding box predictions
+                    if let predictVC = storyboard.instantiateViewController(withIdentifier: "PredictVCID") as?
+                        PredictTypeViewController {
+                        predictVC.yolo = yolo
+                        predictVC.modalPresentationStyle = .fullScreen
+                        self.present(predictVC, animated: true)
+                    }
+                    /*
                     if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraVC {
                         cameraVC.yolo = yolo
                         cameraVC.modalPresentationStyle = .fullScreen
                         self.present(cameraVC, animated: true, completion: nil)
-                    }
+                     }*/
                 } else {
                     let alert = UIAlertController(title: nil, message: errorString, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))

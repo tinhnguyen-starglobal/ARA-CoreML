@@ -21,8 +21,12 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     @IBOutlet weak var iouValueLabel: UILabel!
     
     var storeImage = true
-    
     var yolo = YOLO()
+    
+    //IP adddress input as a string
+    //hasApiInput state for whether input was entered and Docker API selected
+    var apiInput: String = ""
+    var hasApiInput: Bool = false
     
     var frame_num = 0
     var videoCapture: VideoCapture!
@@ -39,12 +43,12 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     
     var framesDone = 0
     var frameCapturingStartTime = CACurrentMediaTime()
-    let semaphore = DispatchSemaphore(value: 1)
-    var semaphoreCounter = 1
+    let semaphoreLocal = DispatchSemaphore(value: 2)
+    let semaphoreAPI = DispatchSemaphore(value: 1)
+    var semaphoreAPICounter = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         timeLabel.text = ""
         
         confidenceSlider.value = yolo.confidenceThreshold
@@ -97,7 +101,9 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     }
     
     func setUpVision() {
+        print(yolo.model)
         guard let model = yolo.model, let visionModel = try? VNCoreMLModel(for: model.model) else {
+            
             print("Error: could not create Vision model")
             return
         }
@@ -225,11 +231,19 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     
     func predict(image: UIImage) {
         if let pixelBuffer = image.pixelBuffer(width: yolo.inputWidth, height: yolo.inputHeight) {
-            predict(pixelBuffer: pixelBuffer)
+            //docker API predict
+            if(hasApiInput) {
+                predictAPI(pixelBuffer: pixelBuffer)
+            }
+            //local model predict
+            else {
+                predictLocal(pixelBuffer: pixelBuffer)
+            }
         }
     }
     
-    func predict(pixelBuffer: CVPixelBuffer) {
+    //docker API predict function
+    func predictAPI(pixelBuffer: CVPixelBuffer) {
         // Measure how long it takes to predict a single video frame.
         let startTime = CACurrentMediaTime()
         
@@ -280,7 +294,6 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                    !FileManager.default.fileExists(atPath: fileURL.path) {
                     do {
                         // writes the image data to disk
-
                         try data.write(to: fileURL)
                         print("file saved : \(fileURL)")
                     } catch {
@@ -307,17 +320,104 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
             }
         }
         
-        if let boundingBoxes = try? yolo.getBBsFromAPI(image: resizeimage, imagew: inputImageWidth, imageh: inputImageHeight) {
+        if let boundingBoxes = try? yolo.getBBsFromAPI(image: resizeimage, imagew: inputImageWidth, imageh: inputImageHeight, apiInput: apiInput) {
             let elapsed = CACurrentMediaTime() - startTime
             showOnMainThread(boundingBoxes, elapsed)
         }
-//        if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
-//            let elapsed = CACurrentMediaTime() - startTime
-//            showOnMainThread(boundingBoxes, elapsed)
-//        }
     }
     
-
+    //local model predict function
+    func predictLocal(pixelBuffer: CVPixelBuffer) {
+        // Measure how long it takes to predict a single video frame.
+        let startTime = CACurrentMediaTime()
+        
+        // Resize the input with Core Image to 416x416.
+        guard let resizedPixelBuffer = resizedPixelBuffer else { return }
+        let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+        let tmpW = CGFloat(CVPixelBufferGetWidth(pixelBuffer))
+        let tmpH = CGFloat(CVPixelBufferGetHeight(pixelBuffer))
+        let yoloW = CGFloat(yolo.inputWidth)
+        let yoloH = CGFloat(yolo.inputHeight)
+        let sx = CGFloat(yolo.inputWidth) / CGFloat(CVPixelBufferGetWidth(pixelBuffer))
+        let sy = CGFloat(yolo.inputHeight) / CGFloat(CVPixelBufferGetHeight(pixelBuffer))
+        let scaleTransform = CGAffineTransform(scaleX: sx, y: sy)
+        let scaledImage = ciImage.transformed(by: scaleTransform)
+        ciContext.render(scaledImage, to: resizedPixelBuffer)
+        
+//        print("image sizes : \(CGFloat(CVPixelBufferGetWidth(pixelBuffer))) , \(CGFloat(CVPixelBufferGetHeight(pixelBuffer)))")
+        
+        // This is an alternative way to resize the image (using vImage):
+        //if let resizedPixelBuffer = resizePixelBuffer(pixelBuffer,
+        //                                              width: YOLO.inputWidth,
+        //                                              height: YOLO.inputHeight)
+        
+        // Resize the input to 416x416 and give it to our model.
+        
+        DispatchQueue.global().async { [self] in
+            if storeImage {
+                let fileManager = FileManager.default
+                
+                let documentsDirectory = fileManager.urls(for: .documentDirectory,
+                                                             in: .userDomainMask).first!
+                // to get images of correct dimensions instead of 2x
+                let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+                let ciContext = CIContext()
+                guard let cgImage = ciContext.createCGImage(ciImage, from: ciImage.extent) else {return}
+                let image = UIImage(cgImage: cgImage)
+                //let image = UIImage(ciImage: CIImage(cvPixelBuffer: pixelBuffer))
+                let fileName = "image_\(self.frame_num).png"
+                // create the destination file url to save your image
+                let fileURL = documentsDirectory.appendingPathComponent(fileName)
+                // get your UIImage jpeg data representation and check if the destination file url already exists
+                if self.frame_num % 50 == 0,
+                   let data = image.pngData(),
+                   !FileManager.default.fileExists(atPath: fileURL.path) {
+                    do {
+                        // writes the image data to disk
+                        try data.write(to: fileURL)
+                        print("file saved : \(fileURL)")
+                    } catch {
+                        print("error saving file:", error)
+                    }
+                }
+                
+                // let documentsDirectory = appSupportURL.appendingPathComponent("test.png")
+                // to get images of correct dimensions instead of 2x
+                let ciResizeImage = CIImage(cvPixelBuffer: resizedPixelBuffer)
+                //let ciContext = CIContext()
+                guard let cgResizeImage = ciContext.createCGImage(ciResizeImage, from: ciResizeImage.extent) else {return}
+                let resizeimage = UIImage(cgImage: cgResizeImage)
+                //let resizeimage = UIImage(ciImage: CIImage(cvPixelBuffer: resizedPixelBuffer))
+                // self.frame_num  = self.frame_num+1
+                
+                
+                let resizefileName = "resize_image_\(self.frame_num).png"
+                // create the destination file url to save your image
+                let resizefileURL = documentsDirectory.appendingPathComponent(resizefileName)
+                // get your UIImage jpeg data representation and check if the destination file url already exists
+                if self.frame_num % 50 == 0,
+                   let data = resizeimage.pngData(),
+                   !FileManager.default.fileExists(atPath: resizefileURL.path) {
+                    do {
+                        // writes the image data to disk
+                        
+                        try data.write(to: resizefileURL)
+                        print("file saved : \(resizefileURL)")
+                    } catch {
+                        print("error saving file:", error)
+                    }
+                }
+                self.frame_num  = self.frame_num+1
+            }
+        }
+        
+        
+        if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
+            let elapsed = CACurrentMediaTime() - startTime
+            showOnMainThread(boundingBoxes, elapsed)
+        }
+    }
+    
 //    public func predict(image: CVPixelBuffer) throws -> [Prediction] {
 //        if let output = try? model?.prediction(inputs: image) {
 //            return computeBoundingBoxes(features: output.predictions)
@@ -325,6 +425,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
 //            return []
 //        }
 //    }
+    
     func predictUsingVision(pixelBuffer: CVPixelBuffer) {
         // Measure how long it takes to predict a single video frame. Note that
         // predict() can be called on the next frame while the previous one is
@@ -358,11 +459,15 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
             let fps = self.measureFPS()
             self.timeLabel.text = String(format: "%.5f", elapsed)
             self.fpsLabel.text = String(format: "%.2f", fps)
-            
-            print("before semaphore signal",self.semaphoreCounter)
-            //self.semaphore.signal()
-            self.semaphoreCounter = self.semaphoreCounter + 1
-            print("after semaphore signal", self.semaphoreCounter)
+            if(self.hasApiInput){
+                print("before semaphore signal",self.semaphoreAPICounter)
+                //self.semaphore.signal()
+                self.semaphoreAPICounter = self.semaphoreAPICounter + 1
+                print("after semaphore signal", self.semaphoreAPICounter)
+            }
+            else {
+                self.semaphoreLocal.signal()
+            }
         }
     }
     
@@ -443,49 +548,92 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
 
 extension CameraVC: VideoCaptureDelegate {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?, timestamp: CMTime) {
-        // For debugging.
-        //predict(image: UIImage(named: "dog416")!); return
-        print("before semaphore wait", semaphoreCounter)
-        if semaphoreCounter <= 0 {return}
-        semaphoreCounter = semaphoreCounter - 1
-        //semaphore.wait()
-        print("after semaphore wait", semaphoreCounter)
+        //docker API predict calls
+        if(hasApiInput){
+            // For debugging.
+            //predict(image: UIImage(named: "dog416")!); return
+            print("before semaphore wait", semaphoreAPICounter)
+            if semaphoreAPICounter <= 0 {return}
+            semaphoreAPICounter = semaphoreAPICounter - 1
+            //semaphore.wait()
+            print("after semaphore wait", semaphoreAPICounter)
 
-        if let pixelBuffer = pixelBuffer {
-            // For better throughput, perform the prediction on a background queue
-            // instead of on the VideoCapture queue. We use the semaphore to block
-            // the capture queue and drop frames when Core ML can't keep up.
-            
-            //DispatchQueue.global().async { [self] in
-//                let fileManager = FileManager.default
-//
-//                let documentsDirectory = fileManager.urls(for: .documentDirectory,
-//                                                          in: .userDomainMask).first!
-//
-//                // let documentsDirectory = appSupportURL.appendingPathComponent("test.png")
-//                if (storeImage) {
-//                    let image = UIImage(ciImage: CIImage(cvPixelBuffer: pixelBuffer))
-//                    self.frame_num  = self.frame_num+1
-//                    let fileName = "image_\(self.frame_num).jpg"
-//                    // create the destination file url to save your image
-//                    let fileURL = documentsDirectory.appendingPathComponent(fileName)
-//                    // get your UIImage jpeg data representation and check if the destination file url already exists
-//                    if let data = image.jpegData(compressionQuality: 1.0),
-//                       !FileManager.default.fileExists(atPath: fileURL.path) {
-//                        do {
-//                            // writes the image data to disk
-//
-//                            try data.write(to: fileURL)
-//                            print("file saved : \(fileURL)")
-//                        } catch {
-//                            print("error saving file:", error)
-//                        }
-//                    }
-//                }
+            if let pixelBuffer = pixelBuffer {
+                // For better throughput, perform the prediction on a background queue
+                // instead of on the VideoCapture queue. We use the semaphore to block
+                // the capture queue and drop frames when Core ML can't keep up.
                 
-                self.predict(pixelBuffer: pixelBuffer)
-                //self.predictUsingVision(pixelBuffer: pixelBuffer)
-            //}
+                //DispatchQueue.global().async { [self] in
+    //                let fileManager = FileManager.default
+    //
+    //                let documentsDirectory = fileManager.urls(for: .documentDirectory,
+    //                                                          in: .userDomainMask).first!
+    //
+    //                // let documentsDirectory = appSupportURL.appendingPathComponent("test.png")
+    //                if (storeImage) {
+    //                    let image = UIImage(ciImage: CIImage(cvPixelBuffer: pixelBuffer))
+    //                    self.frame_num  = self.frame_num+1
+    //                    let fileName = "image_\(self.frame_num).jpg"
+    //                    // create the destination file url to save your image
+    //                    let fileURL = documentsDirectory.appendingPathComponent(fileName)
+    //                    // get your UIImage jpeg data representation and check if the destination file url already exists
+    //                    if let data = image.jpegData(compressionQuality: 1.0),
+    //                       !FileManager.default.fileExists(atPath: fileURL.path) {
+    //                        do {
+    //                            // writes the image data to disk
+    //
+    //                            try data.write(to: fileURL)
+    //                            print("file saved : \(fileURL)")
+    //                        } catch {
+    //                            print("error saving file:", error)
+    //                        }
+    //                    }
+    //                }
+                    
+                    self.predictAPI(pixelBuffer: pixelBuffer)
+                    //self.predictUsingVision(pixelBuffer: pixelBuffer)
+                //}
+            }
+        }
+        //local model preict calls
+        else {
+            semaphoreLocal.wait()
+
+            if let pixelBuffer = pixelBuffer {
+                // For better throughput, perform the prediction on a background queue
+                // instead of on the VideoCapture queue. We use the semaphore to block
+                // the capture queue and drop frames when Core ML can't keep up.
+                DispatchQueue.global().async { [self] in
+    //                let fileManager = FileManager.default
+    //
+    //                let documentsDirectory = fileManager.urls(for: .documentDirectory,
+    //                                                          in: .userDomainMask).first!
+    //
+    //                // let documentsDirectory = appSupportURL.appendingPathComponent("test.png")
+    //                if (storeImage) {
+    //                    let image = UIImage(ciImage: CIImage(cvPixelBuffer: pixelBuffer))
+    //                    self.frame_num  = self.frame_num+1
+    //                    let fileName = "image_\(self.frame_num).jpg"
+    //                    // create the destination file url to save your image
+    //                    let fileURL = documentsDirectory.appendingPathComponent(fileName)
+    //                    // get your UIImage jpeg data representation and check if the destination file url already exists
+    //                    if let data = image.jpegData(compressionQuality: 1.0),
+    //                       !FileManager.default.fileExists(atPath: fileURL.path) {
+    //                        do {
+    //                            // writes the image data to disk
+    //
+    //                            try data.write(to: fileURL)
+    //                            print("file saved : \(fileURL)")
+    //                        } catch {
+    //                            print("error saving file:", error)
+    //                        }
+    //                    }
+    //                }
+                    
+                    self.predictLocal(pixelBuffer: pixelBuffer)
+                    //self.predictUsingVision(pixelBuffer: pixelBuffer)
+                }
+            }
         }
     }
 }

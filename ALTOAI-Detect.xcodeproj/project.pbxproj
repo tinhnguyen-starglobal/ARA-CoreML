@@ -45,6 +45,7 @@
 		0DFA24DB26A6E6770014CD6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DA26A6E6770014CD6E /* Constants.swift */; };
 		0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */; };
 		1007AEDB05DE2E0D1B2679CC /* Pods_ALTOAI_Detect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */; };
+		398A4D4B2885ABC2006633D9 /* PredictTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 398A4D4A2885ABC2006633D9 /* PredictTypeViewController.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
 		89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9C8268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift */; };
 		89BBF9D4268E9B6100FA46B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9C9268E9B6100FA46B6 /* AppDelegate.swift */; };
@@ -95,6 +96,7 @@
 		0DE4F1E926B7FBAA007053DB /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		0DFA24DA26A6E6770014CD6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		398A4D4A2885ABC2006633D9 /* PredictTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictTypeViewController.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
 		5B5F16DCF5ACE4A2BB15E825 /* Pods-ALTOAI-Detect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALTOAI-Detect.release.xcconfig"; path = "Target Support Files/Pods-ALTOAI-Detect/Pods-ALTOAI-Detect.release.xcconfig"; sourceTree = "<group>"; };
 		7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ALTOAI_Detect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,7 @@
 		0D51402B26A5A84300CEE1DD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				398A4D452885AAE7006633D9 /* PredictTypeVC */,
 				0DE4F1DB26B4311E007053DB /* MainTabBarVC */,
 				0D51402D26A5A87300CEE1DD /* LoginVC */,
 				0DB4AA9526B1B88B001F5CD3 /* ProjectsVC */,
@@ -350,6 +353,14 @@
 				0DE4F1DC26B43146007053DB /* MainTabBarVC.swift */,
 			);
 			path = MainTabBarVC;
+			sourceTree = "<group>";
+		};
+		398A4D452885AAE7006633D9 /* PredictTypeVC */ = {
+			isa = PBXGroup;
+			children = (
+				398A4D4A2885ABC2006633D9 /* PredictTypeViewController.swift */,
+			);
+			path = PredictTypeVC;
 			sourceTree = "<group>";
 		};
 		89BBF9AC268E9AE300FA46B6 = {
@@ -547,6 +558,7 @@
 				89BBF9DB268E9B6100FA46B6 /* CameraVC.swift in Sources */,
 				0D51403226A5D23000CEE1DD /* LocalModelsVC.swift in Sources */,
 				89BBF9D9268E9B6100FA46B6 /* Helpers.swift in Sources */,
+				398A4D4B2885ABC2006633D9 /* PredictTypeViewController.swift in Sources */,
 				0DE25C3F26BD2666001B1620 /* AltoActivityIndicatorView.swift in Sources */,
 				0DE4F1E326B7F3E2007053DB /* Fonts.swift in Sources */,
 				89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */,
@@ -694,7 +706,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"ALTOAI-Detect/Preview Content\"";
-				DEVELOPMENT_TEAM = 77BN2H677F;
+				DEVELOPMENT_TEAM = 8JS9STUUT9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ALTOAI-Detect/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -703,7 +715,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.8;
-				PRODUCT_BUNDLE_IDENTIFIER = com.star.parc.altoaidetect;
+				PRODUCT_BUNDLE_IDENTIFIER = com.star.parc.altoaidetect2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -719,7 +731,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"ALTOAI-Detect/Preview Content\"";
-				DEVELOPMENT_TEAM = 77BN2H677F;
+				DEVELOPMENT_TEAM = 8JS9STUUT9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ALTOAI-Detect/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -728,7 +740,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.8;
-				PRODUCT_BUNDLE_IDENTIFIER = com.star.parc.altoaidetect;
+				PRODUCT_BUNDLE_IDENTIFIER = com.star.parc.altoaidetect2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

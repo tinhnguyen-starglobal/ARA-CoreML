@@ -33,8 +33,8 @@ class YOLO {
         }
     }
     
-    let theURL = URL(string:"http://10.0.1.137:8888/predict?score_threshold=0.5&iou_threshold=0.5")
-    public func getBBsFromAPI(image: UIImage, imagew: CGFloat, imageh: CGFloat) throws -> [Prediction] {
+    
+    public func getBBsFromAPI(image: UIImage, imagew: CGFloat, imageh: CGFloat, apiInput: String) throws -> [Prediction] {
         // Asynchronous Http call to your api url, using URLSession:
         //guard let imageData = imageData else { return []}
         let boundary = UUID().uuidString
@@ -42,7 +42,13 @@ class YOLO {
         //let session = URLSession(configuration: .default)
         let defaultSession = URLSession(configuration: .default)
         var dataTask: URLSessionDataTask?
-
+        
+        //create the API url - http and url are consistent
+        //user's IP address is entered during runtime, passed as apiInput parameter
+        let http = "http://"
+        let url = "/predict?score_threshold=0.5&iou_threshold=0.5"
+        let theURL = URL(string: http + apiInput + url)
+        
         // Set the URLRequest to POST and to the specified URL
         var urlRequest = URLRequest(url: theURL!)
         urlRequest.httpMethod = "PUT"
