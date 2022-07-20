@@ -125,7 +125,7 @@ class ExperimentRunVC : UIViewController, UITableViewDelegate, UITableViewDataSo
                 self.tableView.reloadRows(at: [indexPath], with: .automatic)
                 if let yolo = yolo {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    //call the predictVC controller which helps the user pick between local model and
+                    //call the predictVC controller which helps the user pick between normal model and
                     //docker API for the bounding box predictions
                     if let predictVC = storyboard.instantiateViewController(withIdentifier: "PredictVCID") as?
                         PredictTypeViewController {

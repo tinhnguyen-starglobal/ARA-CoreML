@@ -43,7 +43,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     
     var framesDone = 0
     var frameCapturingStartTime = CACurrentMediaTime()
-    let semaphoreLocal = DispatchSemaphore(value: 2)
+    let semaphoreNormal = DispatchSemaphore(value: 2)
     let semaphoreAPI = DispatchSemaphore(value: 1)
     var semaphoreAPICounter = 1
     
@@ -235,9 +235,9 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
             if(hasApiInput) {
                 predictAPI(pixelBuffer: pixelBuffer)
             }
-            //local model predict
+            //normal model predict
             else {
-                predictLocal(pixelBuffer: pixelBuffer)
+                predictNormal(pixelBuffer: pixelBuffer)
             }
         }
     }
@@ -326,8 +326,8 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         }
     }
     
-    //local model predict function
-    func predictLocal(pixelBuffer: CVPixelBuffer) {
+    //normal model predict function
+    func predictNormal(pixelBuffer: CVPixelBuffer) {
         // Measure how long it takes to predict a single video frame.
         let startTime = CACurrentMediaTime()
         
@@ -466,7 +466,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                 print("after semaphore signal", self.semaphoreAPICounter)
             }
             else {
-                self.semaphoreLocal.signal()
+                self.semaphoreNormal.signal()
             }
         }
     }
@@ -595,9 +595,9 @@ extension CameraVC: VideoCaptureDelegate {
                 //}
             }
         }
-        //local model preict calls
+        //normal model preict calls
         else {
-            semaphoreLocal.wait()
+            semaphoreNormal.wait()
 
             if let pixelBuffer = pixelBuffer {
                 // For better throughput, perform the prediction on a background queue
@@ -630,7 +630,7 @@ extension CameraVC: VideoCaptureDelegate {
     //                    }
     //                }
                     
-                    self.predictLocal(pixelBuffer: pixelBuffer)
+                    self.predictNormal(pixelBuffer: pixelBuffer)
                     //self.predictUsingVision(pixelBuffer: pixelBuffer)
                 }
             }
