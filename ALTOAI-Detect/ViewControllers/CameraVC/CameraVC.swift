@@ -443,8 +443,6 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
 
 extension CameraVC: VideoCaptureDelegate {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?, timestamp: CMTime) {
-        // For debugging.
-        //predict(image: UIImage(named: "dog416")!); return
         print("before semaphore wait", semaphoreCounter)
         if semaphoreCounter <= 0 {return}
         semaphoreCounter = semaphoreCounter - 1
