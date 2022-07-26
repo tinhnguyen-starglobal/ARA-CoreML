@@ -32,12 +32,12 @@ import Accelerate
     - limit: the maximum number of boxes that will be selected
     - threshold: used to decide whether boxes overlap too much
 */
-func nonMaxSuppression(boxes: [YOLO.Prediction], limit: Int, threshold: Float) -> [YOLO.Prediction] {
+func nonMaxSuppression(boxes: [Prediction], limit: Int, threshold: Float) -> [Prediction] {
 
   // Do an argsort on the confidence scores, from high to low.
   let sortedIndices = boxes.indices.sorted { boxes[$0].score > boxes[$1].score }
 
-  var selected: [YOLO.Prediction] = []
+  var selected: [Prediction] = []
   var active = [Bool](repeating: true, count: boxes.count)
   var numActive = active.count
 

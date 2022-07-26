@@ -14,12 +14,6 @@ class YOLO {
     var confidenceThreshold: Float = 0.6
     var iouThreshold: Float = 0.5
     
-    struct Prediction {
-        let classIndex: Int
-        let name: String?
-        let score: Float
-        let rect: CGRect
-    }
     var predictionsFE: [Prediction] = []
 
     var model : yolo_model?
@@ -34,7 +28,9 @@ class YOLO {
     }
     
     let theURL = URL(string:"http://10.0.1.137:8888/predict?score_threshold=0.5&iou_threshold=0.5")
-    public func getBBsFromAPI(image: UIImage, imagew: CGFloat, imageh: CGFloat) throws -> [Prediction] {
+    public func getBBsFromAPI(image: UIImage, imagew: CGFloat, imageh: CGFloat, dispatchGroup: DispatchGroup, semaphore: DispatchSemaphore, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        semaphore.wait()
+        dispatchGroup.enter()
         // Asynchronous Http call to your api url, using URLSession:
         //guard let imageData = imageData else { return []}
         let boundary = UUID().uuidString
@@ -66,64 +62,16 @@ class YOLO {
 
         urlRequest.httpBody = data
         
-//  For reference
-//        struct Prediction {
-//            let classIndex: Int
-//            let score: Float
-//            let rect: CGRect
-//        }
-
-        // Add a semaphore here to wait on completion
-        let inferenceQuerySemaphore = DispatchSemaphore(value: 0)
         // Send a POST request to the URL, with the data we created earlier
-        dataTask = defaultSession.dataTask(with: urlRequest, completionHandler: { responseData, response, error in
-            if error == nil {
-                
-                self.predictionsFE.removeAll() // make sure its empty
-                if let responseData = responseData,
-                   let json = try? JSONSerialization.jsonObject(with: responseData, options: []) as? [String:Any] {
-                    let p = json["predictions"] as? [Any]
-                    let len = p?.count
-                    if len ?? 0 > 0 {
-                        for i in 0...(len ?? 1)-1 {
-//                            print("i is ",i)
-                            let thisp = p?[i] as? [String:Any]
-//                            print("gogogo")
-//                            print(thisp)
-//                            print("sososo")
-//                            print(thisp?["bbox"])
-                            let bbox = thisp?["bbox"] as? [Any]
-//                            print("bbbbb")
-//                            print(bbox)
-                            let x = (bbox?[0] as? NSNumber)?.floatValue ?? 0
-                            let y = (bbox?[1] as? NSNumber)?.floatValue ?? 0
-                            let x2 = (bbox?[2] as? NSNumber)?.floatValue ?? 0
-                            let y2 = (bbox?[3] as? NSNumber)?.floatValue ?? 0
-                            let gcx = CGFloat(x) * CGFloat(self.inputWidth) //* imagew
-                            let gcy = CGFloat(y) * CGFloat(self.inputHeight)//* imageh
-                            let gcw = CGFloat(x2) * CGFloat(self.inputWidth) - gcx
-                            let gch = CGFloat(y2) * CGFloat(self.inputHeight) - gcy
-                            
-                            let score = thisp!["confidence"] as! Float
-                            let name = thisp!["name"] as! String
-                            let rect = CGRect(x: gcx, y: gcy, width: gcw, height: gch)
-                            let pred = Prediction(classIndex: 0, name: name, score: score, rect: rect)
-                            self.predictionsFE.append(pred)
-                        }
-                    }
-                }
+        dataTask = defaultSession.dataTask(with: urlRequest, completionHandler: { data, response, error in
+            defer {
+                dispatchGroup.leave()
+                semaphore.signal()
             }
-            else {
-                print(error)
-            }
-            inferenceQuerySemaphore.signal()
-            print("inferenceQuerySemaphore.signal")
+            completionHandler(data, response, error)
         })
         
         dataTask?.resume()
-        inferenceQuerySemaphore.wait()
-        print("inferenceQuerySemaphore.wait")
-        return self.predictionsFE
     }
     
 

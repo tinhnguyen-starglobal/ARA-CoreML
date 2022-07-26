@@ -11,7 +11,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     @IBOutlet weak var fpsLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var debugImageView: UIImageView!
- 
+    
     @IBOutlet weak var slidersVisibilityButton: UIButton!
     @IBOutlet weak var slidersView: UIView!
     
@@ -23,6 +23,9 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     var storeImage = true
     
     var yolo = YOLO()
+    let group = DispatchGroup()
+    let queue = DispatchQueue.global()
+    let semaphore = DispatchSemaphore(value: 8)
     
     var frame_num = 0
     var videoCapture: VideoCapture!
@@ -32,6 +35,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     var startTimes: [CFTimeInterval] = []
     
     var boundingBoxes = [BoundingBox]()
+    var predictionsFE: [Prediction] = []
     var colors: [UIColor] = []
     
     let ciContext = CIContext()
@@ -39,7 +43,6 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     
     var framesDone = 0
     var frameCapturingStartTime = CACurrentMediaTime()
-    let semaphore = DispatchSemaphore(value: 1)
     var semaphoreCounter = 1
     
     override func viewDidLoad() {
@@ -84,7 +87,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         // Make colors for the bounding boxes. There is one color for each class,
         
         colors = randomColors(count: yolo.numClasses, luminosity: .light)
-
+        
     }
     
     func setUpCoreImage() {
@@ -115,7 +118,8 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         videoCapture.delegate = self
         videoCapture.fps = 50
         let preset = UIDevice.current.userInterfaceIdiom == .pad ? AVCaptureSession.Preset.vga640x480 : AVCaptureSession.Preset.hd1280x720
-        videoCapture.setUp(sessionPreset: preset) { success in
+        videoCapture.setUp(sessionPreset: preset) { [weak self] success in
+            guard let self = self else { return }
             if success {
                 // Add the video preview into the UI.
                 if let previewLayer = self.videoCapture.previewLayer {
@@ -135,12 +139,9 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         }
     }
     
-    // MARK: -
-    
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     @IBAction func toggleSlidersPressed(_ sender: Any) {
         UIView.animate(withDuration: 0.3) { [weak self] in
@@ -191,7 +192,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         self.videoCapture.videoOutput.connection(with: AVMediaType.video)?.videoOrientation = orientation
         self.videoCapture.previewLayer?.frame = self.view.bounds
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -207,15 +208,11 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                 
                 switch (orientation) {
                 case .portrait: updatePreviewLayer(layer: previewLayerConnection, orientation: .portrait)
-                                    
                 case .landscapeRight: updatePreviewLayer(layer: previewLayerConnection, orientation: .landscapeLeft)
-                                    
                 case .landscapeLeft: updatePreviewLayer(layer: previewLayerConnection, orientation: .landscapeRight)
-                                    
                 case .portraitUpsideDown: updatePreviewLayer(layer: previewLayerConnection, orientation: .portraitUpsideDown)
-                                    
                 default: updatePreviewLayer(layer: previewLayerConnection, orientation: .portrait)
-                
+                    
                 }
             }
         }
@@ -246,7 +243,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         let scaledImage = ciImage.transformed(by: scaleTransform)
         ciContext.render(scaledImage, to: resizedPixelBuffer)
         
-//        print("image sizes : \(CGFloat(CVPixelBufferGetWidth(pixelBuffer))) , \(CGFloat(CVPixelBufferGetHeight(pixelBuffer)))")
+        //        print("image sizes : \(CGFloat(CVPixelBufferGetWidth(pixelBuffer))) , \(CGFloat(CVPixelBufferGetHeight(pixelBuffer)))")
         
         // This is an alternative way to resize the image (using vImage):
         //if let resizedPixelBuffer = resizePixelBuffer(pixelBuffer,
@@ -258,13 +255,14 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         let ciResizeImage = CIImage(cvPixelBuffer: resizedPixelBuffer)
         guard let cgResizeImage = ciContext.createCGImage(ciResizeImage, from: ciResizeImage.extent) else {return}
         let resizeimage = UIImage(cgImage: cgResizeImage)
-
-        DispatchQueue.global().async { [self] in
-            if storeImage {
+        
+        DispatchQueue.global().async { [weak self] in
+            guard let self = self else { return }
+            if self.storeImage {
                 let fileManager = FileManager.default
                 
                 let documentsDirectory = fileManager.urls(for: .documentDirectory,
-                                                             in: .userDomainMask).first!
+                                                          in: .userDomainMask).first!
                 // to get images of correct dimensions instead of 2x
                 let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
                 let ciContext = CIContext()
@@ -280,7 +278,6 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                    !FileManager.default.fileExists(atPath: fileURL.path) {
                     do {
                         // writes the image data to disk
-
                         try data.write(to: fileURL)
                         print("file saved : \(fileURL)")
                     } catch {
@@ -303,28 +300,68 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                         print("error saving file:", error)
                     }
                 }
-                self.frame_num  = self.frame_num+1
+                self.frame_num  = self.frame_num + 1
             }
         }
         
-        if let boundingBoxes = try? yolo.getBBsFromAPI(image: resizeimage, imagew: inputImageWidth, imageh: inputImageHeight) {
-            let elapsed = CACurrentMediaTime() - startTime
-            showOnMainThread(boundingBoxes, elapsed)
+        yolo.getBBsFromAPI(image: resizeimage, imagew: inputImageWidth, imageh: inputImageHeight, dispatchGroup: group, semaphore: semaphore, completionHandler: { [weak self] data, _, error in
+            guard let self = self else { return }
+            if error == nil {
+                self.predictionsFE.removeAll()
+                if let data = data {
+                    if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+                        let p = json["predictions"] as? [Any]
+                        let len = p?.count
+                        if len ?? 0 > 0 {
+                            for i in 0...(len ?? 1)-1 {
+                                let thisp = p?[i] as? [String:Any]
+                                let bbox = thisp?["bbox"] as? [Any]
+                                let x = (bbox?[0] as? NSNumber)?.floatValue ?? 0
+                                let y = (bbox?[1] as? NSNumber)?.floatValue ?? 0
+                                let x2 = (bbox?[2] as? NSNumber)?.floatValue ?? 0
+                                let y2 = (bbox?[3] as? NSNumber)?.floatValue ?? 0
+                                let gcx = CGFloat(x) * CGFloat(416) //* imagew
+                                let gcy = CGFloat(y) * CGFloat(416)//* imageh
+                                let gcw = CGFloat(x2) * CGFloat(416) - gcx
+                                let gch = CGFloat(y2) * CGFloat(416) - gcy
+                                
+                                let score = thisp!["confidence"] as! Float
+                                let name = thisp!["name"] as! String
+                                let rect = CGRect(x: gcx, y: gcy, width: gcw, height: gch)
+                                let pred = Prediction(classIndex: 0, name: name, score: score, rect: rect)
+                                self.predictionsFE.append(pred)
+                            }
+                        }
+                    }}
+            }  else {
+                print(error.debugDescription)
+            }
+        })
+    
+        group.notify(queue: queue) {
+            self.showOnMainThread(self.predictionsFE)
         }
-//        if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
-//            let elapsed = CACurrentMediaTime() - startTime
-//            showOnMainThread(boundingBoxes, elapsed)
-//        }
+        self.updateElapsed(startTime)
+        
+        //        if let boundingBoxes = try? yolo.getBBsFromAPI(image: resizeimage, imagew: inputImageWidth, imageh: inputImageHeight) {
+        //            let elapsed = CACurrentMediaTime() - startTime
+        //            showOnMainThread(boundingBoxes, elapsed)
+        //        }
+        //        if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
+        //            let elapsed = CACurrentMediaTime() - startTime
+        //            showOnMainThread(boundingBoxes, elapsed)
+        //        }
     }
     
-
-//    public func predict(image: CVPixelBuffer) throws -> [Prediction] {
-//        if let output = try? model?.prediction(inputs: image) {
-//            return computeBoundingBoxes(features: output.predictions)
-//        } else {
-//            return []
-//        }
-//    }
+    private func updateElapsed(_ startTime: CFTimeInterval) {
+        DispatchQueue.main.async {
+            let elapsed = CACurrentMediaTime() - startTime
+            let fps = self.measureFPS()
+            self.fpsLabel.text = String(format: "%.2f", fps)
+            self.timeLabel.text = String(format: "%.5f", elapsed)
+        }
+    }
+    
     func predictUsingVision(pixelBuffer: CVPixelBuffer) {
         // Measure how long it takes to predict a single video frame. Note that
         // predict() can be called on the next frame while the previous one is
@@ -342,27 +379,13 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
             
             let boundingBoxes = yolo.computeBoundingBoxes(features: features)
             let elapsed = CACurrentMediaTime() - startTimes.remove(at: 0)
-            showOnMainThread(boundingBoxes, elapsed)
+            showOnMainThread(boundingBoxes)
         }
     }
     
-    func showOnMainThread(_ boundingBoxes: [YOLO.Prediction], _ elapsed: CFTimeInterval) {
+    func showOnMainThread(_ boundingBoxes: [Prediction]) {
         DispatchQueue.main.async {
-            // For debugging, to make sure the resized CVPixelBuffer is correct.
-            //var debugImage: CGImage?
-            //VTCreateCGImageFromCVPixelBuffer(resizedPixelBuffer, nil, &debugImage)
-            //self.debugImageView.image = UIImage(cgImage: debugImage!)
-            
             self.show(predictions: boundingBoxes)
-            
-            let fps = self.measureFPS()
-            self.timeLabel.text = String(format: "%.5f", elapsed)
-            self.fpsLabel.text = String(format: "%.2f", fps)
-            
-            print("before semaphore signal",self.semaphoreCounter)
-            //self.semaphore.signal()
-            self.semaphoreCounter = self.semaphoreCounter + 1
-            print("after semaphore signal", self.semaphoreCounter)
         }
     }
     
@@ -378,7 +401,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         return currentFPSDelivered
     }
     
-    func show(predictions: [YOLO.Prediction]) {
+    func show(predictions: [Prediction]) {
         //print("Show method called ! ")
         for i in 0..<boundingBoxes.count {
             if i < predictions.count {
@@ -443,11 +466,11 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
 
 extension CameraVC: VideoCaptureDelegate {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?, timestamp: CMTime) {
-        print("before semaphore wait", semaphoreCounter)
-        if semaphoreCounter <= 0 {return}
-        semaphoreCounter = semaphoreCounter - 1
-        //semaphore.wait()
-        print("after semaphore wait", semaphoreCounter)
+//        print("before semaphore wait", semaphoreCounter)
+//        if semaphoreCounter <= 0 {return}
+//        semaphoreCounter = semaphoreCounter - 1
+//        //semaphore.wait()
+//        print("after semaphore wait", semaphoreCounter)
 
         if let pixelBuffer = pixelBuffer {
             // For better throughput, perform the prediction on a background queue
@@ -486,16 +509,4 @@ extension CameraVC: VideoCaptureDelegate {
             //}
         }
     }
-}
-
-extension CGImagePropertyOrientation {
-  init(_ orientation: UIDeviceOrientation) {
-    switch orientation {
-    case .landscapeRight: self = .left
-    case .landscapeLeft: self = .right
-    case .portrait: self = .down
-    case .portraitUpsideDown: self = .up
-    default: self = .up
-    }
-  }
 }

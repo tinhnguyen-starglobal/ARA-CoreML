@@ -45,6 +45,8 @@
 		0DFA24DB26A6E6770014CD6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DA26A6E6770014CD6E /* Constants.swift */; };
 		0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */; };
 		1007AEDB05DE2E0D1B2679CC /* Pods_ALTOAI_Detect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */; };
+		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
+		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
 		89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9C8268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift */; };
 		89BBF9D4268E9B6100FA46B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9C9268E9B6100FA46B6 /* AppDelegate.swift */; };
@@ -95,6 +97,8 @@
 		0DE4F1E926B7FBAA007053DB /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		0DFA24DA26A6E6770014CD6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
+		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
 		5B5F16DCF5ACE4A2BB15E825 /* Pods-ALTOAI-Detect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALTOAI-Detect.release.xcconfig"; path = "Target Support Files/Pods-ALTOAI-Detect/Pods-ALTOAI-Detect.release.xcconfig"; sourceTree = "<group>"; };
 		7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ALTOAI_Detect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,7 @@
 				89BBF9CD268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift */,
 				89BBF9C8268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift */,
 				0DE4F1D926B2F565007053DB /* ModelOperationsHelper.swift */,
+				19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 				0DB4AAA626B29CB4001F5CD3 /* Scene.swift */,
 				0DB4AAB726B2C0E0001F5CD3 /* Experiment.swift */,
 				0DB4AABF26B2C63C001F5CD3 /* ExperimentRun.swift */,
+				19C3DFF7288F13CE000E005D /* Prediction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -524,6 +530,7 @@
 				0D51402F26A5A88600CEE1DD /* LoginVC.swift in Sources */,
 				89BBF9D5268E9B6100FA46B6 /* BoundingBox.swift in Sources */,
 				0DB4AAA726B29CB4001F5CD3 /* Scene.swift in Sources */,
+				19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */,
 				89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */,
 				0DB4AAB626B2BF9B001F5CD3 /* ExperimentsViewModel.swift in Sources */,
 				0D712D8D269F8E490031D2E3 /* yolo_model.swift in Sources */,
@@ -548,6 +555,7 @@
 				0D51403226A5D23000CEE1DD /* LocalModelsVC.swift in Sources */,
 				89BBF9D9268E9B6100FA46B6 /* Helpers.swift in Sources */,
 				0DE25C3F26BD2666001B1620 /* AltoActivityIndicatorView.swift in Sources */,
+				19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */,
 				0DE4F1E326B7F3E2007053DB /* Fonts.swift in Sources */,
 				89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */,
 				0DE4F1EA26B7FBAA007053DB /* TableViewHeader.swift in Sources */,
