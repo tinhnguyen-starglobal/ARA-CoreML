@@ -43,8 +43,8 @@
         override func viewDidLoad() {
             super.viewDidLoad()
             
-//                apiKeyTxtFld.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
-//                apiSecretTxtFld.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
+                apiKeyTxtFld.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
+                apiSecretTxtFld.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
             
             enterBtn.setTitleColor(UIColor.white, for:.normal)
             enterBtn.setTitleColor(UIColor.init(red: 60/256.0, green: 60/256.0, blue: 67/256.0, alpha: 0.3), for:.disabled)

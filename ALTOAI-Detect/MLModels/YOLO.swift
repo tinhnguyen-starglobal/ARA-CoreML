@@ -27,55 +27,6 @@ class YOLO {
         }
     }
     
-    let theURL = URL(string:"http://10.0.1.137:8888/predict?score_threshold=0.5&iou_threshold=0.5")
-    public func getBBsFromAPI(image: UIImage, imagew: CGFloat, imageh: CGFloat, dispatchGroup: DispatchGroup, semaphore: DispatchSemaphore, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        semaphore.wait()
-        dispatchGroup.enter()
-        // Asynchronous Http call to your api url, using URLSession:
-        //guard let imageData = imageData else { return []}
-        let boundary = UUID().uuidString
-
-        //let session = URLSession(configuration: .default)
-        let defaultSession = URLSession(configuration: .default)
-        var dataTask: URLSessionDataTask?
-
-        // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: theURL!)
-        urlRequest.httpMethod = "PUT"
-        urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
-        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
-        // And the boundary is also set here
-        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-
-        var data = Data()
-
-        // Add the image data to the raw http request data
-        //data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"file\"; filename=\"testImage.png\"\r\n".data(using: .utf8)!)
-        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
-        
-        //data.append(image.jpegData(compressionQuality: 0.9)!)
-        data.append(image.pngData()!)
-
-        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-
-        urlRequest.httpBody = data
-        
-        // Send a POST request to the URL, with the data we created earlier
-        dataTask = defaultSession.dataTask(with: urlRequest, completionHandler: { data, response, error in
-            defer {
-                dispatchGroup.leave()
-                semaphore.signal()
-            }
-            completionHandler(data, response, error)
-        })
-        
-        dataTask?.resume()
-    }
-    
-
-    
     public func computeBoundingBoxes( features: MLMultiArray) -> [Prediction] {
         var predictions = [Prediction]()
         
@@ -114,8 +65,6 @@ class YOLO {
         // We already filtered out any bounding boxes that have very low scores,
         // but there still may be boxes that overlap too much with others. We'll
         // use "non-maximum suppression" to prune those duplicate bounding boxes.
-        
-        
         return  nonMaxSuppression(boxes: predictions, limit: maxBoundingBoxes, threshold: iouThreshold)
         
     }
