@@ -20,9 +20,11 @@ extension Constant {
         }
         
         enum Neutral {
+            static let fog = UIColor(hex: "#ECECEF")
             static let lightGray = UIColor(hex: "#8E8E93")
             static let clound = UIColor(hex: "#FAFAFC")
             static let white = UIColor(hex: "#FFFFFF")
+            static let text = UIColor(hex: "#000000")
             static let link = UIColor(hex: "#53587A")
         }
         
