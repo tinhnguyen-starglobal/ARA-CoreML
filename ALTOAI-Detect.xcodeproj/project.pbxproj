@@ -449,8 +449,8 @@
 		198299F228A362D60036C7E7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				19829A3028A36B680036C7E7 /* OnDevice */,
 				19829A2828A36AD40036C7E7 /* OutDevice */,
+				19829A3028A36B680036C7E7 /* OnDevice */,
 				198299FF28A363C40036C7E7 /* CloundComputing */,
 				198299F428A3633F0036C7E7 /* EdgeComputing */,
 			);

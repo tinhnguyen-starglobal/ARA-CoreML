@@ -17,6 +17,12 @@ final class OutDeviceViewController: BaseViewController {
         return segment
     }()
     
+    private let urlTextField: TextFieldView = {
+        let textfieldView = TextFieldView(style: .normal(), state: .normal)
+        textfieldView.placeholder = "URL"
+        return textfieldView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         constructHierarchy()
@@ -29,6 +35,7 @@ extension OutDeviceViewController {
     private func constructHierarchy() {
         configureNavigation()
         layoutSegmentControl()
+        layoutURLTextField()
     }
     
     private func configureNavigation() {
@@ -40,6 +47,14 @@ extension OutDeviceViewController {
         self.view.addSubview(segmentControl)
         segmentControl.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(Dimension.Spacing.spacing32)
+            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
+        }
+    }
+    
+    private func layoutURLTextField() {
+        self.view.addSubview(urlTextField)
+        urlTextField.snp.makeConstraints { make in
+            make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
     }
