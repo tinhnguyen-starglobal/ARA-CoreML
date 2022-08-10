@@ -9,4 +9,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         return true
     }
+    
+    private func configureMainTabbar() {
+        let mainVC = MainNavigationController(tabBarItems: [.search, .library, .profile])
+        UIWindow.setRoot(by: mainVC, animated: true)
+    }
 }
