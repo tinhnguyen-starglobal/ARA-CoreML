@@ -15,27 +15,27 @@ enum TabbarItem: CaseIterable {
     var title: String {
         switch self {
         case .outDevice:
-            return "tabbar_search"
+            return "Out Device"
         case .onDevice:
-            return "tabbar_history"
+            return "On Device"
         }
     }
     
     var iconActive: UIImage? {
         switch self {
         case .outDevice:
-            return UIImage(named: "ic_search_active")
+            return UIImage(named: "ic_cloud_fill")
         case .onDevice:
-            return UIImage(named: "ic_history_active")
+            return UIImage(named: "ic_folder_fill")
         }
     }
     
     var iconDeactive: UIImage? {
         switch self {
         case .outDevice:
-            return UIImage(named: "ic_search_deactive")
+            return UIImage(named: "ic_cloud")
         case .onDevice:
-            return UIImage(named: "ic_history_deactive")
+            return UIImage(named: "ic_folder")
         }
     }
     
