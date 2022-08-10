@@ -317,7 +317,7 @@ final class TextFieldView: UIView {
                                    y: Dimension.TextFieldView.FrameValue.zero,
                                    width: Dimension.TextFieldView.FrameValue.thirty,
                                    height: self.style.getDecoration(state: self.state).height)
-        visiableBtn.setImage(textField.isSecureTextEntry ? UIImage(named: "ic_camera") : UIImage(named: "ic_camera"), for: .normal)
+        visiableBtn.setImage(textField.isSecureTextEntry ? UIImage(named: "ic_eye_slash") : UIImage(named: "ic_eye"), for: .normal)
         visiableBtn.addTarget(self, action: #selector(self.visiable(sender:)), for: .touchUpInside)
         paddingView.addSubview(visiableBtn)
 
@@ -365,10 +365,10 @@ final class TextFieldView: UIView {
     @objc private func visiable(sender: UIButton) {
         self.textField.isSecureTextEntry = !self.textField.isSecureTextEntry
         if textField.isSecureTextEntry {
-            sender.setImage(UIImage(named: "ic_camera"), for: .normal)
+            sender.setImage(UIImage(named: "ic_eye_slash"), for: .normal)
             self.textField.textColor = self.style.getDecoration(state: self.state).placeholderColor
         } else {
-            sender.setImage(UIImage(named: "ic_camera"), for: .normal)
+            sender.setImage(UIImage(named: "ic_eye"), for: .normal)
             self.textField.textColor = self.style.getDecoration(state: self.state).textColor
         }
     }
