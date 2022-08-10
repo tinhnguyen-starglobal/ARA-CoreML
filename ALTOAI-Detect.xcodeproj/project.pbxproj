@@ -171,15 +171,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		0D51402A26A59A6E00CEE1DD /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				0D51402826A5995200CEE1DD /* Launch Screen.storyboard */,
-				89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		0D51402B26A5A84300CEE1DD /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,8 +272,6 @@
 			isa = PBXGroup;
 			children = (
 				89BBF9EB268E9F6200FA46B6 /* Main.storyboard */,
-				89BBF9C1268E9AE400FA46B6 /* Info.plist */,
-				0D51402A26A59A6E00CEE1DD /* Resources */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -391,6 +380,8 @@
 			children = (
 				19829A1528A365C10036C7E7 /* App */,
 				19829A1628A365C60036C7E7 /* Base */,
+				19829A1A28A367250036C7E7 /* Support */,
+				19829A1728A366D90036C7E7 /* Resources */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -537,6 +528,47 @@
 			children = (
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		19829A1728A366D90036C7E7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				19829A1928A367020036C7E7 /* Launch */,
+				19829A1828A366F50036C7E7 /* Assets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		19829A1828A366F50036C7E7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		19829A1928A367020036C7E7 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				0D51402826A5995200CEE1DD /* Launch Screen.storyboard */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		19829A1A28A367250036C7E7 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				19829A1B28A3672E0036C7E7 /* Info */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		19829A1B28A3672E0036C7E7 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				89BBF9C1268E9AE400FA46B6 /* Info.plist */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		89BBF9AC268E9AE300FA46B6 = {
@@ -896,7 +928,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ALTOAI-Detect/Preview Content\"";
 				DEVELOPMENT_TEAM = 2W55W867ST;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "ALTOAI-Detect/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ALTOAI-Detect/Architecture/Main/Support/Info/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -921,7 +953,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ALTOAI-Detect/Preview Content\"";
 				DEVELOPMENT_TEAM = 2W55W867ST;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "ALTOAI-Detect/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ALTOAI-Detect/Architecture/Main/Support/Info/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
