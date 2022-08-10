@@ -59,6 +59,12 @@
 		19829A1F28A368A70036C7E7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1E28A368A70036C7E7 /* BaseViewController.swift */; };
 		19829A2128A3693C0036C7E7 /* BaseTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A2028A3693C0036C7E7 /* BaseTabbarController.swift */; };
 		19829A2328A369510036C7E7 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A2228A369510036C7E7 /* BaseNavigationController.swift */; };
+		19829A2728A36A310036C7E7 /* TabbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A2628A36A310036C7E7 /* TabbarItem.swift */; };
+		19829A2D28A36AFC0036C7E7 /* OutDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A2C28A36AFC0036C7E7 /* OutDeviceView.swift */; };
+		19829A2F28A36B060036C7E7 /* OutDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A2E28A36B060036C7E7 /* OutDeviceViewController.swift */; };
+		19829A3428A36B9B0036C7E7 /* OnDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A3328A36B9B0036C7E7 /* OnDeviceViewModel.swift */; };
+		19829A3828A36BBE0036C7E7 /* OnDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A3728A36BBE0036C7E7 /* OnDeviceView.swift */; };
+		19829A3A28A36BCB0036C7E7 /* OnDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A3928A36BCB0036C7E7 /* OnDeviceViewController.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
@@ -125,6 +131,12 @@
 		19829A1E28A368A70036C7E7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		19829A2028A3693C0036C7E7 /* BaseTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabbarController.swift; sourceTree = "<group>"; };
 		19829A2228A369510036C7E7 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		19829A2628A36A310036C7E7 /* TabbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarItem.swift; sourceTree = "<group>"; };
+		19829A2C28A36AFC0036C7E7 /* OutDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceView.swift; sourceTree = "<group>"; };
+		19829A2E28A36B060036C7E7 /* OutDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceViewController.swift; sourceTree = "<group>"; };
+		19829A3328A36B9B0036C7E7 /* OnDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceViewModel.swift; sourceTree = "<group>"; };
+		19829A3728A36BBE0036C7E7 /* OnDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceView.swift; sourceTree = "<group>"; };
+		19829A3928A36BCB0036C7E7 /* OnDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceViewController.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
@@ -388,6 +400,7 @@
 			children = (
 				19829A1528A365C10036C7E7 /* App */,
 				19829A1628A365C60036C7E7 /* Base */,
+				19829A2428A369C50036C7E7 /* Component */,
 				19829A1A28A367250036C7E7 /* Support */,
 				19829A1728A366D90036C7E7 /* Resources */,
 			);
@@ -397,6 +410,8 @@
 		198299F228A362D60036C7E7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				19829A3028A36B680036C7E7 /* OnDevice */,
+				19829A2828A36AD40036C7E7 /* OutDevice */,
 				198299FF28A363C40036C7E7 /* CloundComputing */,
 				198299F428A3633F0036C7E7 /* EdgeComputing */,
 			);
@@ -583,6 +598,97 @@
 			path = Info;
 			sourceTree = "<group>";
 		};
+		19829A2428A369C50036C7E7 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				19829A2528A369DE0036C7E7 /* Tabbar */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		19829A2528A369DE0036C7E7 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				19829A2628A36A310036C7E7 /* TabbarItem.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		19829A2828A36AD40036C7E7 /* OutDevice */ = {
+			isa = PBXGroup;
+			children = (
+				19829A2928A36ADE0036C7E7 /* View */,
+			);
+			path = OutDevice;
+			sourceTree = "<group>";
+		};
+		19829A2928A36ADE0036C7E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				19829A2B28A36AEF0036C7E7 /* ViewController */,
+				19829A2A28A36AE90036C7E7 /* ViewLayout */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		19829A2A28A36AE90036C7E7 /* ViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				19829A2C28A36AFC0036C7E7 /* OutDeviceView.swift */,
+			);
+			path = ViewLayout;
+			sourceTree = "<group>";
+		};
+		19829A2B28A36AEF0036C7E7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				19829A2E28A36B060036C7E7 /* OutDeviceViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		19829A3028A36B680036C7E7 /* OnDevice */ = {
+			isa = PBXGroup;
+			children = (
+				19829A3228A36B740036C7E7 /* ViewModel */,
+				19829A3128A36B6D0036C7E7 /* View */,
+			);
+			path = OnDevice;
+			sourceTree = "<group>";
+		};
+		19829A3128A36B6D0036C7E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				19829A3628A36BAE0036C7E7 /* ViewController */,
+				19829A3528A36BA40036C7E7 /* ViewLayout */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		19829A3228A36B740036C7E7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				19829A3328A36B9B0036C7E7 /* OnDeviceViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		19829A3528A36BA40036C7E7 /* ViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				19829A3728A36BBE0036C7E7 /* OnDeviceView.swift */,
+			);
+			path = ViewLayout;
+			sourceTree = "<group>";
+		};
+		19829A3628A36BAE0036C7E7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				19829A3928A36BCB0036C7E7 /* OnDeviceViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		89BBF9AC268E9AE300FA46B6 = {
 			isa = PBXGroup;
 			children = (
@@ -762,6 +868,7 @@
 				19829A2328A369510036C7E7 /* BaseNavigationController.swift in Sources */,
 				89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */,
 				0DB4AAB626B2BF9B001F5CD3 /* ExperimentsViewModel.swift in Sources */,
+				19829A3428A36B9B0036C7E7 /* OnDeviceViewModel.swift in Sources */,
 				0D712D8D269F8E490031D2E3 /* yolo_model.swift in Sources */,
 				0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */,
 				19829A0E28A364A40036C7E7 /* EdgeComputingUseCase.swift in Sources */,
@@ -783,10 +890,12 @@
 				198299FE28A363B50036C7E7 /* EdgeComputingViewModel.swift in Sources */,
 				0DB4AAB826B2C0E0001F5CD3 /* Experiment.swift in Sources */,
 				0DB4AAC026B2C63C001F5CD3 /* ExperimentRun.swift in Sources */,
+				19829A2F28A36B060036C7E7 /* OutDeviceViewController.swift in Sources */,
 				198299FC28A3639F0036C7E7 /* EdgeComputingView.swift in Sources */,
 				0D7ECD2826BC2045004D40DD /* ActivityIndicatorOverlay.swift in Sources */,
 				0DB4AA9A26B1BC37001F5CD3 /* Project.swift in Sources */,
 				89BBF9DB268E9B6100FA46B6 /* CameraVC.swift in Sources */,
+				19829A3828A36BBE0036C7E7 /* OnDeviceView.swift in Sources */,
 				0D51403226A5D23000CEE1DD /* LocalModelsVC.swift in Sources */,
 				89BBF9D9268E9B6100FA46B6 /* Helpers.swift in Sources */,
 				0DE25C3F26BD2666001B1620 /* AltoActivityIndicatorView.swift in Sources */,
@@ -794,9 +903,12 @@
 				0DE4F1E326B7F3E2007053DB /* Fonts.swift in Sources */,
 				19829A1428A364C90036C7E7 /* CloundComputingUseCasePort.swift in Sources */,
 				89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */,
+				19829A2D28A36AFC0036C7E7 /* OutDeviceView.swift in Sources */,
+				19829A3A28A36BCB0036C7E7 /* OnDeviceViewController.swift in Sources */,
 				0DE4F1EA26B7FBAA007053DB /* TableViewHeader.swift in Sources */,
 				89BBF9DA268E9B6100FA46B6 /* VideoCapture.swift in Sources */,
 				198299FA28A363830036C7E7 /* EdgeComputingViewController.swift in Sources */,
+				19829A2728A36A310036C7E7 /* TabbarItem.swift in Sources */,
 				89BBF9D7268E9B6100FA46B6 /* YOLO.swift in Sources */,
 				0DE4F1E126B7F3C9007053DB /* Colors.swift in Sources */,
 				0D7ECD2626BC1A46004D40DD /* ExperimentRunTableViewCell.swift in Sources */,

@@ -9,9 +9,9 @@ import UIKit
 
 class BaseTabbarController: BaseNavigationController {
     
-    let type: TabBarItem
+    let type: TabbarItem
     
-    public required init(type: TabBarItem, rootVC: UIViewController) {
+    public required init(type: TabbarItem, rootVC: UIViewController) {
         self.type = type
         super.init(rootViewController: rootVC)
     }
