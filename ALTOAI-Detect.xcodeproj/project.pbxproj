@@ -84,6 +84,11 @@
 		19829A6328A4297C0036C7E7 /* CombineControlEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A6228A4297C0036C7E7 /* CombineControlEvent.swift */; };
 		19829A6528A429B20036C7E7 /* CombineControlProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A6428A429B20036C7E7 /* CombineControlProperty.swift */; };
 		19829A6728A42A600036C7E7 /* Defaultable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A6628A42A600036C7E7 /* Defaultable.swift */; };
+		19829A6A28A4319E0036C7E7 /* ButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A6928A4319E0036C7E7 /* ButtonState.swift */; };
+		19829A6C28A431BA0036C7E7 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A6B28A431BA0036C7E7 /* Button.swift */; };
+		19829A6E28A432030036C7E7 /* Dimension+Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A6D28A432030036C7E7 /* Dimension+Button.swift */; };
+		19829A7028A432800036C7E7 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A6F28A432800036C7E7 /* ButtonStyle.swift */; };
+		19829A7228A4329F0036C7E7 /* ButtonDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7128A4329F0036C7E7 /* ButtonDecorator.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
@@ -175,6 +180,11 @@
 		19829A6228A4297C0036C7E7 /* CombineControlEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineControlEvent.swift; sourceTree = "<group>"; };
 		19829A6428A429B20036C7E7 /* CombineControlProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineControlProperty.swift; sourceTree = "<group>"; };
 		19829A6628A42A600036C7E7 /* Defaultable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaultable.swift; sourceTree = "<group>"; };
+		19829A6928A4319E0036C7E7 /* ButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonState.swift; sourceTree = "<group>"; };
+		19829A6B28A431BA0036C7E7 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		19829A6D28A432030036C7E7 /* Dimension+Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dimension+Button.swift"; sourceTree = "<group>"; };
+		19829A6F28A432800036C7E7 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
+		19829A7128A4329F0036C7E7 /* ButtonDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDecorator.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
@@ -640,6 +650,7 @@
 		19829A2428A369C50036C7E7 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				19829A6828A431810036C7E7 /* Button */,
 				19829A5028A4224F0036C7E7 /* TextField */,
 				19829A3B28A370E00036C7E7 /* Navigation */,
 				19829A2528A369DE0036C7E7 /* Tabbar */,
@@ -754,6 +765,7 @@
 			isa = PBXGroup;
 			children = (
 				19829A4228A3A7890036C7E7 /* Dimension.swift */,
+				19829A6D28A432030036C7E7 /* Dimension+Button.swift */,
 				19829A4428A3A7C00036C7E7 /* Dimension+Spacing.swift */,
 				19829A4628A3A7DA0036C7E7 /* Dimension+Shadow.swift */,
 				19829A5528A423F50036C7E7 /* Dimension+TextFieldView.swift */,
@@ -800,6 +812,17 @@
 				19829A6428A429B20036C7E7 /* CombineControlProperty.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		19829A6828A431810036C7E7 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				19829A6B28A431BA0036C7E7 /* Button.swift */,
+				19829A6928A4319E0036C7E7 /* ButtonState.swift */,
+				19829A6F28A432800036C7E7 /* ButtonStyle.swift */,
+				19829A7128A4329F0036C7E7 /* ButtonDecorator.swift */,
+			);
+			path = Button;
 			sourceTree = "<group>";
 		};
 		89BBF9AC268E9AE300FA46B6 = {
@@ -974,7 +997,9 @@
 				0DB4AA8C26B07252001F5CD3 /* APIManager.swift in Sources */,
 				0D51402F26A5A88600CEE1DD /* LoginVC.swift in Sources */,
 				19829A1228A364BE0036C7E7 /* EdgeComputingUseCasePort.swift in Sources */,
+				19829A6C28A431BA0036C7E7 /* Button.swift in Sources */,
 				89BBF9D5268E9B6100FA46B6 /* BoundingBox.swift in Sources */,
+				19829A6E28A432030036C7E7 /* Dimension+Button.swift in Sources */,
 				0DB4AAA726B29CB4001F5CD3 /* Scene.swift in Sources */,
 				19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */,
 				19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */,
@@ -997,6 +1022,7 @@
 				19829A6328A4297C0036C7E7 /* CombineControlEvent.swift in Sources */,
 				0DB4AAB326B2BF77001F5CD3 /* ExperimentsVC.swift in Sources */,
 				19829A5428A422890036C7E7 /* TextFieldDecorator.swift in Sources */,
+				19829A6A28A4319E0036C7E7 /* ButtonState.swift in Sources */,
 				0DB4AA9726B1B8AC001F5CD3 /* ProjectsVC.swift in Sources */,
 				19829A0328A363E70036C7E7 /* CloundComputingViewModel.swift in Sources */,
 				0D51403726A6E51500CEE1DD /* APIConfiguration.swift in Sources */,
@@ -1013,6 +1039,7 @@
 				0DB4AAC026B2C63C001F5CD3 /* ExperimentRun.swift in Sources */,
 				19829A2F28A36B060036C7E7 /* OutDeviceViewController.swift in Sources */,
 				198299FC28A3639F0036C7E7 /* EdgeComputingView.swift in Sources */,
+				19829A7028A432800036C7E7 /* ButtonStyle.swift in Sources */,
 				0D7ECD2826BC2045004D40DD /* ActivityIndicatorOverlay.swift in Sources */,
 				0DB4AA9A26B1BC37001F5CD3 /* Project.swift in Sources */,
 				89BBF9DB268E9B6100FA46B6 /* CameraVC.swift in Sources */,
@@ -1053,6 +1080,7 @@
 				19829A3D28A370EB0036C7E7 /* MainNavigationController.swift in Sources */,
 				19829A2128A3693C0036C7E7 /* BaseTabbarController.swift in Sources */,
 				19829A4A28A3A8880036C7E7 /* Constant.swift in Sources */,
+				19829A7228A4329F0036C7E7 /* ButtonDecorator.swift in Sources */,
 				19829A5228A422670036C7E7 /* TextFieldState.swift in Sources */,
 				19829A6728A42A600036C7E7 /* Defaultable.swift in Sources */,
 			);

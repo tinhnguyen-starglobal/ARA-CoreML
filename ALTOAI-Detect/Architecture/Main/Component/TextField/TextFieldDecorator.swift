@@ -11,7 +11,7 @@ struct TextFieldDecorator {
     
     var textColor: UIColor = Constant.Color.Neutral.text
     var titleColor: UIColor = Constant.Color.Neutral.text
-    var placeholderColor: UIColor = Constant.Color.Neutral.lightGray
+    var placeholderColor: UIColor = Constant.Color.Neutral.fog
     var unfocusedBorderColor: UIColor = Constant.Color.Neutral.fog
     var focusedBorderColor: UIColor = Constant.Color.Neutral.fog
     var descriptionColor: UIColor = Constant.Color.Neutral.text
