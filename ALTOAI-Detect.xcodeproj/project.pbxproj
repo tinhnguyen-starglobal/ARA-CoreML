@@ -89,6 +89,8 @@
 		19829A6E28A432030036C7E7 /* Dimension+Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A6D28A432030036C7E7 /* Dimension+Button.swift */; };
 		19829A7028A432800036C7E7 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A6F28A432800036C7E7 /* ButtonStyle.swift */; };
 		19829A7228A4329F0036C7E7 /* ButtonDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7128A4329F0036C7E7 /* ButtonDecorator.swift */; };
+		19829A7428A43AC80036C7E7 /* AppCommandBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7328A43AC80036C7E7 /* AppCommandBuilder.swift */; };
+		19829A7628A43ADE0036C7E7 /* InitializeComponentCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7528A43ADE0036C7E7 /* InitializeComponentCommand.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
@@ -185,6 +187,8 @@
 		19829A6D28A432030036C7E7 /* Dimension+Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dimension+Button.swift"; sourceTree = "<group>"; };
 		19829A6F28A432800036C7E7 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		19829A7128A4329F0036C7E7 /* ButtonDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDecorator.swift; sourceTree = "<group>"; };
+		19829A7328A43AC80036C7E7 /* AppCommandBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCommandBuilder.swift; sourceTree = "<group>"; };
+		19829A7528A43ADE0036C7E7 /* InitializeComponentCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializeComponentCommand.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
@@ -591,6 +595,8 @@
 			isa = PBXGroup;
 			children = (
 				89BBF9C9268E9B6100FA46B6 /* AppDelegate.swift */,
+				19829A7328A43AC80036C7E7 /* AppCommandBuilder.swift */,
+				19829A7528A43ADE0036C7E7 /* InitializeComponentCommand.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1039,6 +1045,7 @@
 				0DB4AAC026B2C63C001F5CD3 /* ExperimentRun.swift in Sources */,
 				19829A2F28A36B060036C7E7 /* OutDeviceViewController.swift in Sources */,
 				198299FC28A3639F0036C7E7 /* EdgeComputingView.swift in Sources */,
+				19829A7428A43AC80036C7E7 /* AppCommandBuilder.swift in Sources */,
 				19829A7028A432800036C7E7 /* ButtonStyle.swift in Sources */,
 				0D7ECD2826BC2045004D40DD /* ActivityIndicatorOverlay.swift in Sources */,
 				0DB4AA9A26B1BC37001F5CD3 /* Project.swift in Sources */,
@@ -1046,6 +1053,7 @@
 				19829A6528A429B20036C7E7 /* CombineControlProperty.swift in Sources */,
 				19829A3828A36BBE0036C7E7 /* OnDeviceView.swift in Sources */,
 				0D51403226A5D23000CEE1DD /* LocalModelsVC.swift in Sources */,
+				19829A7628A43ADE0036C7E7 /* InitializeComponentCommand.swift in Sources */,
 				89BBF9D9268E9B6100FA46B6 /* Helpers.swift in Sources */,
 				0DE25C3F26BD2666001B1620 /* AltoActivityIndicatorView.swift in Sources */,
 				19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */,

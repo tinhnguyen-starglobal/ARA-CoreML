@@ -40,7 +40,14 @@ final class OutDeviceViewController: BaseViewController {
 // MARK: - Configure Publisher
 extension OutDeviceViewController {
     private func configurePublisher() {
-//        urlTextField.did
+        urlTextField.textDidEndEditPublisher.sink { [weak self] value in
+            guard let self = self else { return }
+            guard !value.isEmpty else {
+                self.submitButton.isEnabled = false
+                return
+            }
+            self.submitButton.isEnabled = true
+        }.store(in: &self.cancellable)
     }
 }
 
