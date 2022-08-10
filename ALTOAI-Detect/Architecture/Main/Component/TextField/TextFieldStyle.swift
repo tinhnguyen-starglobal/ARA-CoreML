@@ -75,7 +75,7 @@ extension TextFieldStyle {
                                   textErrorFont: UIFont(name: "AvenirNext-Regular", size: 12),
                                   descriptionFont: UIFont(name: "AvenirNext-Regular", size: 12),
                                   stateColor: Constant.Color.Neutral.text,
-                                  rightViewImage: nil)
+                                  rightViewImage: UIImage(named: "ic_error"))
     }
     
     private func getUnreadyDecorator(height: CGFloat) -> TextFieldDecorator {
