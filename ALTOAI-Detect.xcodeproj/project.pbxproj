@@ -55,6 +55,8 @@
 		19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */; };
 		19829A1228A364BE0036C7E7 /* EdgeComputingUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1128A364BE0036C7E7 /* EdgeComputingUseCasePort.swift */; };
 		19829A1428A364C90036C7E7 /* CloundComputingUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */; };
+		19829A1D28A368640036C7E7 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1C28A368640036C7E7 /* BaseView.swift */; };
+		19829A1F28A368A70036C7E7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1E28A368A70036C7E7 /* BaseViewController.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
@@ -117,6 +119,8 @@
 		19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCase.swift; sourceTree = "<group>"; };
 		19829A1128A364BE0036C7E7 /* EdgeComputingUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingUseCasePort.swift; sourceTree = "<group>"; };
 		19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCasePort.swift; sourceTree = "<group>"; };
+		19829A1C28A368640036C7E7 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		19829A1E28A368A70036C7E7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
@@ -526,6 +530,8 @@
 		19829A1628A365C60036C7E7 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				19829A1C28A368640036C7E7 /* BaseView.swift */,
+				19829A1E28A368A70036C7E7 /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -793,8 +799,10 @@
 				0DB4AA8E26B072C5001F5CD3 /* KeyChainManager.swift in Sources */,
 				0DE4F1DF26B7F0D3007053DB /* UITableView+Empty.swift in Sources */,
 				0DB4AAA226B20331001F5CD3 /* AccessToken.swift in Sources */,
+				19829A1D28A368640036C7E7 /* BaseView.swift in Sources */,
 				0D7ECD2D26BC2FF8004D40DD /* LocalViewModel.swift in Sources */,
 				0DB4AAC626B2C7B6001F5CD3 /* ExperimentRunVC.swift in Sources */,
+				19829A1F28A368A70036C7E7 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
