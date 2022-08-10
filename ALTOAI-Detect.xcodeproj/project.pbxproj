@@ -45,6 +45,16 @@
 		0DFA24DB26A6E6770014CD6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DA26A6E6770014CD6E /* Constants.swift */; };
 		0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */; };
 		1007AEDB05DE2E0D1B2679CC /* Pods_ALTOAI_Detect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */; };
+		198299FA28A363830036C7E7 /* EdgeComputingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198299F928A363820036C7E7 /* EdgeComputingViewController.swift */; };
+		198299FC28A3639F0036C7E7 /* EdgeComputingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198299FB28A3639F0036C7E7 /* EdgeComputingView.swift */; };
+		198299FE28A363B50036C7E7 /* EdgeComputingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198299FD28A363B50036C7E7 /* EdgeComputingViewModel.swift */; };
+		19829A0328A363E70036C7E7 /* CloundComputingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0228A363E70036C7E7 /* CloundComputingViewModel.swift */; };
+		19829A0728A3640E0036C7E7 /* CloundComputingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0628A3640E0036C7E7 /* CloundComputingView.swift */; };
+		19829A0928A364210036C7E7 /* CloundComputingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0828A364210036C7E7 /* CloundComputingViewController.swift */; };
+		19829A0E28A364A40036C7E7 /* EdgeComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* EdgeComputingUseCase.swift */; };
+		19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */; };
+		19829A1228A364BE0036C7E7 /* EdgeComputingUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1128A364BE0036C7E7 /* EdgeComputingUseCasePort.swift */; };
+		19829A1428A364C90036C7E7 /* CloundComputingUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
@@ -97,6 +107,16 @@
 		0DE4F1E926B7FBAA007053DB /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		0DFA24DA26A6E6770014CD6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		198299F928A363820036C7E7 /* EdgeComputingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingViewController.swift; sourceTree = "<group>"; };
+		198299FB28A3639F0036C7E7 /* EdgeComputingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingView.swift; sourceTree = "<group>"; };
+		198299FD28A363B50036C7E7 /* EdgeComputingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingViewModel.swift; sourceTree = "<group>"; };
+		19829A0228A363E70036C7E7 /* CloundComputingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingViewModel.swift; sourceTree = "<group>"; };
+		19829A0628A3640E0036C7E7 /* CloundComputingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingView.swift; sourceTree = "<group>"; };
+		19829A0828A364210036C7E7 /* CloundComputingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingViewController.swift; sourceTree = "<group>"; };
+		19829A0D28A364A40036C7E7 /* EdgeComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingUseCase.swift; sourceTree = "<group>"; };
+		19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCase.swift; sourceTree = "<group>"; };
+		19829A1128A364BE0036C7E7 /* EdgeComputingUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingUseCasePort.swift; sourceTree = "<group>"; };
+		19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCasePort.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
@@ -285,7 +305,6 @@
 				0DB4AAA626B29CB4001F5CD3 /* Scene.swift */,
 				0DB4AAB726B2C0E0001F5CD3 /* Experiment.swift */,
 				0DB4AABF26B2C63C001F5CD3 /* ExperimentRun.swift */,
-				19C3DFF7288F13CE000E005D /* Prediction.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -358,6 +377,152 @@
 			path = MainTabBarVC;
 			sourceTree = "<group>";
 		};
+		198299F028A362C60036C7E7 /* Architecture */ = {
+			isa = PBXGroup;
+			children = (
+				198299F328A363350036C7E7 /* Domain */,
+				198299F228A362D60036C7E7 /* Presentation */,
+				198299F128A362D00036C7E7 /* Main */,
+			);
+			path = Architecture;
+			sourceTree = "<group>";
+		};
+		198299F128A362D00036C7E7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		198299F228A362D60036C7E7 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				198299FF28A363C40036C7E7 /* CloundComputing */,
+				198299F428A3633F0036C7E7 /* EdgeComputing */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		198299F328A363350036C7E7 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				19829A0B28A3644B0036C7E7 /* Entities */,
+				19829A0A28A364450036C7E7 /* UseCase */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		198299F428A3633F0036C7E7 /* EdgeComputing */ = {
+			isa = PBXGroup;
+			children = (
+				198299F628A363640036C7E7 /* ViewModel */,
+				198299F528A3635D0036C7E7 /* View */,
+			);
+			path = EdgeComputing;
+			sourceTree = "<group>";
+		};
+		198299F528A3635D0036C7E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				198299F828A363720036C7E7 /* ViewController */,
+				198299F728A3636D0036C7E7 /* ViewLayout */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		198299F628A363640036C7E7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				198299FD28A363B50036C7E7 /* EdgeComputingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		198299F728A3636D0036C7E7 /* ViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				198299FB28A3639F0036C7E7 /* EdgeComputingView.swift */,
+			);
+			path = ViewLayout;
+			sourceTree = "<group>";
+		};
+		198299F828A363720036C7E7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				198299F928A363820036C7E7 /* EdgeComputingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		198299FF28A363C40036C7E7 /* CloundComputing */ = {
+			isa = PBXGroup;
+			children = (
+				19829A0128A363D40036C7E7 /* View */,
+				19829A0028A363CD0036C7E7 /* ViewModel */,
+			);
+			path = CloundComputing;
+			sourceTree = "<group>";
+		};
+		19829A0028A363CD0036C7E7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				19829A0228A363E70036C7E7 /* CloundComputingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		19829A0128A363D40036C7E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				19829A0528A363F60036C7E7 /* ViewController */,
+				19829A0428A363EC0036C7E7 /* ViewLayout */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		19829A0428A363EC0036C7E7 /* ViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				19829A0628A3640E0036C7E7 /* CloundComputingView.swift */,
+			);
+			path = ViewLayout;
+			sourceTree = "<group>";
+		};
+		19829A0528A363F60036C7E7 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				19829A0828A364210036C7E7 /* CloundComputingViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		19829A0A28A364450036C7E7 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				19829A0C28A364940036C7E7 /* Port */,
+				19829A0D28A364A40036C7E7 /* EdgeComputingUseCase.swift */,
+				19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		19829A0B28A3644B0036C7E7 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				19C3DFF7288F13CE000E005D /* Prediction.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		19829A0C28A364940036C7E7 /* Port */ = {
+			isa = PBXGroup;
+			children = (
+				19829A1128A364BE0036C7E7 /* EdgeComputingUseCasePort.swift */,
+				19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */,
+			);
+			path = Port;
+			sourceTree = "<group>";
+		};
 		89BBF9AC268E9AE300FA46B6 = {
 			isa = PBXGroup;
 			children = (
@@ -379,13 +544,14 @@
 		89BBF9B7268E9AE300FA46B6 /* ALTOAI-Detect */ = {
 			isa = PBXGroup;
 			children = (
-				0DB4AA9326B0752F001F5CD3 /* Supporting Files */,
+				198299F028A362C60036C7E7 /* Architecture */,
 				0D51403426A6E4BC00CEE1DD /* Services */,
 				0D51402B26A5A84300CEE1DD /* ViewControllers */,
 				0DB4AA9826B1BC22001F5CD3 /* Model */,
 				0D51403326A6DC5C00CEE1DD /* UIHelpers */,
 				0D51402726A5960D00CEE1DD /* Helpers */,
 				0D682044269DE32700945767 /* MLModels */,
+				0DB4AA9326B0752F001F5CD3 /* Supporting Files */,
 				89BBF9BE268E9AE400FA46B6 /* Preview Content */,
 			);
 			path = "ALTOAI-Detect";
@@ -528,13 +694,16 @@
 				0DB4AAA026B1EFA5001F5CD3 /* NetworkLogger.swift in Sources */,
 				0DB4AA8C26B07252001F5CD3 /* APIManager.swift in Sources */,
 				0D51402F26A5A88600CEE1DD /* LoginVC.swift in Sources */,
+				19829A1228A364BE0036C7E7 /* EdgeComputingUseCasePort.swift in Sources */,
 				89BBF9D5268E9B6100FA46B6 /* BoundingBox.swift in Sources */,
 				0DB4AAA726B29CB4001F5CD3 /* Scene.swift in Sources */,
+				19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */,
 				19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */,
 				89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */,
 				0DB4AAB626B2BF9B001F5CD3 /* ExperimentsViewModel.swift in Sources */,
 				0D712D8D269F8E490031D2E3 /* yolo_model.swift in Sources */,
 				0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */,
+				19829A0E28A364A40036C7E7 /* EdgeComputingUseCase.swift in Sources */,
 				0DB4AA9226B074E4001F5CD3 /* CustomError.swift in Sources */,
 				0DE4F1E526B7F43E007053DB /* AppStyle.swift in Sources */,
 				0DFA24DB26A6E6770014CD6E /* Constants.swift in Sources */,
@@ -543,12 +712,17 @@
 				0DB4AAC826B2C7EB001F5CD3 /* ExperimentRunViewModel.swift in Sources */,
 				0DB4AAB326B2BF77001F5CD3 /* ExperimentsVC.swift in Sources */,
 				0DB4AA9726B1B8AC001F5CD3 /* ProjectsVC.swift in Sources */,
+				19829A0328A363E70036C7E7 /* CloundComputingViewModel.swift in Sources */,
 				0D51403726A6E51500CEE1DD /* APIConfiguration.swift in Sources */,
+				19829A0928A364210036C7E7 /* CloundComputingViewController.swift in Sources */,
 				89BBF9D4268E9B6100FA46B6 /* AppDelegate.swift in Sources */,
+				19829A0728A3640E0036C7E7 /* CloundComputingView.swift in Sources */,
 				0DB4AAB026B2BAA6001F5CD3 /* ProjectsViewModel.swift in Sources */,
 				0DE4F1DA26B2F565007053DB /* ModelOperationsHelper.swift in Sources */,
+				198299FE28A363B50036C7E7 /* EdgeComputingViewModel.swift in Sources */,
 				0DB4AAB826B2C0E0001F5CD3 /* Experiment.swift in Sources */,
 				0DB4AAC026B2C63C001F5CD3 /* ExperimentRun.swift in Sources */,
+				198299FC28A3639F0036C7E7 /* EdgeComputingView.swift in Sources */,
 				0D7ECD2826BC2045004D40DD /* ActivityIndicatorOverlay.swift in Sources */,
 				0DB4AA9A26B1BC37001F5CD3 /* Project.swift in Sources */,
 				89BBF9DB268E9B6100FA46B6 /* CameraVC.swift in Sources */,
@@ -557,9 +731,11 @@
 				0DE25C3F26BD2666001B1620 /* AltoActivityIndicatorView.swift in Sources */,
 				19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */,
 				0DE4F1E326B7F3E2007053DB /* Fonts.swift in Sources */,
+				19829A1428A364C90036C7E7 /* CloundComputingUseCasePort.swift in Sources */,
 				89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */,
 				0DE4F1EA26B7FBAA007053DB /* TableViewHeader.swift in Sources */,
 				89BBF9DA268E9B6100FA46B6 /* VideoCapture.swift in Sources */,
+				198299FA28A363830036C7E7 /* EdgeComputingViewController.swift in Sources */,
 				89BBF9D7268E9B6100FA46B6 /* YOLO.swift in Sources */,
 				0DE4F1E126B7F3C9007053DB /* Colors.swift in Sources */,
 				0D7ECD2626BC1A46004D40DD /* ExperimentRunTableViewCell.swift in Sources */,

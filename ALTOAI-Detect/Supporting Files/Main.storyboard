@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hWF-7Z-gx9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hWF-7Z-gx9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21169.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -356,7 +356,7 @@
             </objects>
             <point key="canvasLocation" x="789.85507246376812" y="-631.47321428571422"/>
         </scene>
-        <!--Local-->
+        <!--On device-->
         <scene sceneID="B6a-5N-0pI">
             <objects>
                 <viewController id="hLp-0X-YKa" customClass="LocalModelsVC" customModule="ALTOAI_Detect" customModuleProvider="target" sceneMemberID="viewController">
@@ -411,7 +411,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="localModelCell" rowHeight="60" id="IIf-Mg-I3v" customClass="LocalModelTableViewCell" customModule="ALTOAI_Detect" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IIf-Mg-I3v" id="css-T2-lhC">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -473,7 +473,7 @@
                             <constraint firstItem="lQf-y1-OPc" firstAttribute="top" secondItem="gkE-uY-oNf" secondAttribute="bottom" id="xnT-My-hZZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Local" image="folder_gray" landscapeImage="folder_gray" selectedImage="folder_blue" id="cg4-J6-Icp"/>
+                    <tabBarItem key="tabBarItem" title="On device" image="folder_gray" landscapeImage="folder_gray" selectedImage="folder_blue" id="cg4-J6-Icp"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="29B-Ln-PQD" id="TeP-aT-brA"/>
@@ -509,10 +509,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="projectCell" rowHeight="60" id="zAf-WR-GMT">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zAf-WR-GMT" id="U9j-Rc-ZBc">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -560,11 +560,11 @@
             </objects>
             <point key="canvasLocation" x="1747.826086956522" y="-631.47321428571422"/>
         </scene>
-        <!--API-->
+        <!--Out device-->
         <scene sceneID="BMA-mj-Gp7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pef-1k-XEF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="API" image="cloud_gray" landscapeImage="cloud_gray" selectedImage="cloud_blue" id="ffj-qa-1g6"/>
+                    <tabBarItem key="tabBarItem" title="Out device" image="cloud_gray" landscapeImage="cloud_gray" selectedImage="cloud_blue" id="ffj-qa-1g6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jYU-M0-srU">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -596,10 +596,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sceneCell" rowHeight="60" id="MDP-t0-9Am">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MDP-t0-9Am" id="sGd-Y4-Cil">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -647,10 +647,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="experimentCell" rowHeight="60" id="ZBe-Pe-USw">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZBe-Pe-USw" id="cxd-uo-3tH">
-                                            <rect key="frame" x="0.0" y="0.0" width="384.5" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -698,7 +698,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="experimentRunCell" rowHeight="60" id="boO-Zh-yB9" customClass="ExperimentRunTableViewCell" customModule="ALTOAI_Detect" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="boO-Zh-yB9" id="WRM-i3-faG">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -774,7 +774,7 @@
     </scenes>
     <resources>
         <image name="camera_options" width="18" height="18"/>
-        <image name="chevron.backward" catalog="system" width="96" height="128"/>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="cloud_blue" width="48" height="32"/>
         <image name="cloud_gray" width="48" height="32"/>
         <image name="download" width="14" height="17"/>
