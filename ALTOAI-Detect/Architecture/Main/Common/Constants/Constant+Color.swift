@@ -19,6 +19,10 @@ extension Constant {
             static let gray = UIColor(hex: "#747480")
         }
         
+        enum Accent {
+            static let blue = UIColor(hex: "#336CC8", alpha: 0.5)
+        }
+        
         enum Neutral {
             static let fog = UIColor(hex: "#ECECEF")
             static let lightGray = UIColor(hex: "#8E8E93")

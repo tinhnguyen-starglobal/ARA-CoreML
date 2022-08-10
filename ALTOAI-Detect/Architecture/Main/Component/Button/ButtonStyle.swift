@@ -35,7 +35,7 @@ enum ButtonStyle {
                                    borderColor: .clear,
                                    font: UIFont(name: "AvenirNext-Bold", size: 14))
         case .disabled:
-            return ButtonDecorator(backgroundColor: Constant.Color.Primary.blue,
+            return ButtonDecorator(backgroundColor: Constant.Color.Accent.blue,
                                    titleColor: Constant.Color.Neutral.white,
                                    borderWidth: Dimension.Button.borderWidth0,
                                    borderColor: .clear,

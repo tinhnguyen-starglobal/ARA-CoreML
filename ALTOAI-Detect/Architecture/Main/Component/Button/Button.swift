@@ -8,6 +8,7 @@
 import UIKit
 
 final class Button: UIButton {
+    
     private let style: ButtonStyle
     private var customState: ButtonState
 

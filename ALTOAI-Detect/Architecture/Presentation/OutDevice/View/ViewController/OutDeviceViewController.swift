@@ -23,6 +23,13 @@ final class OutDeviceViewController: BaseViewController {
         return textfieldView
     }()
     
+    private let submitButton: Button = {
+        let button = Button(style: .primaryMedium)
+        button.isEnabled = false
+        button.setTitle("Start Computing", for: .normal)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         constructHierarchy()
@@ -36,6 +43,7 @@ extension OutDeviceViewController {
         configureNavigation()
         layoutSegmentControl()
         layoutURLTextField()
+        layoutSubmitButton()
     }
     
     private func configureNavigation() {
@@ -55,6 +63,14 @@ extension OutDeviceViewController {
         self.view.addSubview(urlTextField)
         urlTextField.snp.makeConstraints { make in
             make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
+            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
+        }
+    }
+    
+    private func layoutSubmitButton() {
+        self.view.addSubview(submitButton)
+        submitButton.snp.makeConstraints { make in
+            make.top.equalTo(urlTextField.snp.bottom).offset(Dimension.Spacing.spacing24)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
     }
