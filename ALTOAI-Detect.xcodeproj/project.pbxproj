@@ -280,7 +280,6 @@
 		0DB4AA9326B0752F001F5CD3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				89BBF9C9268E9B6100FA46B6 /* AppDelegate.swift */,
 				89BBF9EB268E9F6200FA46B6 /* Main.storyboard */,
 				89BBF9C1268E9AE400FA46B6 /* Info.plist */,
 				0D51402A26A59A6E00CEE1DD /* Resources */,
@@ -380,9 +379,9 @@
 		198299F028A362C60036C7E7 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				198299F128A362D00036C7E7 /* Main */,
 				198299F328A363350036C7E7 /* Domain */,
 				198299F228A362D60036C7E7 /* Presentation */,
-				198299F128A362D00036C7E7 /* Main */,
 			);
 			path = Architecture;
 			sourceTree = "<group>";
@@ -390,6 +389,8 @@
 		198299F128A362D00036C7E7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				19829A1528A365C10036C7E7 /* App */,
+				19829A1628A365C60036C7E7 /* Base */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -521,6 +522,21 @@
 				19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */,
 			);
 			path = Port;
+			sourceTree = "<group>";
+		};
+		19829A1528A365C10036C7E7 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				89BBF9C9268E9B6100FA46B6 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		19829A1628A365C60036C7E7 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		89BBF9AC268E9AE300FA46B6 = {

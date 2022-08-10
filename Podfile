@@ -12,5 +12,6 @@ target 'ALTOAI-Detect' do
   pod 'ZIPFoundation', '~> 0.9'
   pod 'RandomColorSwift'
   pod 'SimpleKeychain'
+  pod 'SnapKit'
   
 end
