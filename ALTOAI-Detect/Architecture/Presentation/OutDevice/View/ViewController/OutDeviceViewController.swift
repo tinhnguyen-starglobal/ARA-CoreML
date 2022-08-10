@@ -10,7 +10,7 @@ import Combine
 import SnapKit
 import AVFoundation
 
-final class OutDeviceViewController: BaseViewController {
+final class OutDeviceViewController: BaseViewController, Bindable {
     
     private let segmentControl: UISegmentedControl = {
         let segment = UISegmentedControl(items: ["Edge Computing", "Cloud Computing"])
@@ -38,6 +38,10 @@ final class OutDeviceViewController: BaseViewController {
         configurePublisher()
         constructHierarchy()
     }
+    
+    func bindViewModel() {
+        
+    }
 }
 
 // MARK: - Configure Publisher
@@ -54,7 +58,7 @@ extension OutDeviceViewController {
         
         submitButton.tapPublisher.sink { [weak self] _ in
             guard let self = self else { return }
-            if self.verifyUrl(urlString: self.urlTextField.text) {
+            if self.viewModel.verifyUrl(urlString: self.urlTextField.text) {
                 self.checkPermissions()
             } else {
                 self.urlTextField.setState(.error(message: "Something went wrong, try to check URL"))
