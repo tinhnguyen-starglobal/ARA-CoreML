@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 import SnapKit
+import AVFoundation
 
 final class OutDeviceViewController: BaseViewController {
     
@@ -51,13 +52,14 @@ extension OutDeviceViewController {
         
         submitButton.tapPublisher.sink { [weak self] _ in
             guard let self = self else { return }
-            if self.verifyUrl(urlString: "111111") {
-                print("can open")
+            if self.verifyUrl(urlString: self.urlTextField.text) {
+                self.checkPermissions()
             } else {
                 self.urlTextField.setState(.error(message: "Something went wrong, try to check URL"))
-                print("Can't Open=======")
             }
         }.store(in: &self.cancellable)
+        
+        
     }
     
     func verifyUrl(urlString: String?) -> Bool {
@@ -67,6 +69,45 @@ extension OutDeviceViewController {
             }
         }
         return false
+    }
+    
+    //MARK:- Permissions
+    func checkPermissions() {
+        let status =  AVCaptureDevice.authorizationStatus(for: .video)
+        switch status {
+        case .authorized:
+            return
+        case .denied:
+            presentCameraSettings()
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler:
+                                            { (authorized) in
+                if(!authorized){
+                    print("Permission denied")
+                }
+            })
+        case .restricted:
+            print("Restricted, device owner must approve")
+        @unknown default:
+            print("Restricted, device owner must approve")
+        }
+    }
+    
+    func presentCameraSettings() {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "Please allow camera assets",
+                                          message: "go to setttings and allow camera assets",
+                                          preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alertController.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+                        // Handle
+                    })
+                }
+            })
+            self.present(alertController, animated: true)
+        }
     }
 }
 

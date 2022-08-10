@@ -51,9 +51,9 @@
 		19829A0328A363E70036C7E7 /* CloundComputingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0228A363E70036C7E7 /* CloundComputingViewModel.swift */; };
 		19829A0728A3640E0036C7E7 /* CloundComputingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0628A3640E0036C7E7 /* CloundComputingView.swift */; };
 		19829A0928A364210036C7E7 /* CloundComputingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0828A364210036C7E7 /* CloundComputingViewController.swift */; };
-		19829A0E28A364A40036C7E7 /* EdgeComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* EdgeComputingUseCase.swift */; };
+		19829A0E28A364A40036C7E7 /* OutDeviceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */; };
 		19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */; };
-		19829A1228A364BE0036C7E7 /* EdgeComputingUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1128A364BE0036C7E7 /* EdgeComputingUseCasePort.swift */; };
+		19829A1228A364BE0036C7E7 /* OutDeviceUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */; };
 		19829A1428A364C90036C7E7 /* CloundComputingUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */; };
 		19829A1D28A368640036C7E7 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1C28A368640036C7E7 /* BaseView.swift */; };
 		19829A1F28A368A70036C7E7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1E28A368A70036C7E7 /* BaseViewController.swift */; };
@@ -92,6 +92,8 @@
 		19829A7428A43AC80036C7E7 /* AppCommandBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7328A43AC80036C7E7 /* AppCommandBuilder.swift */; };
 		19829A7628A43ADE0036C7E7 /* InitializeComponentCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7528A43ADE0036C7E7 /* InitializeComponentCommand.swift */; };
 		19829A7828A43F000036C7E7 /* UIButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7728A43F000036C7E7 /* UIButton+Combine.swift */; };
+		19829A7B28A44A0A0036C7E7 /* OutDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7A28A44A0A0036C7E7 /* OutDeviceViewModel.swift */; };
+		19829A7D28A450600036C7E7 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7C28A450600036C7E7 /* BaseViewModel.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
@@ -150,9 +152,9 @@
 		19829A0228A363E70036C7E7 /* CloundComputingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingViewModel.swift; sourceTree = "<group>"; };
 		19829A0628A3640E0036C7E7 /* CloundComputingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingView.swift; sourceTree = "<group>"; };
 		19829A0828A364210036C7E7 /* CloundComputingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingViewController.swift; sourceTree = "<group>"; };
-		19829A0D28A364A40036C7E7 /* EdgeComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingUseCase.swift; sourceTree = "<group>"; };
+		19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCase.swift; sourceTree = "<group>"; };
 		19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCase.swift; sourceTree = "<group>"; };
-		19829A1128A364BE0036C7E7 /* EdgeComputingUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingUseCasePort.swift; sourceTree = "<group>"; };
+		19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCasePort.swift; sourceTree = "<group>"; };
 		19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCasePort.swift; sourceTree = "<group>"; };
 		19829A1C28A368640036C7E7 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		19829A1E28A368A70036C7E7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -191,6 +193,8 @@
 		19829A7328A43AC80036C7E7 /* AppCommandBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCommandBuilder.swift; sourceTree = "<group>"; };
 		19829A7528A43ADE0036C7E7 /* InitializeComponentCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializeComponentCommand.swift; sourceTree = "<group>"; };
 		19829A7728A43F000036C7E7 /* UIButton+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Combine.swift"; sourceTree = "<group>"; };
+		19829A7A28A44A0A0036C7E7 /* OutDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceViewModel.swift; sourceTree = "<group>"; };
+		19829A7C28A450600036C7E7 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
@@ -570,7 +574,7 @@
 			isa = PBXGroup;
 			children = (
 				19829A0C28A364940036C7E7 /* Port */,
-				19829A0D28A364A40036C7E7 /* EdgeComputingUseCase.swift */,
+				19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */,
 				19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */,
 			);
 			path = UseCase;
@@ -587,7 +591,7 @@
 		19829A0C28A364940036C7E7 /* Port */ = {
 			isa = PBXGroup;
 			children = (
-				19829A1128A364BE0036C7E7 /* EdgeComputingUseCasePort.swift */,
+				19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */,
 				19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */,
 			);
 			path = Port;
@@ -607,6 +611,7 @@
 			isa = PBXGroup;
 			children = (
 				19829A1C28A368640036C7E7 /* BaseView.swift */,
+				19829A7C28A450600036C7E7 /* BaseViewModel.swift */,
 				19829A1E28A368A70036C7E7 /* BaseViewController.swift */,
 				19829A2028A3693C0036C7E7 /* BaseTabbarController.swift */,
 				19829A2228A369510036C7E7 /* BaseNavigationController.swift */,
@@ -678,6 +683,7 @@
 		19829A2828A36AD40036C7E7 /* OutDevice */ = {
 			isa = PBXGroup;
 			children = (
+				19829A7928A449FD0036C7E7 /* ViewModel */,
 				19829A2928A36ADE0036C7E7 /* View */,
 			);
 			path = OutDevice;
@@ -832,6 +838,14 @@
 				19829A7128A4329F0036C7E7 /* ButtonDecorator.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		19829A7928A449FD0036C7E7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				19829A7A28A44A0A0036C7E7 /* OutDeviceViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		89BBF9AC268E9AE300FA46B6 = {
@@ -1005,7 +1019,7 @@
 				0DB4AAA026B1EFA5001F5CD3 /* NetworkLogger.swift in Sources */,
 				0DB4AA8C26B07252001F5CD3 /* APIManager.swift in Sources */,
 				0D51402F26A5A88600CEE1DD /* LoginVC.swift in Sources */,
-				19829A1228A364BE0036C7E7 /* EdgeComputingUseCasePort.swift in Sources */,
+				19829A1228A364BE0036C7E7 /* OutDeviceUseCasePort.swift in Sources */,
 				19829A6C28A431BA0036C7E7 /* Button.swift in Sources */,
 				89BBF9D5268E9B6100FA46B6 /* BoundingBox.swift in Sources */,
 				19829A6E28A432030036C7E7 /* Dimension+Button.swift in Sources */,
@@ -1013,13 +1027,14 @@
 				19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */,
 				19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */,
 				19829A2328A369510036C7E7 /* BaseNavigationController.swift in Sources */,
+				19829A7B28A44A0A0036C7E7 /* OutDeviceViewModel.swift in Sources */,
 				19829A7828A43F000036C7E7 /* UIButton+Combine.swift in Sources */,
 				89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */,
 				0DB4AAB626B2BF9B001F5CD3 /* ExperimentsViewModel.swift in Sources */,
 				19829A3428A36B9B0036C7E7 /* OnDeviceViewModel.swift in Sources */,
 				0D712D8D269F8E490031D2E3 /* yolo_model.swift in Sources */,
 				0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */,
-				19829A0E28A364A40036C7E7 /* EdgeComputingUseCase.swift in Sources */,
+				19829A0E28A364A40036C7E7 /* OutDeviceUseCase.swift in Sources */,
 				19829A6128A429460036C7E7 /* UIControl+Combine.swift in Sources */,
 				0DB4AA9226B074E4001F5CD3 /* CustomError.swift in Sources */,
 				0DE4F1E526B7F43E007053DB /* AppStyle.swift in Sources */,
@@ -1072,6 +1087,7 @@
 				89BBF9DA268E9B6100FA46B6 /* VideoCapture.swift in Sources */,
 				19829A3F28A371400036C7E7 /* MainTabbarController.swift in Sources */,
 				198299FA28A363830036C7E7 /* EdgeComputingViewController.swift in Sources */,
+				19829A7D28A450600036C7E7 /* BaseViewModel.swift in Sources */,
 				19829A2728A36A310036C7E7 /* TabbarItem.swift in Sources */,
 				89BBF9D7268E9B6100FA46B6 /* YOLO.swift in Sources */,
 				0DE4F1E126B7F3C9007053DB /* Colors.swift in Sources */,
