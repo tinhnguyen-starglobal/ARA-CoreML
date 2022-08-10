@@ -9,10 +9,10 @@ import UIKit
 
 final class MainNavigationController: BaseNavigationController {
     
-    private let mainTabBarVC: MainTabBarController
+    private let mainTabBarVC: MainTabbarController
     
     public required init(tabBarItems: [TabbarItem]) {
-        self.mainTabBarVC = MainTabBarController(tabBarItems: tabBarItems)
+        self.mainTabBarVC = MainTabbarController(tabBarItems: tabBarItems)
         super.init(rootViewController: self.mainTabBarVC)
         self.setConfig()
     }

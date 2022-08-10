@@ -31,10 +31,10 @@ final class MainTabbarController: UITabBarController {
     private func configResource() {
         self.viewControllers = tabBarItems.compactMap { $0.viewController }
         UITabBarItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: Constants.Color.Secondary.gray,
+            [NSAttributedString.Key.foregroundColor: Constant.Color.Secondary.gray,
              NSAttributedString.Key.font: UIFont(name: "AvenirNext-Regular", size: 12)!], for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: Constants.Color.Primary.navi,
+            [NSAttributedString.Key.foregroundColor: Constant.Color.Primary.blue,
              NSAttributedString.Key.font: UIFont(name: "AvenirNext-Regular", size: 12)!],
                                                          for: .selected)
 
