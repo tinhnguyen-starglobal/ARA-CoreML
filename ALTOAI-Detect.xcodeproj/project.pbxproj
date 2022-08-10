@@ -76,6 +76,7 @@
 		19829A5228A422670036C7E7 /* TextFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A5128A422670036C7E7 /* TextFieldState.swift */; };
 		19829A5428A422890036C7E7 /* TextFieldDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A5328A422890036C7E7 /* TextFieldDecorator.swift */; };
 		19829A5628A423F50036C7E7 /* Dimension+TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A5528A423F50036C7E7 /* Dimension+TextFieldView.swift */; };
+		19829A5828A424910036C7E7 /* TextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A5728A424910036C7E7 /* TextFieldStyle.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
@@ -159,6 +160,7 @@
 		19829A5128A422670036C7E7 /* TextFieldState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldState.swift; sourceTree = "<group>"; };
 		19829A5328A422890036C7E7 /* TextFieldDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDecorator.swift; sourceTree = "<group>"; };
 		19829A5528A423F50036C7E7 /* Dimension+TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dimension+TextFieldView.swift"; sourceTree = "<group>"; };
+		19829A5728A424910036C7E7 /* TextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldStyle.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
@@ -764,6 +766,7 @@
 		19829A5028A4224F0036C7E7 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
+				19829A5728A424910036C7E7 /* TextFieldStyle.swift */,
 				19829A5128A422670036C7E7 /* TextFieldState.swift */,
 				19829A5328A422890036C7E7 /* TextFieldDecorator.swift */,
 			);
@@ -989,6 +992,7 @@
 				0DE4F1E326B7F3E2007053DB /* Fonts.swift in Sources */,
 				19829A1428A364C90036C7E7 /* CloundComputingUseCasePort.swift in Sources */,
 				89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */,
+				19829A5828A424910036C7E7 /* TextFieldStyle.swift in Sources */,
 				19829A2D28A36AFC0036C7E7 /* OutDeviceView.swift in Sources */,
 				19829A3A28A36BCB0036C7E7 /* OnDeviceViewController.swift in Sources */,
 				0DE4F1EA26B7FBAA007053DB /* TableViewHeader.swift in Sources */,
