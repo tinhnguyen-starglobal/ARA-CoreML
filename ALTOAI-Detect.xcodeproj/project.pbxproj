@@ -91,6 +91,7 @@
 		19829A7228A4329F0036C7E7 /* ButtonDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7128A4329F0036C7E7 /* ButtonDecorator.swift */; };
 		19829A7428A43AC80036C7E7 /* AppCommandBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7328A43AC80036C7E7 /* AppCommandBuilder.swift */; };
 		19829A7628A43ADE0036C7E7 /* InitializeComponentCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7528A43ADE0036C7E7 /* InitializeComponentCommand.swift */; };
+		19829A7828A43F000036C7E7 /* UIButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7728A43F000036C7E7 /* UIButton+Combine.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
@@ -189,6 +190,7 @@
 		19829A7128A4329F0036C7E7 /* ButtonDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDecorator.swift; sourceTree = "<group>"; };
 		19829A7328A43AC80036C7E7 /* AppCommandBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCommandBuilder.swift; sourceTree = "<group>"; };
 		19829A7528A43ADE0036C7E7 /* InitializeComponentCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitializeComponentCommand.swift; sourceTree = "<group>"; };
+		19829A7728A43F000036C7E7 /* UIButton+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Combine.swift"; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
@@ -813,6 +815,7 @@
 		19829A5F28A429320036C7E7 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				19829A7728A43F000036C7E7 /* UIButton+Combine.swift */,
 				19829A6028A429460036C7E7 /* UIControl+Combine.swift */,
 				19829A6228A4297C0036C7E7 /* CombineControlEvent.swift */,
 				19829A6428A429B20036C7E7 /* CombineControlProperty.swift */,
@@ -1010,6 +1013,7 @@
 				19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */,
 				19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */,
 				19829A2328A369510036C7E7 /* BaseNavigationController.swift in Sources */,
+				19829A7828A43F000036C7E7 /* UIButton+Combine.swift in Sources */,
 				89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */,
 				0DB4AAB626B2BF9B001F5CD3 /* ExperimentsViewModel.swift in Sources */,
 				19829A3428A36B9B0036C7E7 /* OnDeviceViewModel.swift in Sources */,

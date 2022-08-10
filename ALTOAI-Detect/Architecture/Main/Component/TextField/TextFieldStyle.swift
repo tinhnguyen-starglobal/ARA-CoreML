@@ -74,7 +74,7 @@ extension TextFieldStyle {
                                   titleFont: UIFont(name: "AvenirNext-Regular", size: 16),
                                   textErrorFont: UIFont(name: "AvenirNext-Regular", size: 12),
                                   descriptionFont: UIFont(name: "AvenirNext-Regular", size: 12),
-                                  stateColor: Constant.Color.Neutral.text,
+                                  stateColor: Constant.Color.Accent.error,
                                   rightViewImage: UIImage(named: "ic_error"))
     }
     

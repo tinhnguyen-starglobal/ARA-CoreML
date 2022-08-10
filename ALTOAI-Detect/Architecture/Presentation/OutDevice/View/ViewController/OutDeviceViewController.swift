@@ -48,6 +48,25 @@ extension OutDeviceViewController {
             }
             self.submitButton.isEnabled = true
         }.store(in: &self.cancellable)
+        
+        submitButton.tapPublisher.sink { [weak self] _ in
+            guard let self = self else { return }
+            if self.verifyUrl(urlString: "111111") {
+                print("can open")
+            } else {
+                self.urlTextField.setState(.error(message: "Something went wrong, try to check URL"))
+                print("Can't Open=======")
+            }
+        }.store(in: &self.cancellable)
+    }
+    
+    func verifyUrl(urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = NSURL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url as URL)
+            }
+        }
+        return false
     }
 }
 

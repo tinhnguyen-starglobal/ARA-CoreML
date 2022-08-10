@@ -20,6 +20,8 @@ extension Constant {
         }
         
         enum Accent {
+            static let error = UIColor(hex: "#EB3746")
+            static let lightRed = UIColor(hex: "#FFD1DF")
             static let blue = UIColor(hex: "#336CC8", alpha: 0.5)
         }
         
