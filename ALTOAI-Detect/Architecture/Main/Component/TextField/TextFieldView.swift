@@ -75,7 +75,10 @@ final class TextFieldView: UIView {
     private var textField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .none
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.clearButtonMode = .whileEditing
+        textField.font = UIFont(name: "AvenirNext-Regular", size: 16)
         return textField
     }()
 

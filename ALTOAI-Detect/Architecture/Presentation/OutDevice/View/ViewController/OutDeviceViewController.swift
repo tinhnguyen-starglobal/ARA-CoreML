@@ -32,7 +32,15 @@ final class OutDeviceViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurePublisher()
         constructHierarchy()
+    }
+}
+
+// MARK: - Configure Publisher
+extension OutDeviceViewController {
+    private func configurePublisher() {
+//        urlTextField.did
     }
 }
 
