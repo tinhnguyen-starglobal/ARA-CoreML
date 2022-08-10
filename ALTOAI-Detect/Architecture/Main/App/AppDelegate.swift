@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func configureMainTabbar() {
         let window = UIWindow(frame: UIScreen.main.bounds)
         let mainVC = MainNavigationController(tabBarItems: [.outDevice, .onDevice])
-        
         window.rootViewController = mainVC
         window.makeKeyAndVisible()
         self.window = window
