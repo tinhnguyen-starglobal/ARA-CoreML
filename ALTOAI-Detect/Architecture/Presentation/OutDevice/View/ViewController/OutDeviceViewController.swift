@@ -31,6 +31,8 @@ final class OutDeviceViewController: BaseViewController {
         return button
     }()
     
+    var viewModel: OutDeviceViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePublisher()
@@ -60,15 +62,6 @@ extension OutDeviceViewController {
         }.store(in: &self.cancellable)
         
         
-    }
-    
-    func verifyUrl(urlString: String?) -> Bool {
-        if let urlString = urlString {
-            if let url = NSURL(string: urlString) {
-                return UIApplication.shared.canOpenURL(url as URL)
-            }
-        }
-        return false
     }
     
     //MARK:- Permissions

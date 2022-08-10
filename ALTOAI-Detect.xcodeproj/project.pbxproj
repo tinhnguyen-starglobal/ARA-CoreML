@@ -94,6 +94,8 @@
 		19829A7828A43F000036C7E7 /* UIButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7728A43F000036C7E7 /* UIButton+Combine.swift */; };
 		19829A7B28A44A0A0036C7E7 /* OutDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7A28A44A0A0036C7E7 /* OutDeviceViewModel.swift */; };
 		19829A7D28A450600036C7E7 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7C28A450600036C7E7 /* BaseViewModel.swift */; };
+		19829A7F28A452610036C7E7 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A7E28A452610036C7E7 /* Bindable.swift */; };
+		19829A8128A452750036C7E7 /* ViewModelPort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A8028A452750036C7E7 /* ViewModelPort.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
@@ -195,6 +197,8 @@
 		19829A7728A43F000036C7E7 /* UIButton+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Combine.swift"; sourceTree = "<group>"; };
 		19829A7A28A44A0A0036C7E7 /* OutDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceViewModel.swift; sourceTree = "<group>"; };
 		19829A7C28A450600036C7E7 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		19829A7E28A452610036C7E7 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		19829A8028A452750036C7E7 /* ViewModelPort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelPort.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
@@ -610,7 +614,9 @@
 		19829A1628A365C60036C7E7 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				19829A7E28A452610036C7E7 /* Bindable.swift */,
 				19829A1C28A368640036C7E7 /* BaseView.swift */,
+				19829A8028A452750036C7E7 /* ViewModelPort.swift */,
 				19829A7C28A450600036C7E7 /* BaseViewModel.swift */,
 				19829A1E28A368A70036C7E7 /* BaseViewController.swift */,
 				19829A2028A3693C0036C7E7 /* BaseTabbarController.swift */,
@@ -1030,6 +1036,7 @@
 				19829A7B28A44A0A0036C7E7 /* OutDeviceViewModel.swift in Sources */,
 				19829A7828A43F000036C7E7 /* UIButton+Combine.swift in Sources */,
 				89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */,
+				19829A8128A452750036C7E7 /* ViewModelPort.swift in Sources */,
 				0DB4AAB626B2BF9B001F5CD3 /* ExperimentsViewModel.swift in Sources */,
 				19829A3428A36B9B0036C7E7 /* OnDeviceViewModel.swift in Sources */,
 				0D712D8D269F8E490031D2E3 /* yolo_model.swift in Sources */,
@@ -1042,6 +1049,7 @@
 				0DB4AAA526B29B87001F5CD3 /* ScenesVC.swift in Sources */,
 				0DB4AA9026B07472001F5CD3 /* NetworkRequestInterceptor.swift in Sources */,
 				19829A4328A3A7890036C7E7 /* Dimension.swift in Sources */,
+				19829A7F28A452610036C7E7 /* Bindable.swift in Sources */,
 				19829A5A28A427580036C7E7 /* TextFieldView.swift in Sources */,
 				0DB4AAC826B2C7EB001F5CD3 /* ExperimentRunViewModel.swift in Sources */,
 				19829A6328A4297C0036C7E7 /* CombineControlEvent.swift in Sources */,
