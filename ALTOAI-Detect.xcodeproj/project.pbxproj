@@ -45,10 +45,6 @@
 		0DFA24DB26A6E6770014CD6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DA26A6E6770014CD6E /* Constants.swift */; };
 		0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */; };
 		1007AEDB05DE2E0D1B2679CC /* Pods_ALTOAI_Detect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */; };
-		198299FA28A363830036C7E7 /* EdgeComputingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198299F928A363820036C7E7 /* EdgeComputingViewController.swift */; };
-		198299FE28A363B50036C7E7 /* EdgeComputingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198299FD28A363B50036C7E7 /* EdgeComputingViewModel.swift */; };
-		19829A0328A363E70036C7E7 /* CloundComputingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0228A363E70036C7E7 /* CloundComputingViewModel.swift */; };
-		19829A0928A364210036C7E7 /* CloundComputingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0828A364210036C7E7 /* CloundComputingViewController.swift */; };
 		19829A0E28A364A40036C7E7 /* OutDeviceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */; };
 		19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */; };
 		19829A1228A364BE0036C7E7 /* OutDeviceUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */; };
@@ -148,10 +144,6 @@
 		0DE4F1E926B7FBAA007053DB /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		0DFA24DA26A6E6770014CD6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
-		198299F928A363820036C7E7 /* EdgeComputingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingViewController.swift; sourceTree = "<group>"; };
-		198299FD28A363B50036C7E7 /* EdgeComputingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingViewModel.swift; sourceTree = "<group>"; };
-		19829A0228A363E70036C7E7 /* CloundComputingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingViewModel.swift; sourceTree = "<group>"; };
-		19829A0828A364210036C7E7 /* CloundComputingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingViewController.swift; sourceTree = "<group>"; };
 		19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCase.swift; sourceTree = "<group>"; };
 		19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCase.swift; sourceTree = "<group>"; };
 		19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCasePort.swift; sourceTree = "<group>"; };
@@ -475,8 +467,6 @@
 			children = (
 				19829A2828A36AD40036C7E7 /* OutDevice */,
 				19829A3028A36B680036C7E7 /* OnDevice */,
-				198299FF28A363C40036C7E7 /* CloundComputing */,
-				198299F428A3633F0036C7E7 /* EdgeComputing */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -488,88 +478,6 @@
 				19829A0A28A364450036C7E7 /* UseCase */,
 			);
 			path = Domain;
-			sourceTree = "<group>";
-		};
-		198299F428A3633F0036C7E7 /* EdgeComputing */ = {
-			isa = PBXGroup;
-			children = (
-				198299F628A363640036C7E7 /* ViewModel */,
-				198299F528A3635D0036C7E7 /* View */,
-			);
-			path = EdgeComputing;
-			sourceTree = "<group>";
-		};
-		198299F528A3635D0036C7E7 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				198299F828A363720036C7E7 /* ViewController */,
-				198299F728A3636D0036C7E7 /* ViewLayout */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		198299F628A363640036C7E7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				198299FD28A363B50036C7E7 /* EdgeComputingViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		198299F728A3636D0036C7E7 /* ViewLayout */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewLayout;
-			sourceTree = "<group>";
-		};
-		198299F828A363720036C7E7 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				198299F928A363820036C7E7 /* EdgeComputingViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		198299FF28A363C40036C7E7 /* CloundComputing */ = {
-			isa = PBXGroup;
-			children = (
-				19829A0128A363D40036C7E7 /* View */,
-				19829A0028A363CD0036C7E7 /* ViewModel */,
-			);
-			path = CloundComputing;
-			sourceTree = "<group>";
-		};
-		19829A0028A363CD0036C7E7 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				19829A0228A363E70036C7E7 /* CloundComputingViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		19829A0128A363D40036C7E7 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				19829A0528A363F60036C7E7 /* ViewController */,
-				19829A0428A363EC0036C7E7 /* ViewLayout */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		19829A0428A363EC0036C7E7 /* ViewLayout */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewLayout;
-			sourceTree = "<group>";
-		};
-		19829A0528A363F60036C7E7 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				19829A0828A364210036C7E7 /* CloundComputingViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		19829A0A28A364450036C7E7 /* UseCase */ = {
@@ -1058,16 +966,13 @@
 				19829A8328A4D8340036C7E7 /* CloudComputingView.swift in Sources */,
 				19829A6A28A4319E0036C7E7 /* ButtonState.swift in Sources */,
 				0DB4AA9726B1B8AC001F5CD3 /* ProjectsVC.swift in Sources */,
-				19829A0328A363E70036C7E7 /* CloundComputingViewModel.swift in Sources */,
 				0D51403726A6E51500CEE1DD /* APIConfiguration.swift in Sources */,
-				19829A0928A364210036C7E7 /* CloundComputingViewController.swift in Sources */,
 				19829A5628A423F50036C7E7 /* Dimension+TextFieldView.swift in Sources */,
 				89BBF9D4268E9B6100FA46B6 /* AppDelegate.swift in Sources */,
 				0DB4AAB026B2BAA6001F5CD3 /* ProjectsViewModel.swift in Sources */,
 				0DE4F1DA26B2F565007053DB /* ModelOperationsHelper.swift in Sources */,
 				19829A4C28A3A8C70036C7E7 /* Constant+Color.swift in Sources */,
 				19829A4728A3A7DA0036C7E7 /* Dimension+Shadow.swift in Sources */,
-				198299FE28A363B50036C7E7 /* EdgeComputingViewModel.swift in Sources */,
 				0DB4AAB826B2C0E0001F5CD3 /* Experiment.swift in Sources */,
 				0DB4AAC026B2C63C001F5CD3 /* ExperimentRun.swift in Sources */,
 				19829A2F28A36B060036C7E7 /* OutDeviceViewController.swift in Sources */,
@@ -1093,7 +998,6 @@
 				0DE4F1EA26B7FBAA007053DB /* TableViewHeader.swift in Sources */,
 				89BBF9DA268E9B6100FA46B6 /* VideoCapture.swift in Sources */,
 				19829A3F28A371400036C7E7 /* MainTabbarController.swift in Sources */,
-				198299FA28A363830036C7E7 /* EdgeComputingViewController.swift in Sources */,
 				19829A7D28A450600036C7E7 /* BaseViewModel.swift in Sources */,
 				19829A2728A36A310036C7E7 /* TabbarItem.swift in Sources */,
 				89BBF9D7268E9B6100FA46B6 /* YOLO.swift in Sources */,
