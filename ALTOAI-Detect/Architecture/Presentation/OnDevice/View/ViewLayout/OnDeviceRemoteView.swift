@@ -1,14 +1,14 @@
 //
-//  CloudComputingView.swift
+//  OnDeviceRemoteView.swift
 //  ALTOAI-Detect
 //
-//  Created by Tinh Nguyen on 11/08/2022.
+//  Created by Tinh Nguyen on 10/08/2022.
 //
 
 import UIKit
 import SnapKit
 
-final class CloudComputingView: BaseView {
+final class OnDeviceRemoteView: BaseView {
     
     private let stackView: UIStackView = {
         let stackView = UIStackView(frame: .zero)
@@ -17,12 +17,6 @@ final class CloudComputingView: BaseView {
         stackView.distribution = .fillEqually
         stackView.spacing = Dimension.Spacing.spacing16
         return stackView
-    }()
-    
-    let urlTextField: TextFieldView = {
-        let textfieldView = TextFieldView(style: .normal(), state: .normal)
-        textfieldView.placeholder = "URL"
-        return textfieldView
     }()
     
     let keyTextField: TextFieldView = {
@@ -40,7 +34,7 @@ final class CloudComputingView: BaseView {
     let submitButton: Button = {
         let button = Button(style: .primaryMedium)
         button.isEnabled = false
-        button.setTitle("Start Computing", for: .normal)
+        button.setTitle("Enter", for: .normal)
         return button
     }()
     
@@ -51,7 +45,7 @@ final class CloudComputingView: BaseView {
 }
 
 // MARK: - Configure Views
-extension CloudComputingView {
+extension OnDeviceRemoteView {
     
     private func constructHierarchy() {
         layoutStackView()
@@ -65,7 +59,6 @@ extension CloudComputingView {
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
         
-        stackView.addArrangedSubview(urlTextField)
         stackView.addArrangedSubview(keyTextField)
         stackView.addArrangedSubview(secretTextField)
     }
@@ -79,3 +72,5 @@ extension CloudComputingView {
         }
     }
 }
+
+
