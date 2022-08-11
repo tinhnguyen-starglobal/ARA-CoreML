@@ -115,7 +115,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="sgh-Gx-uKL">
-                                                        <rect key="frame" x="135.5" y="10" width="192.5" height="31"/>
+                                                        <rect key="frame" x="135.5" y="10" width="220.5" height="31"/>
                                                         <connections>
                                                             <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="ZYT-V0-bVz"/>
                                                         </connections>
@@ -128,7 +128,7 @@
                                                     <constraint firstItem="lI5-HZ-1np" firstAttribute="centerY" secondItem="nMN-Jf-FK6" secondAttribute="centerY" id="PbT-d2-d46"/>
                                                     <constraint firstAttribute="trailing" secondItem="lI5-HZ-1np" secondAttribute="trailing" constant="16" id="Tmd-rP-H0u"/>
                                                     <constraint firstItem="sgh-Gx-uKL" firstAttribute="centerY" secondItem="nMN-Jf-FK6" secondAttribute="centerY" id="VAq-of-kZx"/>
-                                                    <constraint firstAttribute="trailing" secondItem="sgh-Gx-uKL" secondAttribute="trailing" constant="88" id="aCT-sw-TyQ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="sgh-Gx-uKL" secondAttribute="trailing" constant="60" id="aCT-sw-TyQ"/>
                                                     <constraint firstItem="nMN-Jf-FK6" firstAttribute="top" secondItem="ktK-Gx-bvp" secondAttribute="top" constant="8" id="eA5-gD-qAZ"/>
                                                     <constraint firstItem="nMN-Jf-FK6" firstAttribute="leading" secondItem="ktK-Gx-bvp" secondAttribute="leading" constant="16" id="u7D-a8-sdl"/>
                                                 </constraints>
@@ -149,7 +149,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2kc-3H-oKw">
-                                                        <rect key="frame" x="59.5" y="10" width="268.5" height="31"/>
+                                                        <rect key="frame" x="59.5" y="10" width="296.5" height="31"/>
                                                         <connections>
                                                             <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="uZg-ej-S6N"/>
                                                         </connections>
@@ -157,7 +157,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.091192815720000001" green="0.091192815720000001" blue="0.091192815720000001" alpha="0.67211415819999998" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="2kc-3H-oKw" secondAttribute="trailing" constant="88" id="CDh-OW-NWA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="2kc-3H-oKw" secondAttribute="trailing" constant="60" id="CDh-OW-NWA"/>
                                                     <constraint firstItem="2kc-3H-oKw" firstAttribute="centerY" secondItem="1wt-dl-U2V" secondAttribute="centerY" id="Dha-rT-imz"/>
                                                     <constraint firstItem="1wt-dl-U2V" firstAttribute="top" secondItem="t3m-2X-4OK" secondAttribute="top" constant="8" id="ai8-jf-fqC"/>
                                                     <constraint firstItem="2kc-3H-oKw" firstAttribute="leading" secondItem="1wt-dl-U2V" secondAttribute="trailing" constant="16" id="e66-ZH-DIY"/>
@@ -182,7 +182,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2eP-Nh-RmP">
-                                        <rect key="frame" x="16" y="38" width="36" height="36"/>
+                                        <rect key="frame" x="16" y="42" width="36" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Ok9-vY-e0c"/>
                                             <constraint firstAttribute="width" constant="36" id="SLX-fH-S34"/>
@@ -194,7 +194,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKd-GV-xYy">
-                                        <rect key="frame" x="376" y="45" width="18" height="22"/>
+                                        <rect key="frame" x="380" y="49" width="18" height="22"/>
                                         <state key="normal" image="camera_options"/>
                                         <connections>
                                             <action selector="toggleSlidersPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Uhf-Li-KpL"/>
@@ -204,9 +204,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="xKd-GV-xYy" firstAttribute="centerY" secondItem="2eP-Nh-RmP" secondAttribute="centerY" id="5DS-de-Whh"/>
-                                    <constraint firstAttribute="bottom" secondItem="2eP-Nh-RmP" secondAttribute="bottom" constant="16" id="AsJ-05-Hq4"/>
+                                    <constraint firstAttribute="bottom" secondItem="2eP-Nh-RmP" secondAttribute="bottom" constant="12" id="AsJ-05-Hq4"/>
                                     <constraint firstItem="2eP-Nh-RmP" firstAttribute="leading" secondItem="pmu-1H-jqV" secondAttribute="leading" constant="16" id="IqL-hE-eLt"/>
-                                    <constraint firstAttribute="trailing" secondItem="xKd-GV-xYy" secondAttribute="trailing" constant="20" id="ZhU-1E-sqA"/>
+                                    <constraint firstAttribute="trailing" secondItem="xKd-GV-xYy" secondAttribute="trailing" constant="16" id="ZhU-1E-sqA"/>
                                     <constraint firstAttribute="height" constant="90" id="vkq-Yf-0XA"/>
                                 </constraints>
                             </view>
