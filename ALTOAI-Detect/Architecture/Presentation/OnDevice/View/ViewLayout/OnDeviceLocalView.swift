@@ -13,6 +13,9 @@ final class OnDeviceLocalView: BaseView {
     let messageLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.numberOfLines = 0
+        label.textColor = .lightGray
+        label.textAlignment = .center
+        label.font = UIFont(name: "AvenirNext-Regular", size: 16)
         label.text = "Start by adding zip file with model from local storage"
         return label
     }()

@@ -38,7 +38,7 @@ extension TextFieldStyle {
     
     private func getNormalDecorator(height: CGFloat) -> TextFieldDecorator {
         return TextFieldDecorator(textColor: Constant.Color.Neutral.text,
-                                  placeholderColor: Constant.Color.Neutral.fog,
+                                  placeholderColor: Constant.Color.Accent.placeholder,
                                   unfocusedBorderColor: Constant.Color.Neutral.fog,
                                   focusedBorderColor: Constant.Color.Neutral.fog,
                                   height: height,
@@ -52,7 +52,7 @@ extension TextFieldStyle {
     
     private func getSuccessDecorator(height: CGFloat) -> TextFieldDecorator {
         return TextFieldDecorator(textColor: Constant.Color.Neutral.text,
-                                  placeholderColor: Constant.Color.Neutral.fog,
+                                  placeholderColor: Constant.Color.Accent.placeholder,
                                   unfocusedBorderColor: Constant.Color.Neutral.fog,
                                   focusedBorderColor: Constant.Color.Neutral.fog,
                                   height: height,
@@ -66,7 +66,7 @@ extension TextFieldStyle {
     
     private func getErrorDecorator(height: CGFloat) -> TextFieldDecorator {
         return TextFieldDecorator(textColor: Constant.Color.Neutral.text,
-                                  placeholderColor: Constant.Color.Neutral.fog,
+                                  placeholderColor: Constant.Color.Accent.placeholder,
                                   unfocusedBorderColor: Constant.Color.Neutral.fog,
                                   focusedBorderColor: Constant.Color.Neutral.fog,
                                   height: height,
@@ -80,7 +80,7 @@ extension TextFieldStyle {
     
     private func getUnreadyDecorator(height: CGFloat) -> TextFieldDecorator {
         return TextFieldDecorator(textColor: Constant.Color.Neutral.text,
-                                  placeholderColor: Constant.Color.Neutral.fog,
+                                  placeholderColor: Constant.Color.Accent.placeholder,
                                   unfocusedBorderColor: Constant.Color.Neutral.fog,
                                   focusedBorderColor: Constant.Color.Neutral.fog,
                                   height: height,
@@ -110,7 +110,7 @@ extension TextFieldStyle {
     
     private func getNormalSearchDecorator(height: CGFloat) -> TextFieldDecorator {
         return TextFieldDecorator(textColor: Constant.Color.Neutral.text,
-                                  placeholderColor: Constant.Color.Neutral.fog,
+                                  placeholderColor: Constant.Color.Accent.placeholder,
                                   unfocusedBorderColor: Constant.Color.Neutral.fog,
                                   focusedBorderColor: Constant.Color.Neutral.text,
                                   height: height,
@@ -124,7 +124,7 @@ extension TextFieldStyle {
     
     private func getSuccessSearchDecorator(height: CGFloat) -> TextFieldDecorator {
         return TextFieldDecorator(textColor: Constant.Color.Neutral.text,
-                                  placeholderColor: Constant.Color.Neutral.fog,
+                                  placeholderColor: Constant.Color.Accent.placeholder,
                                   unfocusedBorderColor: Constant.Color.Neutral.fog,
                                   focusedBorderColor: Constant.Color.Neutral.text,
                                   height: height,
@@ -138,7 +138,7 @@ extension TextFieldStyle {
     
     private func getErrorSearchDecorator(height: CGFloat) -> TextFieldDecorator {
         return TextFieldDecorator(textColor: Constant.Color.Neutral.text,
-                                  placeholderColor: Constant.Color.Neutral.fog,
+                                  placeholderColor: Constant.Color.Accent.placeholder,
                                   unfocusedBorderColor: Constant.Color.Neutral.fog,
                                   focusedBorderColor: Constant.Color.Neutral.text,
                                   height: height,
@@ -152,7 +152,7 @@ extension TextFieldStyle {
     
     private func getUnreadySearchDecorator(height: CGFloat) -> TextFieldDecorator {
         return TextFieldDecorator(textColor: Constant.Color.Neutral.text,
-                                  placeholderColor: Constant.Color.Neutral.fog,
+                                  placeholderColor: Constant.Color.Accent.placeholder,
                                   unfocusedBorderColor: Constant.Color.Neutral.fog,
                                   focusedBorderColor: Constant.Color.Neutral.text,
                                   height: height,
