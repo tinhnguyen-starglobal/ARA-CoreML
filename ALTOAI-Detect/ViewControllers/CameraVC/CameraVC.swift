@@ -7,6 +7,7 @@ import ZIPFoundation
 import RandomColorSwift
 
 class CameraVC: UIViewController, UIDocumentPickerDelegate {
+    
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var fpsLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -44,6 +45,8 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     var framesDone = 0
     var frameCapturingStartTime = CACurrentMediaTime()
     var semaphoreCounter = 1
+    
+    var edgeComputingUrl: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -395,8 +398,10 @@ extension CameraVC {
     }
     
     private func getBBsFromAPI(image: UIImage, imagew: CGFloat, imageh: CGFloat, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        //TODO: Refactor request API with Combine
+        guard let urlString = self.edgeComputingUrl else { return }
         // Asynchronous Http call to your api url, using URLSession:
-        let theURL = URL(string:"http://192.168.1.2:8888/predict?score_threshold=0.5&iou_threshold=0.5")
+        let theURL = URL(string: urlString)
         let boundary = UUID().uuidString
 
         //let session = URLSession(configuration: .default)
