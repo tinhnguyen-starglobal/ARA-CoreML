@@ -60,6 +60,7 @@ extension OutDeviceViewController {
             guard let self = self else { return }
             if self.viewModel.verifyUrl(urlString: self.urlTextField.text) {
                 self.checkPermissions()
+                self.presentCamera()
             } else {
                 self.urlTextField.setState(.error(message: "Something went wrong, try to check URL"))
             }
@@ -104,6 +105,15 @@ extension OutDeviceViewController {
                 }
             })
             self.present(alertController, animated: true)
+        }
+    }
+    
+    private func presentCamera() {
+        //TODO: Refactor CameraVC
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraVC {
+            cameraVC.modalPresentationStyle = .fullScreen
+            self.present(cameraVC, animated: true, completion: nil)
         }
     }
 }
