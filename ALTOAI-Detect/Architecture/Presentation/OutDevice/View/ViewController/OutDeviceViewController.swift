@@ -18,57 +18,114 @@ final class OutDeviceViewController: BaseViewController, Bindable {
         return segment
     }()
     
-    private let urlTextField: TextFieldView = {
-        let textfieldView = TextFieldView(style: .normal(), state: .normal)
-        textfieldView.placeholder = "URL"
-        return textfieldView
+    private let edgeComputingView: EdgeComputingView = {
+        let view = EdgeComputingView()
+        return view
     }()
     
-    private let submitButton: Button = {
-        let button = Button(style: .primaryMedium)
-        button.isEnabled = false
-        button.setTitle("Start Computing", for: .normal)
-        return button
+    private let cloudComputingView: CloudComputingView = {
+        let view = CloudComputingView()
+        return view
     }()
     
     var viewModel: OutDeviceViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureSegmentView()
         configurePublisher()
         constructHierarchy()
     }
     
+    private func configureSegmentView() {
+        edgeComputingView.isHidden = false
+        cloudComputingView.isHidden = true
+        segmentControl.addTarget(self, action: #selector(changeSegmentType(_:)), for: .valueChanged)
+    }
+    
     func bindViewModel() {
         
+    }
+    
+    @objc func changeSegmentType(_ segmentedControl: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            self.edgeComputingView.isHidden = false
+            self.cloudComputingView.isHidden = true
+        case 1:
+            self.edgeComputingView.isHidden = true
+            self.cloudComputingView.isHidden = false
+        default:
+            break
+        }
     }
 }
 
 // MARK: - Configure Publisher
 extension OutDeviceViewController {
     private func configurePublisher() {
-        urlTextField.textPublisher.sink { [weak self] value in
+        edgeComputingView.urlTextField.textPublisher.sink { [weak self] value in
             guard let self = self else { return }
             guard !value.isEmpty else {
-                self.submitButton.isEnabled = false
+                self.edgeComputingView.submitButton.isEnabled = false
                 return
             }
-            self.submitButton.isEnabled = true
+            self.edgeComputingView.submitButton.isEnabled = true
         }.store(in: &self.cancellable)
         
-        submitButton.tapPublisher.sink { [weak self] _ in
+        edgeComputingView.submitButton.tapPublisher.sink { [weak self] _ in
             guard let self = self else { return }
-            if self.viewModel.verifyUrl(urlString: self.urlTextField.text) {
+            if self.viewModel.verifyUrl(urlString: self.edgeComputingView.urlTextField.text) {
                 self.checkPermissions()
                 self.presentCamera()
             } else {
-                self.urlTextField.setState(.error(message: "Something went wrong, try to check URL"))
+                self.edgeComputingView.urlTextField.setState(.error(message: "Something went wrong, try to check URL"))
             }
         }.store(in: &self.cancellable)
-        
-        
+    }
+}
+
+// MARK: Configure Views
+extension OutDeviceViewController {
+    
+    private func constructHierarchy() {
+        configureNavigation()
+        layoutSegmentControl()
+        layoutEdgeComputingView()
+        layoutCloudComputingView()
     }
     
+    private func configureNavigation() {
+        self.navigationItem.title = "Access"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func layoutSegmentControl() {
+        self.view.addSubview(segmentControl)
+        segmentControl.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(Dimension.Spacing.spacing32)
+            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
+        }
+    }
+    
+    private func layoutEdgeComputingView() {
+        self.view.addSubview(edgeComputingView)
+        edgeComputingView.snp.makeConstraints { make in
+            make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
+            make.leading.trailing.equalToSuperview()
+        }
+    }
+    
+    private func layoutCloudComputingView() {
+        self.view.addSubview(cloudComputingView)
+        cloudComputingView.snp.makeConstraints { make in
+            make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
+            make.leading.trailing.equalToSuperview()
+        }
+    }
+}
+
+extension OutDeviceViewController {
     //MARK:- Permissions
     func checkPermissions() {
         let status =  AVCaptureDevice.authorizationStatus(for: .video)
@@ -94,8 +151,8 @@ extension OutDeviceViewController {
     func presentCameraSettings() {
         DispatchQueue.main.async {
             let alertController = UIAlertController(title: "Please allow camera assets",
-                                          message: "go to setttings and allow camera assets",
-                                          preferredStyle: .alert)
+                                                    message: "go to setttings and allow camera assets",
+                                                    preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alertController.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
                 if let url = URL(string: UIApplication.openSettingsURLString) {
@@ -114,46 +171,6 @@ extension OutDeviceViewController {
         if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraVC {
             cameraVC.modalPresentationStyle = .fullScreen
             self.present(cameraVC, animated: true, completion: nil)
-        }
-    }
-}
-
-// MARK: Configure Views
-extension OutDeviceViewController {
-    
-    private func constructHierarchy() {
-        configureNavigation()
-        layoutSegmentControl()
-        layoutURLTextField()
-        layoutSubmitButton()
-    }
-    
-    private func configureNavigation() {
-        self.navigationItem.title = "Access"
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    private func layoutSegmentControl() {
-        self.view.addSubview(segmentControl)
-        segmentControl.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(Dimension.Spacing.spacing32)
-            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
-        }
-    }
-    
-    private func layoutURLTextField() {
-        self.view.addSubview(urlTextField)
-        urlTextField.snp.makeConstraints { make in
-            make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
-            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
-        }
-    }
-    
-    private func layoutSubmitButton() {
-        self.view.addSubview(submitButton)
-        submitButton.snp.makeConstraints { make in
-            make.top.equalTo(urlTextField.snp.bottom).offset(Dimension.Spacing.spacing24)
-            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
     }
 }
