@@ -1,6 +1,6 @@
 import UIKit
-import AVFoundation
 import CoreVideo
+import AVFoundation
 
 public protocol VideoCaptureDelegate: AnyObject {
   func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame: CVPixelBuffer?, timestamp: CMTime)
