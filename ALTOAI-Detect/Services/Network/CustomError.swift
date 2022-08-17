@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 enum CustomError: String, Error {
     case authorize = "Unable to authenticate user. An error occurred during authorization, please check your connection and try again."
     case incorrectCredentials = "Unable to authenticate user. An error occurred during authorization, please check your credentials."

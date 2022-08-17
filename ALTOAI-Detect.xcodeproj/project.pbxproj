@@ -266,8 +266,6 @@
 			isa = PBXGroup;
 			children = (
 				89BBF9D0268E9B6100FA46B6 /* CameraVC.swift */,
-				89BBF9CA268E9B6100FA46B6 /* BoundingBox.swift */,
-				89BBF9CF268E9B6100FA46B6 /* VideoCapture.swift */,
 			);
 			path = CameraVC;
 			sourceTree = "<group>";
@@ -445,6 +443,8 @@
 			isa = PBXGroup;
 			children = (
 				195A62E928ACA72900A65AA5 /* FPSCounter.swift */,
+				89BBF9CA268E9B6100FA46B6 /* BoundingBox.swift */,
+				89BBF9CF268E9B6100FA46B6 /* VideoCapture.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
