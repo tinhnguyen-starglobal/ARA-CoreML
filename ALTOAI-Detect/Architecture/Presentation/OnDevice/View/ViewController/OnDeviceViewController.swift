@@ -33,16 +33,6 @@ final class OnDeviceViewController: BaseViewController {
         return viewController
     }()
     
-    private let remoteView: OnDeviceRemoteView = {
-        let view = OnDeviceRemoteView()
-        return view
-    }()
-    
-    private let localView: OnDeviceLocalView = {
-        let view = OnDeviceLocalView()
-        return view
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureSegmentView()
@@ -57,6 +47,10 @@ final class OnDeviceViewController: BaseViewController {
     @objc func changeSegmentType(_ segmentedControl: UISegmentedControl) {
         configureSegmentState()
     }
+}
+
+// MARK: Configure SegmentControler
+extension OnDeviceViewController {
     
     private func configureSegmentState() {
         switch segmentControl.selectedSegmentIndex {
@@ -114,22 +108,6 @@ extension OnDeviceViewController {
             make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-        }
-    }
-    
-    private func layoutRemoteView() {
-        self.view.addSubview(remoteView)
-        remoteView.snp.makeConstraints { make in
-            make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
-            make.leading.trailing.equalToSuperview()
-        }
-    }
-    
-    private func layoutLocalView() {
-        self.view.addSubview(localView)
-        localView.snp.makeConstraints { make in
-            make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
-            make.leading.trailing.equalToSuperview()
         }
     }
 }

@@ -43,7 +43,7 @@ extension OnDeviceLocalView {
     private func layoutMessageLabel() {
         self.addSubview(messageLabel)
         messageLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Dimension.Spacing.spacing32)
+            make.top.equalToSuperview().offset(Dimension.Spacing.spacing16)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
     }
