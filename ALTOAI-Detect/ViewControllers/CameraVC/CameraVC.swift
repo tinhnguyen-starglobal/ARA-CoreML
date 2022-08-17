@@ -30,7 +30,6 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     
     var frame_num = 0
     var videoCapture: VideoCapture!
-    var isVideoCaptureStarted: Bool = false
     
     var request: VNCoreMLRequest!
     var startTimes: [CFTimeInterval] = []
@@ -137,7 +136,6 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                 
                 // Once everything is set up, we can start capturing live video.
                 self.videoCapture.start()
-                self.isVideoCaptureStarted = true
             }
         }
     }
@@ -154,12 +152,10 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     
     func startVideoCapture() {
         self.videoCapture.start()
-        isVideoCaptureStarted = true
     }
     
     func stopVideoCapture() {
         self.videoCapture.stop()
-        isVideoCaptureStarted = false
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
