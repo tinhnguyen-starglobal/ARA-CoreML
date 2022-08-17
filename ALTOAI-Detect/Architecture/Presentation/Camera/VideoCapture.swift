@@ -46,13 +46,26 @@ public class VideoCapture: NSObject {
             captureSession.addInput(videoInput)
         }
         
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        self.configurePreview(captureSession)
+        self.configureCaptureVideoOutput()
+        
+        return true
+    }
+}
+
+// MARK: Configure Capture Session
+extension VideoCapture {
+    
+    private func configurePreview(_ session: AVCaptureSession) {
+        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspect
         previewLayer.connection?.videoOrientation = .portrait
         self.previewLayer = previewLayer
-        
+    }
+    
+    private func configureCaptureVideoOutput() {
         let settings: [String : Any] = [
-            kCVPixelBufferPixelFormatTypeKey as String: NSNumber(value: kCVPixelFormatType_32BGRA),
+            kCVPixelBufferPixelFormatTypeKey as String: NSNumber(value: kCVPixelFormatType_32BGRA)
         ]
         
         videoOutput.videoSettings = settings
@@ -63,12 +76,8 @@ public class VideoCapture: NSObject {
             captureSession.addOutput(videoOutput)
         }
         
-        // We want the buffers to be in portrait orientation otherwise they are
-        // rotated by 90 degrees. Need to set this _after_ addOutput()!
         videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
-        
         captureSession.commitConfiguration()
-        return true
     }
     
     func startCapture() {
