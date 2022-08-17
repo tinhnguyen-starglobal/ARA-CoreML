@@ -71,16 +71,18 @@ public class VideoCapture: NSObject {
         return true
     }
     
-    public func start() {
-        if !captureSession.isRunning {
-            captureSession.startRunning()
+    func startCapture() {
+        if captureSession.isRunning {
+            return
         }
+        captureSession.startRunning()
     }
     
-    public func stop() {
-        if captureSession.isRunning {
-            captureSession.stopRunning()
+    func stopCapture() {
+        if !captureSession.isRunning {
+            return
         }
+        captureSession.stopRunning()
     }
 }
 

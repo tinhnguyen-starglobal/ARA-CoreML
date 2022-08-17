@@ -257,17 +257,8 @@
 				0DB4AAB126B2BF1B001F5CD3 /* ExperimentsVC */,
 				0DB4AAC326B2C791001F5CD3 /* ExperimentRunVC */,
 				0D51403026A5D20000CEE1DD /* LocalModelsVC */,
-				0D51402C26A5A85D00CEE1DD /* CameraVC */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		0D51402C26A5A85D00CEE1DD /* CameraVC */ = {
-			isa = PBXGroup;
-			children = (
-				89BBF9D0268E9B6100FA46B6 /* CameraVC.swift */,
-			);
-			path = CameraVC;
 			sourceTree = "<group>";
 		};
 		0D51402D26A5A87300CEE1DD /* LoginVC */ = {
@@ -445,6 +436,7 @@
 				195A62E928ACA72900A65AA5 /* FPSCounter.swift */,
 				89BBF9CA268E9B6100FA46B6 /* BoundingBox.swift */,
 				89BBF9CF268E9B6100FA46B6 /* VideoCapture.swift */,
+				89BBF9D0268E9B6100FA46B6 /* CameraVC.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";

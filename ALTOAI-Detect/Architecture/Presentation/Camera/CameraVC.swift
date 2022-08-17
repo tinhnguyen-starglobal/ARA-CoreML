@@ -62,6 +62,12 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         frameCapturingStartTime = CACurrentMediaTime()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        guard let videoCapture = videoCapture else { return }
+        videoCapture.stopCapture()
+        super.viewWillDisappear(animated)
+    }
+    
     func setUp() {
         setUpBoundingBoxes()
         setUpCoreImage()
@@ -135,7 +141,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
                 }
                 
                 // Once everything is set up, we can start capturing live video.
-                self.videoCapture.start()
+                self.videoCapture.startCapture()
             }
         }
     }
@@ -151,11 +157,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     }
     
     func startVideoCapture() {
-        self.videoCapture.start()
-    }
-    
-    func stopVideoCapture() {
-        self.videoCapture.stop()
+        self.videoCapture.startCapture()
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
