@@ -103,7 +103,7 @@
 		89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9CD268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift */; };
 		89BBF9D9268E9B6100FA46B6 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9CE268E9B6100FA46B6 /* Helpers.swift */; };
 		89BBF9DA268E9B6100FA46B6 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9CF268E9B6100FA46B6 /* VideoCapture.swift */; };
-		89BBF9DB268E9B6100FA46B6 /* CameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9D0268E9B6100FA46B6 /* CameraVC.swift */; };
+		89BBF9DB268E9B6100FA46B6 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9D0268E9B6100FA46B6 /* CameraViewController.swift */; };
 		89BBF9EC268E9F6200FA46B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9EB268E9F6200FA46B6 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -209,7 +209,7 @@
 		89BBF9CD268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Helpers.swift"; sourceTree = "<group>"; };
 		89BBF9CE268E9B6100FA46B6 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		89BBF9CF268E9B6100FA46B6 /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
-		89BBF9D0268E9B6100FA46B6 /* CameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraVC.swift; sourceTree = "<group>"; };
+		89BBF9D0268E9B6100FA46B6 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		89BBF9EB268E9F6200FA46B6 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A1FDA08CC1F06B0AEBBE7A77 /* Pods-ARA-CoreML.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.debug.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.debug.xcconfig"; sourceTree = "<group>"; };
 		EC7E0648285F42489D4A9B2B /* Pods-ALTOAI-Detect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALTOAI-Detect.debug.xcconfig"; path = "Target Support Files/Pods-ALTOAI-Detect/Pods-ALTOAI-Detect.debug.xcconfig"; sourceTree = "<group>"; };
@@ -436,7 +436,7 @@
 				195A62E928ACA72900A65AA5 /* FPSCounter.swift */,
 				89BBF9CA268E9B6100FA46B6 /* BoundingBox.swift */,
 				89BBF9CF268E9B6100FA46B6 /* VideoCapture.swift */,
-				89BBF9D0268E9B6100FA46B6 /* CameraVC.swift */,
+				89BBF9D0268E9B6100FA46B6 /* CameraViewController.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -984,7 +984,7 @@
 				19829A7028A432800036C7E7 /* ButtonStyle.swift in Sources */,
 				0D7ECD2826BC2045004D40DD /* ActivityIndicatorOverlay.swift in Sources */,
 				0DB4AA9A26B1BC37001F5CD3 /* Project.swift in Sources */,
-				89BBF9DB268E9B6100FA46B6 /* CameraVC.swift in Sources */,
+				89BBF9DB268E9B6100FA46B6 /* CameraViewController.swift in Sources */,
 				19829A6528A429B20036C7E7 /* CombineControlProperty.swift in Sources */,
 				19829A3828A36BBE0036C7E7 /* OnDeviceRemoteView.swift in Sources */,
 				0D51403226A5D23000CEE1DD /* LocalModelsVC.swift in Sources */,

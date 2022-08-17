@@ -6,7 +6,7 @@ import VideoToolbox
 import ZIPFoundation
 import RandomColorSwift
 
-class CameraVC: UIViewController, UIDocumentPickerDelegate {
+final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
     
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var fpsLabel: UILabel!
@@ -154,10 +154,6 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
         UIView.animate(withDuration: 0.3) { [weak self] in
             self?.slidersView.alpha = self?.slidersView.alpha == 1.0 ? 0.0 : 1.0
         }
-    }
-    
-    func startVideoCapture() {
-        self.videoCapture.startCapture()
     }
     
     @IBAction func sliderValueChanged(_ sender: UISlider) {
@@ -320,7 +316,7 @@ class CameraVC: UIViewController, UIDocumentPickerDelegate {
     }
 }
 
-extension CameraVC: VideoCaptureDelegate {
+extension CameraViewController: VideoCaptureDelegate {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?, timestamp: CMTime) {
         if let pixelBuffer = pixelBuffer {
             self.predict(pixelBuffer: pixelBuffer)
@@ -329,7 +325,7 @@ extension CameraVC: VideoCaptureDelegate {
     }
 }
 
-extension CameraVC {
+extension CameraViewController {
     
     private func resizeImage(pixelBuffer: CVPixelBuffer) -> UIImage? {
         // Resize the input with Core Image to 416x416.

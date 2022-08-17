@@ -126,7 +126,7 @@ class ExperimentRunVC : UIViewController, UITableViewDelegate, UITableViewDataSo
                 if let yolo = yolo {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     
-                    if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraVC {
+                    if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraViewController {
                         cameraVC.yolo = yolo
                         cameraVC.modalPresentationStyle = .fullScreen
                         self.present(cameraVC, animated: true, completion: nil)
