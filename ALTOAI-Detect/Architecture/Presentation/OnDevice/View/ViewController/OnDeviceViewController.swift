@@ -16,6 +16,23 @@ final class OnDeviceViewController: BaseViewController {
         return segment
     }()
     
+    private let containerView: UIView = {
+        let view = UIView(frame: .zero)
+        return view
+    }()
+    
+    private lazy var remoteViewController: OnDeviceRemoteViewController = {
+        let viewController = OnDeviceRemoteViewController()
+        self.addViewController(child: viewController)
+        return viewController
+    }()
+    
+    private lazy var localViewController: OnDeviceLocalViewController = {
+        let viewController = OnDeviceLocalViewController()
+        self.addViewController(child: viewController)
+        return viewController
+    }()
+    
     private let remoteView: OnDeviceRemoteView = {
         let view = OnDeviceRemoteView()
         return view
@@ -33,22 +50,39 @@ final class OnDeviceViewController: BaseViewController {
     }
     
     private func configureSegmentView() {
-        remoteView.isHidden = false
-        localView.isHidden = true
+        configureSegmentState()
         segmentControl.addTarget(self, action: #selector(changeSegmentType(_:)), for: .valueChanged)
     }
     
     @objc func changeSegmentType(_ segmentedControl: UISegmentedControl) {
-        switch segmentedControl.selectedSegmentIndex {
+        configureSegmentState()
+    }
+    
+    private func configureSegmentState() {
+        switch segmentControl.selectedSegmentIndex {
         case 0:
-            self.remoteView.isHidden = false
-            self.localView.isHidden = true
+            removeViewController(child: localViewController)
+            addViewController(child: remoteViewController)
         case 1:
-            self.remoteView.isHidden = true
-            self.localView.isHidden = false
+            removeViewController(child: remoteViewController)
+            addViewController(child: localViewController)
         default:
             break
         }
+    }
+    
+    private func addViewController(child viewController: UIViewController) {
+        addChild(viewController)
+        containerView.addSubview(viewController.view)
+        viewController.view.frame = containerView.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        viewController.didMove(toParent: self)
+    }
+    
+    private func removeViewController(child viewController: UIViewController) {
+        viewController.willMove(toParent: nil)
+        viewController.view.removeFromSuperview()
+        viewController.removeFromParent()
     }
 }
 
@@ -58,8 +92,7 @@ extension OnDeviceViewController {
     private func constructHierarchy() {
         configureNavigation()
         layoutSegmentControl()
-        layoutRemoteView()
-        layoutLocalView()
+        layoutContainerView()
     }
     
     private func configureNavigation() {
@@ -72,6 +105,15 @@ extension OnDeviceViewController {
         segmentControl.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(Dimension.Spacing.spacing32)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
+        }
+    }
+    
+    private func layoutContainerView() {
+        self.view.addSubview(containerView)
+        containerView.snp.makeConstraints { make in
+            make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }
     
