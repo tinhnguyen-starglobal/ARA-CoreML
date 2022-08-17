@@ -39,4 +39,12 @@ public class BaseViewController: UIViewController {
     private func configureView() {
         self.view.backgroundColor = .white
     }
+    
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .portrait
+        } else {
+            return .all
+        }
+    }
 }
