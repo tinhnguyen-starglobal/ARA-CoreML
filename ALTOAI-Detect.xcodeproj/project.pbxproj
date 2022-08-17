@@ -45,6 +45,7 @@
 		0DFA24DB26A6E6770014CD6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DA26A6E6770014CD6E /* Constants.swift */; };
 		0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */; };
 		1007AEDB05DE2E0D1B2679CC /* Pods_ALTOAI_Detect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */; };
+		195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A62E928ACA72900A65AA5 /* FPSCounter.swift */; };
 		19829A0E28A364A40036C7E7 /* OutDeviceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */; };
 		19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */; };
 		19829A1228A364BE0036C7E7 /* OutDeviceUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */; };
@@ -144,6 +145,7 @@
 		0DE4F1E926B7FBAA007053DB /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		0DFA24DA26A6E6770014CD6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		195A62E928ACA72900A65AA5 /* FPSCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSCounter.swift; sourceTree = "<group>"; };
 		19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCase.swift; sourceTree = "<group>"; };
 		19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCase.swift; sourceTree = "<group>"; };
 		19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCasePort.swift; sourceTree = "<group>"; };
@@ -439,6 +441,14 @@
 			path = MainTabBarVC;
 			sourceTree = "<group>";
 		};
+		195A62E828ACA70B00A65AA5 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				195A62E928ACA72900A65AA5 /* FPSCounter.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
 		198299F028A362C60036C7E7 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +475,7 @@
 		198299F228A362D60036C7E7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				195A62E828ACA70B00A65AA5 /* Camera */,
 				19829A2828A36AD40036C7E7 /* OutDevice */,
 				19829A3028A36B680036C7E7 /* OnDevice */,
 			);
@@ -964,6 +975,7 @@
 				0DB4AAB326B2BF77001F5CD3 /* ExperimentsVC.swift in Sources */,
 				19829A5428A422890036C7E7 /* TextFieldDecorator.swift in Sources */,
 				19829A8328A4D8340036C7E7 /* CloudComputingView.swift in Sources */,
+				195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */,
 				19829A6A28A4319E0036C7E7 /* ButtonState.swift in Sources */,
 				0DB4AA9726B1B8AC001F5CD3 /* ProjectsVC.swift in Sources */,
 				0D51403726A6E51500CEE1DD /* APIConfiguration.swift in Sources */,
