@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AVFoundation
+import ZIPFoundation
 
 final class OnDeviceLocalViewController: BaseViewController {
     
@@ -16,7 +18,25 @@ final class OnDeviceLocalViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurePublisher()
         constructHierarchy()
+    }
+}
+
+// MARK: - Configure Publisher
+extension OnDeviceLocalViewController {
+    private func configurePublisher() {
+        localView.submitButton.tapPublisher.sink { [weak self] _ in
+            self?.presentDocumentPicker()
+        }.store(in: &self.cancellable)
+    }
+    
+    func presentDocumentPicker() {
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.zip],
+                                                    asCopy: true)
+        picker.delegate = self
+        picker.allowsMultipleSelection = false
+        self.present(picker, animated: true)
     }
 }
 
@@ -33,5 +53,29 @@ extension OnDeviceLocalViewController {
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
         }
+    }
+}
+
+// MARK: UIDocumentPickerDelegate
+extension OnDeviceLocalViewController: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        self.displayAnimatedActivityIndicatorView()
+        ModelOperationsHelper.getModelFromArchive(urls.first!, isLocal: true) { [weak self] yolo in
+            guard let self = self else { return }
+            self.hideAnimatedActivityIndicatorView()
+            if let _ = yolo {
+//                self.loadData()
+//                self.tableView.reloadData()
+            } else {
+                self.showAlert()
+            }
+            
+        }
+    }
+    
+    private func showAlert() {
+        let alert = UIAlertController(title: nil, message: "Your zip archive doesn't contain model and json file", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
 }
