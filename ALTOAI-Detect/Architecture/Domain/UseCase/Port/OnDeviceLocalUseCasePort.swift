@@ -9,5 +9,5 @@ import Combine
 import Foundation
 
 protocol OnDeviceLocalUseCasePort {
-    func perform() -> AnyPublisher<Bool, Error>
+    func fetchYOLOFromFile() -> AnyPublisher<YOLO?, Never>
 }

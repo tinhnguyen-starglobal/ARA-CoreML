@@ -10,9 +10,11 @@ import Foundation
 
 final class OnDeviceLocalUseCase: OnDeviceLocalUseCasePort {
     
-    func perform() -> AnyPublisher<Bool, Error> {
-        Future<Bool, Error> { promise in
-            promise(.success(true))
+    func fetchYOLOFromFile() -> AnyPublisher<YOLO?, Never> {
+        Future<YOLO?, Never> { promise in
+            promise(.success(nil))
         }.eraseToAnyPublisher()
     }
+    
+//    func isContainModelAndJson
 }
