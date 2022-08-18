@@ -33,11 +33,29 @@ final class OnDeviceViewController: BaseViewController {
         return viewController
     }()
     
+    private(set) var isRemote = false
+    private(set) var isLocal = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurePublisher()
         configureSegmentView()
         constructHierarchy()
     }
+}
+
+// MARK: - Configure Publisher
+extension OnDeviceViewController {
+    private func configurePublisher() {
+        localViewController.hasModelPublisher.sink { [weak self] isLocal in
+            self?.isLocal = isLocal
+            self?.configureSegmentState()
+        }.store(in: &cancellable)
+    }
+}
+
+// MARK: Configure SegmentControler
+extension OnDeviceViewController {
     
     private func configureSegmentView() {
         configureSegmentState()
@@ -47,17 +65,16 @@ final class OnDeviceViewController: BaseViewController {
     @objc func changeSegmentType(_ segmentedControl: UISegmentedControl) {
         configureSegmentState()
     }
-}
-
-// MARK: Configure SegmentControler
-extension OnDeviceViewController {
     
     private func configureSegmentState() {
-        switch segmentControl.selectedSegmentIndex {
+        let index = segmentControl.selectedSegmentIndex
+        switch index {
         case 0:
+            self.navigationItem.title = isRemote ? "Workspace" : "Access"
             removeViewController(child: localViewController)
             addViewController(child: remoteViewController)
         case 1:
+            self.navigationItem.title = isLocal ? "Local models" : "Access"
             removeViewController(child: remoteViewController)
             addViewController(child: localViewController)
         default:
@@ -90,7 +107,6 @@ extension OnDeviceViewController {
     }
     
     private func configureNavigation() {
-        self.navigationItem.title = "Access"
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
     

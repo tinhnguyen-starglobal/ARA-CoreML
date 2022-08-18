@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 import AVFoundation
 import ZIPFoundation
 
@@ -15,6 +16,12 @@ final class OnDeviceLocalViewController: BaseViewController {
         let view = OnDeviceLocalView()
         return view
     }()
+    
+    var hasModelPublisher: AnyPublisher<Bool, Never> {
+        hasModelSubject.eraseToAnyPublisher()
+    }
+    
+    private let hasModelSubject = PassthroughSubject<Bool, Never>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,10 +39,10 @@ extension OnDeviceLocalViewController {
     }
     
     func presentDocumentPicker() {
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.zip], asCopy: true)
-        picker.delegate = self
-        picker.allowsMultipleSelection = false
-        self.present(picker, animated: true)
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.zip], asCopy: true)
+        documentPicker.delegate = self
+        documentPicker.allowsMultipleSelection = false
+        self.present(documentPicker, animated: true)
     }
 }
 
@@ -63,12 +70,10 @@ extension OnDeviceLocalViewController: UIDocumentPickerDelegate {
             guard let self = self else { return }
             self.hideAnimatedActivityIndicatorView()
             if let _ = yolo {
-//                self.loadData()
-//                self.tableView.reloadData()
+                self.hasModelSubject.send(true)
             } else {
                 self.showAlert()
             }
-            
         }
     }
     
