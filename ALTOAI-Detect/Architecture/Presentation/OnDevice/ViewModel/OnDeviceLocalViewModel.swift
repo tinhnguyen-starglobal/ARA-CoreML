@@ -9,9 +9,9 @@ import UIKit
 import Combine
 
 final class OnDeviceLocalViewModel: BaseViewModel {
-    var useCase: OutDeviceUseCasePort
+    var useCase: OnDeviceLocalUseCasePort
     
-    init(useCase: OutDeviceUseCasePort = OutDeviceUseCase()) {
+    init(useCase: OnDeviceLocalUseCasePort = OnDeviceLocalUseCase()) {
         self.useCase = useCase
     }
 }

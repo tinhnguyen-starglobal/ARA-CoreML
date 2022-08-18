@@ -1,14 +1,14 @@
 //
-//  OutDeviceUseCase.swift
+//  OnDeviceRemoteUseCase.swift
 //  ALTOAI-Detect
 //
-//  Created by Tinh Nguyen on 10/08/2022.
+//  Created by Tinh Nguyen on 18/08/2022.
 //
 
 import Combine
 import Foundation
 
-final class OutDeviceUseCase: OutDeviceUseCasePort {
+final class OnDeviceRemoteUseCase: OnDeviceRemoteUseCasePort {
     
     func perform() -> AnyPublisher<Bool, Error> {
         Future<Bool, Error> { promise in

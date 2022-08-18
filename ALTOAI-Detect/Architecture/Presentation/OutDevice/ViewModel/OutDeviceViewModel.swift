@@ -9,9 +9,9 @@ import UIKit
 import Combine
 
 final class OutDeviceViewModel: BaseViewModel {
-    var useCase: OutDeviceUseCasePort
+    var useCase: OutDeviceEdgeUseCasePort
     
-    init(useCase: OutDeviceUseCasePort = OutDeviceUseCase()) {
+    init(useCase: OutDeviceEdgeUseCasePort = OutDeviceEdgeUseCase()) {
         self.useCase = useCase
     }
 }

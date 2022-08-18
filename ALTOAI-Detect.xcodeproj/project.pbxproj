@@ -52,11 +52,13 @@
 		1939A82728AE22EF002C2F22 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82628AE22EF002C2F22 /* Reusable.swift */; };
 		1939A82928AE3247002C2F22 /* OnDeviceLocalUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82828AE3247002C2F22 /* OnDeviceLocalUseCasePort.swift */; };
 		1939A82B28AE328D002C2F22 /* OnDeviceLocalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82A28AE328D002C2F22 /* OnDeviceLocalUseCase.swift */; };
+		1939A82D28AE368C002C2F22 /* OnDeviceRemoteUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82C28AE368C002C2F22 /* OnDeviceRemoteUseCasePort.swift */; };
+		1939A82F28AE37E3002C2F22 /* OnDeviceRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82E28AE37E3002C2F22 /* OnDeviceRemoteUseCase.swift */; };
 		195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A62E928ACA72900A65AA5 /* FPSCounter.swift */; };
-		19829A0E28A364A40036C7E7 /* OutDeviceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */; };
-		19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */; };
-		19829A1228A364BE0036C7E7 /* OutDeviceUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */; };
-		19829A1428A364C90036C7E7 /* CloundComputingUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */; };
+		19829A0E28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift */; };
+		19829A1028A364B10036C7E7 /* OutDeviceCloundUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* OutDeviceCloundUseCase.swift */; };
+		19829A1228A364BE0036C7E7 /* OutDeviceEdgeUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1128A364BE0036C7E7 /* OutDeviceEdgeUseCasePort.swift */; };
+		19829A1428A364C90036C7E7 /* OutDeviceCloundUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1328A364C90036C7E7 /* OutDeviceCloundUseCasePort.swift */; };
 		19829A1D28A368640036C7E7 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1C28A368640036C7E7 /* BaseView.swift */; };
 		19829A1F28A368A70036C7E7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1E28A368A70036C7E7 /* BaseViewController.swift */; };
 		19829A2128A3693C0036C7E7 /* BaseTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A2028A3693C0036C7E7 /* BaseTabbarController.swift */; };
@@ -159,11 +161,13 @@
 		1939A82628AE22EF002C2F22 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		1939A82828AE3247002C2F22 /* OnDeviceLocalUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalUseCasePort.swift; sourceTree = "<group>"; };
 		1939A82A28AE328D002C2F22 /* OnDeviceLocalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalUseCase.swift; sourceTree = "<group>"; };
+		1939A82C28AE368C002C2F22 /* OnDeviceRemoteUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteUseCasePort.swift; sourceTree = "<group>"; };
+		1939A82E28AE37E3002C2F22 /* OnDeviceRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteUseCase.swift; sourceTree = "<group>"; };
 		195A62E928ACA72900A65AA5 /* FPSCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSCounter.swift; sourceTree = "<group>"; };
-		19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCase.swift; sourceTree = "<group>"; };
-		19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCase.swift; sourceTree = "<group>"; };
-		19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCasePort.swift; sourceTree = "<group>"; };
-		19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCasePort.swift; sourceTree = "<group>"; };
+		19829A0D28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceEdgeUseCase.swift; sourceTree = "<group>"; };
+		19829A0F28A364B10036C7E7 /* OutDeviceCloundUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceCloundUseCase.swift; sourceTree = "<group>"; };
+		19829A1128A364BE0036C7E7 /* OutDeviceEdgeUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceEdgeUseCasePort.swift; sourceTree = "<group>"; };
+		19829A1328A364C90036C7E7 /* OutDeviceCloundUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceCloundUseCasePort.swift; sourceTree = "<group>"; };
 		19829A1C28A368640036C7E7 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		19829A1E28A368A70036C7E7 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		19829A2028A3693C0036C7E7 /* BaseTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabbarController.swift; sourceTree = "<group>"; };
@@ -509,9 +513,10 @@
 			isa = PBXGroup;
 			children = (
 				19829A0C28A364940036C7E7 /* Port */,
-				19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */,
-				19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */,
+				19829A0D28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift */,
+				19829A0F28A364B10036C7E7 /* OutDeviceCloundUseCase.swift */,
 				1939A82A28AE328D002C2F22 /* OnDeviceLocalUseCase.swift */,
+				1939A82E28AE37E3002C2F22 /* OnDeviceRemoteUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -527,9 +532,10 @@
 		19829A0C28A364940036C7E7 /* Port */ = {
 			isa = PBXGroup;
 			children = (
-				19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */,
+				19829A1128A364BE0036C7E7 /* OutDeviceEdgeUseCasePort.swift */,
+				19829A1328A364C90036C7E7 /* OutDeviceCloundUseCasePort.swift */,
 				1939A82828AE3247002C2F22 /* OnDeviceLocalUseCasePort.swift */,
-				19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */,
+				1939A82C28AE368C002C2F22 /* OnDeviceRemoteUseCasePort.swift */,
 			);
 			path = Port;
 			sourceTree = "<group>";
@@ -965,13 +971,13 @@
 				0DB4AAA026B1EFA5001F5CD3 /* NetworkLogger.swift in Sources */,
 				0DB4AA8C26B07252001F5CD3 /* APIManager.swift in Sources */,
 				0D51402F26A5A88600CEE1DD /* LoginVC.swift in Sources */,
-				19829A1228A364BE0036C7E7 /* OutDeviceUseCasePort.swift in Sources */,
+				19829A1228A364BE0036C7E7 /* OutDeviceEdgeUseCasePort.swift in Sources */,
 				19829A6C28A431BA0036C7E7 /* Button.swift in Sources */,
 				89BBF9D5268E9B6100FA46B6 /* BoundingBox.swift in Sources */,
 				19829A6E28A432030036C7E7 /* Dimension+Button.swift in Sources */,
 				1939A82928AE3247002C2F22 /* OnDeviceLocalUseCasePort.swift in Sources */,
 				0DB4AAA726B29CB4001F5CD3 /* Scene.swift in Sources */,
-				19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */,
+				19829A1028A364B10036C7E7 /* OutDeviceCloundUseCase.swift in Sources */,
 				19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */,
 				19829A2328A369510036C7E7 /* BaseNavigationController.swift in Sources */,
 				19829A7B28A44A0A0036C7E7 /* OutDeviceViewModel.swift in Sources */,
@@ -983,10 +989,11 @@
 				19829A3428A36B9B0036C7E7 /* OnDeviceLocalViewModel.swift in Sources */,
 				0D712D8D269F8E490031D2E3 /* yolo_model.swift in Sources */,
 				0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */,
-				19829A0E28A364A40036C7E7 /* OutDeviceUseCase.swift in Sources */,
+				19829A0E28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift in Sources */,
 				19829A6128A429460036C7E7 /* UIControl+Combine.swift in Sources */,
 				0DB4AA9226B074E4001F5CD3 /* CustomError.swift in Sources */,
 				0DE4F1E526B7F43E007053DB /* AppStyle.swift in Sources */,
+				1939A82D28AE368C002C2F22 /* OnDeviceRemoteUseCasePort.swift in Sources */,
 				0DFA24DB26A6E6770014CD6E /* Constants.swift in Sources */,
 				0DB4AAA526B29B87001F5CD3 /* ScenesVC.swift in Sources */,
 				0DB4AA9026B07472001F5CD3 /* NetworkRequestInterceptor.swift in Sources */,
@@ -1025,7 +1032,7 @@
 				19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */,
 				0DE4F1E326B7F3E2007053DB /* Fonts.swift in Sources */,
 				1939A82428AE22C0002C2F22 /* BaseTableViewCell.swift in Sources */,
-				19829A1428A364C90036C7E7 /* CloundComputingUseCasePort.swift in Sources */,
+				19829A1428A364C90036C7E7 /* OutDeviceCloundUseCasePort.swift in Sources */,
 				89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */,
 				19829A5828A424910036C7E7 /* TextFieldStyle.swift in Sources */,
 				19829A2D28A36AFC0036C7E7 /* EdgeComputingView.swift in Sources */,
@@ -1060,6 +1067,7 @@
 				19829A2128A3693C0036C7E7 /* BaseTabbarController.swift in Sources */,
 				19829A4A28A3A8880036C7E7 /* Constant.swift in Sources */,
 				19829A7228A4329F0036C7E7 /* ButtonDecorator.swift in Sources */,
+				1939A82F28AE37E3002C2F22 /* OnDeviceRemoteUseCase.swift in Sources */,
 				19829A5228A422670036C7E7 /* TextFieldState.swift in Sources */,
 				1939A81E28AD7D58002C2F22 /* OnDeviceLocalViewController.swift in Sources */,
 				19829A6728A42A600036C7E7 /* Defaultable.swift in Sources */,
