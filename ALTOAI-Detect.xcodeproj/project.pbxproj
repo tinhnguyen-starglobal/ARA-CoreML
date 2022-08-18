@@ -47,6 +47,7 @@
 		1007AEDB05DE2E0D1B2679CC /* Pods_ALTOAI_Detect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */; };
 		1939A81E28AD7D58002C2F22 /* OnDeviceLocalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */; };
 		1939A82028AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */; };
+		1939A82228AE2297002C2F22 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82128AE2297002C2F22 /* DynamicTableView.swift */; };
 		195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A62E928ACA72900A65AA5 /* FPSCounter.swift */; };
 		19829A0E28A364A40036C7E7 /* OutDeviceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */; };
 		19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */; };
@@ -149,6 +150,7 @@
 		0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalViewController.swift; sourceTree = "<group>"; };
 		1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteViewController.swift; sourceTree = "<group>"; };
+		1939A82128AE2297002C2F22 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
 		195A62E928ACA72900A65AA5 /* FPSCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSCounter.swift; sourceTree = "<group>"; };
 		19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCase.swift; sourceTree = "<group>"; };
 		19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCase.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				19829A1C28A368640036C7E7 /* BaseView.swift */,
 				19829A8028A452750036C7E7 /* ViewModelPort.swift */,
 				19829A7C28A450600036C7E7 /* BaseViewModel.swift */,
+				1939A82128AE2297002C2F22 /* DynamicTableView.swift */,
 				19829A1E28A368A70036C7E7 /* BaseViewController.swift */,
 				19829A2028A3693C0036C7E7 /* BaseTabbarController.swift */,
 				19829A2228A369510036C7E7 /* BaseNavigationController.swift */,
@@ -1020,6 +1023,7 @@
 				0DB4AAA926B29D8F001F5CD3 /* ScenesViewModel.swift in Sources */,
 				0DB4AA8E26B072C5001F5CD3 /* KeyChainManager.swift in Sources */,
 				0DE4F1DF26B7F0D3007053DB /* UITableView+Empty.swift in Sources */,
+				1939A82228AE2297002C2F22 /* DynamicTableView.swift in Sources */,
 				19829A8528A4DEDF0036C7E7 /* OnDeviceLocalView.swift in Sources */,
 				0DB4AAA226B20331001F5CD3 /* AccessToken.swift in Sources */,
 				19829A1D28A368640036C7E7 /* BaseView.swift in Sources */,
