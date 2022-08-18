@@ -70,16 +70,34 @@ extension OnDeviceViewController {
         let index = segmentControl.selectedSegmentIndex
         switch index {
         case 0:
-            self.navigationItem.title = isRemote ? "Workspace" : "Access"
-            removeViewController(child: localViewController)
-            addViewController(child: remoteViewController)
+            configureRemoteView()
         case 1:
-            self.navigationItem.title = isLocal ? "Local models" : "Access"
-            removeViewController(child: remoteViewController)
-            addViewController(child: localViewController)
+            configureLocalView()
         default:
             break
         }
+    }
+    
+    private func configureRemoteView() {
+        addViewController(child: remoteViewController)
+        removeViewController(child: localViewController)
+        navigationItem.title = isRemote ? "Workspace" : "Access"
+        navigationItem.rightBarButtonItem = isRemote ? UIBarButtonItem(barButtonSystemItem: .add,
+                                                                      target: self,
+                                                                      action: #selector(addTapped)) : nil
+    }
+    
+    private func configureLocalView() {
+        addViewController(child: localViewController)
+        removeViewController(child: remoteViewController)
+        navigationItem.title = isLocal ? "Local models" : "Access"
+        navigationItem.rightBarButtonItem = isLocal ? UIBarButtonItem(barButtonSystemItem: .add,
+                                                                      target: self,
+                                                                      action: #selector(addTapped)) : nil
+    }
+    
+    @objc private func addTapped() {
+        print("Did press add button")
     }
     
     private func addViewController(child viewController: UIViewController) {
