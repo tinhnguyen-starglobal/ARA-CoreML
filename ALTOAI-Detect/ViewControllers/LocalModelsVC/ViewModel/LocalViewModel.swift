@@ -16,8 +16,8 @@ class LocalViewModel {
         
         do {
             let directoryContents = try fileManager.contentsOfDirectory(at: localModelsDirURL, includingPropertiesForKeys: nil)
-            objects = directoryContents.map{ $0.deletingPathExtension().lastPathComponent }
-        } catch {
+            objects = directoryContents.map { $0.deletingPathExtension().lastPathComponent }
+        } catch { 
             print(error)
         }
     }

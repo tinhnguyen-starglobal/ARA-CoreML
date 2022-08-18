@@ -1,14 +1,14 @@
 //
-//  OutDeviceViewModel.swift
+//  OnDeviceLocalViewModel.swift
 //  ALTOAI-Detect
 //
-//  Created by Tinh Nguyen on 11/08/2022.
+//  Created by Tinh Nguyen on 10/08/2022.
 //
 
 import UIKit
 import Combine
 
-final class OutDeviceViewModel: BaseViewModel {
+final class OnDeviceLocalViewModel: BaseViewModel {
     var useCase: OutDeviceUseCasePort
     
     init(useCase: OutDeviceUseCasePort = OutDeviceUseCase()) {
@@ -16,7 +16,7 @@ final class OutDeviceViewModel: BaseViewModel {
     }
 }
 
-extension OutDeviceViewModel {
+extension OnDeviceLocalViewModel {
     
     func verifyUrl(urlString: String?) -> Bool {
         if let urlString = urlString {

@@ -50,6 +50,8 @@
 		1939A82228AE2297002C2F22 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82128AE2297002C2F22 /* DynamicTableView.swift */; };
 		1939A82428AE22C0002C2F22 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82328AE22C0002C2F22 /* BaseTableViewCell.swift */; };
 		1939A82728AE22EF002C2F22 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82628AE22EF002C2F22 /* Reusable.swift */; };
+		1939A82928AE3247002C2F22 /* OnDeviceLocalUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82828AE3247002C2F22 /* OnDeviceLocalUseCasePort.swift */; };
+		1939A82B28AE328D002C2F22 /* OnDeviceLocalUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82A28AE328D002C2F22 /* OnDeviceLocalUseCase.swift */; };
 		195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A62E928ACA72900A65AA5 /* FPSCounter.swift */; };
 		19829A0E28A364A40036C7E7 /* OutDeviceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */; };
 		19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */; };
@@ -62,7 +64,7 @@
 		19829A2728A36A310036C7E7 /* TabbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A2628A36A310036C7E7 /* TabbarItem.swift */; };
 		19829A2D28A36AFC0036C7E7 /* EdgeComputingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A2C28A36AFC0036C7E7 /* EdgeComputingView.swift */; };
 		19829A2F28A36B060036C7E7 /* OutDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A2E28A36B060036C7E7 /* OutDeviceViewController.swift */; };
-		19829A3428A36B9B0036C7E7 /* OnDeviceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A3328A36B9B0036C7E7 /* OnDeviceViewModel.swift */; };
+		19829A3428A36B9B0036C7E7 /* OnDeviceLocalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A3328A36B9B0036C7E7 /* OnDeviceLocalViewModel.swift */; };
 		19829A3828A36BBE0036C7E7 /* OnDeviceRemoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A3728A36BBE0036C7E7 /* OnDeviceRemoteView.swift */; };
 		19829A3A28A36BCB0036C7E7 /* OnDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A3928A36BCB0036C7E7 /* OnDeviceViewController.swift */; };
 		19829A3D28A370EB0036C7E7 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A3C28A370EB0036C7E7 /* MainNavigationController.swift */; };
@@ -155,6 +157,8 @@
 		1939A82128AE2297002C2F22 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
 		1939A82328AE22C0002C2F22 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		1939A82628AE22EF002C2F22 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		1939A82828AE3247002C2F22 /* OnDeviceLocalUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalUseCasePort.swift; sourceTree = "<group>"; };
+		1939A82A28AE328D002C2F22 /* OnDeviceLocalUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalUseCase.swift; sourceTree = "<group>"; };
 		195A62E928ACA72900A65AA5 /* FPSCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSCounter.swift; sourceTree = "<group>"; };
 		19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCase.swift; sourceTree = "<group>"; };
 		19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCase.swift; sourceTree = "<group>"; };
@@ -167,7 +171,7 @@
 		19829A2628A36A310036C7E7 /* TabbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarItem.swift; sourceTree = "<group>"; };
 		19829A2C28A36AFC0036C7E7 /* EdgeComputingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingView.swift; sourceTree = "<group>"; };
 		19829A2E28A36B060036C7E7 /* OutDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceViewController.swift; sourceTree = "<group>"; };
-		19829A3328A36B9B0036C7E7 /* OnDeviceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceViewModel.swift; sourceTree = "<group>"; };
+		19829A3328A36B9B0036C7E7 /* OnDeviceLocalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalViewModel.swift; sourceTree = "<group>"; };
 		19829A3728A36BBE0036C7E7 /* OnDeviceRemoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteView.swift; sourceTree = "<group>"; };
 		19829A3928A36BCB0036C7E7 /* OnDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceViewController.swift; sourceTree = "<group>"; };
 		19829A3C28A370EB0036C7E7 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
@@ -507,6 +511,7 @@
 				19829A0C28A364940036C7E7 /* Port */,
 				19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */,
 				19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */,
+				1939A82A28AE328D002C2F22 /* OnDeviceLocalUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				19829A1128A364BE0036C7E7 /* OutDeviceUseCasePort.swift */,
+				1939A82828AE3247002C2F22 /* OnDeviceLocalUseCasePort.swift */,
 				19829A1328A364C90036C7E7 /* CloundComputingUseCasePort.swift */,
 			);
 			path = Port;
@@ -671,7 +677,7 @@
 		19829A3228A36B740036C7E7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				19829A3328A36B9B0036C7E7 /* OnDeviceViewModel.swift */,
+				19829A3328A36B9B0036C7E7 /* OnDeviceLocalViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -963,6 +969,7 @@
 				19829A6C28A431BA0036C7E7 /* Button.swift in Sources */,
 				89BBF9D5268E9B6100FA46B6 /* BoundingBox.swift in Sources */,
 				19829A6E28A432030036C7E7 /* Dimension+Button.swift in Sources */,
+				1939A82928AE3247002C2F22 /* OnDeviceLocalUseCasePort.swift in Sources */,
 				0DB4AAA726B29CB4001F5CD3 /* Scene.swift in Sources */,
 				19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */,
 				19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */,
@@ -973,7 +980,7 @@
 				89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */,
 				19829A8128A452750036C7E7 /* ViewModelPort.swift in Sources */,
 				0DB4AAB626B2BF9B001F5CD3 /* ExperimentsViewModel.swift in Sources */,
-				19829A3428A36B9B0036C7E7 /* OnDeviceViewModel.swift in Sources */,
+				19829A3428A36B9B0036C7E7 /* OnDeviceLocalViewModel.swift in Sources */,
 				0D712D8D269F8E490031D2E3 /* yolo_model.swift in Sources */,
 				0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */,
 				19829A0E28A364A40036C7E7 /* OutDeviceUseCase.swift in Sources */,
@@ -1039,6 +1046,7 @@
 				0DB4AAA926B29D8F001F5CD3 /* ScenesViewModel.swift in Sources */,
 				0DB4AA8E26B072C5001F5CD3 /* KeyChainManager.swift in Sources */,
 				0DE4F1DF26B7F0D3007053DB /* UITableView+Empty.swift in Sources */,
+				1939A82B28AE328D002C2F22 /* OnDeviceLocalUseCase.swift in Sources */,
 				1939A82228AE2297002C2F22 /* DynamicTableView.swift in Sources */,
 				19829A8528A4DEDF0036C7E7 /* OnDeviceLocalView.swift in Sources */,
 				0DB4AAA226B20331001F5CD3 /* AccessToken.swift in Sources */,

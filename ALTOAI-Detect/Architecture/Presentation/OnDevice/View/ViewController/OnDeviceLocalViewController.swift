@@ -32,8 +32,7 @@ extension OnDeviceLocalViewController {
     }
     
     func presentDocumentPicker() {
-        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.zip],
-                                                    asCopy: true)
+        let picker = UIDocumentPickerViewController(forOpeningContentTypes: [UTType.zip], asCopy: true)
         picker.delegate = self
         picker.allowsMultipleSelection = false
         self.present(picker, animated: true)
