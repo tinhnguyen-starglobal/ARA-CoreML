@@ -48,6 +48,8 @@
 		1939A81E28AD7D58002C2F22 /* OnDeviceLocalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */; };
 		1939A82028AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */; };
 		1939A82228AE2297002C2F22 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82128AE2297002C2F22 /* DynamicTableView.swift */; };
+		1939A82428AE22C0002C2F22 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82328AE22C0002C2F22 /* BaseTableViewCell.swift */; };
+		1939A82728AE22EF002C2F22 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82628AE22EF002C2F22 /* Reusable.swift */; };
 		195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A62E928ACA72900A65AA5 /* FPSCounter.swift */; };
 		19829A0E28A364A40036C7E7 /* OutDeviceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */; };
 		19829A1028A364B10036C7E7 /* CloundComputingUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */; };
@@ -151,6 +153,8 @@
 		1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalViewController.swift; sourceTree = "<group>"; };
 		1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteViewController.swift; sourceTree = "<group>"; };
 		1939A82128AE2297002C2F22 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
+		1939A82328AE22C0002C2F22 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		1939A82628AE22EF002C2F22 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		195A62E928ACA72900A65AA5 /* FPSCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSCounter.swift; sourceTree = "<group>"; };
 		19829A0D28A364A40036C7E7 /* OutDeviceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceUseCase.swift; sourceTree = "<group>"; };
 		19829A0F28A364B10036C7E7 /* CloundComputingUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloundComputingUseCase.swift; sourceTree = "<group>"; };
@@ -436,6 +440,14 @@
 			path = MainTabBarVC;
 			sourceTree = "<group>";
 		};
+		1939A82528AE22D3002C2F22 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				1939A82628AE22EF002C2F22 /* Reusable.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
 		195A62E828ACA70B00A65AA5 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +545,7 @@
 				19829A1C28A368640036C7E7 /* BaseView.swift */,
 				19829A8028A452750036C7E7 /* ViewModelPort.swift */,
 				19829A7C28A450600036C7E7 /* BaseViewModel.swift */,
+				1939A82328AE22C0002C2F22 /* BaseTableViewCell.swift */,
 				1939A82128AE2297002C2F22 /* DynamicTableView.swift */,
 				19829A1E28A368A70036C7E7 /* BaseViewController.swift */,
 				19829A2028A3693C0036C7E7 /* BaseTabbarController.swift */,
@@ -694,6 +707,7 @@
 			isa = PBXGroup;
 			children = (
 				19829A5F28A429320036C7E7 /* Helper */,
+				1939A82528AE22D3002C2F22 /* Reusable */,
 				19829A4D28A3A8EA0036C7E7 /* Extension */,
 				19829A4828A3A86A0036C7E7 /* Constants */,
 				19829A4128A3A7760036C7E7 /* Dimension */,
@@ -954,6 +968,7 @@
 				19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */,
 				19829A2328A369510036C7E7 /* BaseNavigationController.swift in Sources */,
 				19829A7B28A44A0A0036C7E7 /* OutDeviceViewModel.swift in Sources */,
+				1939A82728AE22EF002C2F22 /* Reusable.swift in Sources */,
 				19829A7828A43F000036C7E7 /* UIButton+Combine.swift in Sources */,
 				89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */,
 				19829A8128A452750036C7E7 /* ViewModelPort.swift in Sources */,
@@ -1002,6 +1017,7 @@
 				0DE25C3F26BD2666001B1620 /* AltoActivityIndicatorView.swift in Sources */,
 				19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */,
 				0DE4F1E326B7F3E2007053DB /* Fonts.swift in Sources */,
+				1939A82428AE22C0002C2F22 /* BaseTableViewCell.swift in Sources */,
 				19829A1428A364C90036C7E7 /* CloundComputingUseCasePort.swift in Sources */,
 				89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */,
 				19829A5828A424910036C7E7 /* TextFieldStyle.swift in Sources */,
