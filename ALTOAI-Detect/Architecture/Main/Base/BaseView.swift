@@ -23,7 +23,7 @@ public class BaseView: UIView {
     }
     
     private func configureView() {
-        backgroundColor = .white
+        backgroundColor = Constant.Color.Background.background2
     }
     
     deinit {

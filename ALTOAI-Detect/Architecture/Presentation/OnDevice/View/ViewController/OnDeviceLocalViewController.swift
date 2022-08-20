@@ -18,10 +18,14 @@ final class OnDeviceLocalViewController: BaseViewController {
     }()
     
     lazy var tableView: DynamicTableView = {
-        let tableView = DynamicTableView(frame: .zero, style: .grouped)
-        tableView.estimatedRowHeight = 100
+        let tableView = DynamicTableView(frame: .zero)
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
+        tableView.clipsToBounds = true
+        tableView.isScrollEnabled = false
+        tableView.layer.cornerRadius = 10
+        tableView.estimatedRowHeight = 100
+        tableView.separatorStyle = .singleLine
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
@@ -40,9 +44,8 @@ final class OnDeviceLocalViewController: BaseViewController {
     }
     
     private func configureTableView() {
-//        self.tableView = DynamicTableView(frame: self.tableView.frame, style: .grouped)
-        tableView.dataSource = self
         tableView.delegate = self
+        tableView.dataSource = self
         tableView.registerReusableCell(LocalDeviceTableViewCell.self)
     }
 }
@@ -81,8 +84,8 @@ extension OnDeviceLocalViewController {
     private func layoutTableView() {
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(-Dimension.Spacing.spacing16)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalToSuperview()//.offset(-Dimension.Spacing.spacing16)
+            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
     }
 }

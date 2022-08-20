@@ -11,7 +11,7 @@ final class LocalDeviceTableViewCell: BaseTableViewCell {
     
     private let containerView: UIView = {
         let view = UIView(frame: .zero)
-        view.backgroundColor = Constant.Color.Background.background2
+//        view.backgroundColor = Constant.Color.Background.background2
         return view
     }()
     
@@ -50,7 +50,7 @@ extension LocalDeviceTableViewCell {
         self.contentView.addSubview(containerView)
         containerView.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
+            make.leading.trailing.equalToSuperview()
         }
     }
     

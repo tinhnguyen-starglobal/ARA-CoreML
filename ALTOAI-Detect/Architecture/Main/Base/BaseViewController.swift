@@ -37,7 +37,7 @@ public class BaseViewController: UIViewController {
     }
     
     private func configureView() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = Constant.Color.Background.background2
     }
     
     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
