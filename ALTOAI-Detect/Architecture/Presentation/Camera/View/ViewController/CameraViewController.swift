@@ -12,10 +12,8 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
     @IBOutlet weak var fpsLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var debugImageView: UIImageView!
-    
     @IBOutlet weak var slidersVisibilityButton: UIButton!
     @IBOutlet weak var slidersView: UIView!
-    
     @IBOutlet weak var confidenceSlider: UISlider!
     @IBOutlet weak var confidenceValueLabel: UILabel!
     @IBOutlet weak var iouSlider: UISlider!
@@ -47,6 +45,8 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
     
     var edgeComputingUrl: String?
     
+    var inferenceType: InferenceType = .local
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,7 +71,7 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
     func setUp() {
         setUpBoundingBoxes()
         setUpCoreImage()
-        setUpVision()
+//        setUpVision()
         setUpCamera()
     }
     
@@ -93,9 +93,7 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
         }
         
         // Make colors for the bounding boxes. There is one color for each class,
-        
         colors = randomColors(count: yolo.numClasses, luminosity: .light)
-        
     }
     
     func setUpCoreImage() {
@@ -207,12 +205,6 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
     }
     
     // MARK: - Doing inference
-    func predict(image: UIImage) {
-        if let pixelBuffer = image.pixelBuffer(width: yolo.inputWidth, height: yolo.inputHeight) {
-            predict(pixelBuffer: pixelBuffer)
-        }
-    }
-    
     func predict(pixelBuffer: CVPixelBuffer) {
         // Measure how long it takes to predict a single video frame.
         let startTime = CACurrentMediaTime()
@@ -321,7 +313,6 @@ extension CameraViewController: VideoCaptureDelegate {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?, timestamp: CMTime) {
         if let pixelBuffer = pixelBuffer {
             self.predict(pixelBuffer: pixelBuffer)
-            //self.predictUsingVision(pixelBuffer: pixelBuffer)
         }
     }
 }
