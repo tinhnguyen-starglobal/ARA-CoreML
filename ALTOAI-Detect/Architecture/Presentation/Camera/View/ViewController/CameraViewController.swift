@@ -222,14 +222,33 @@ extension CameraViewController {
         // Measure how long it takes to predict a single video frame.
         let startTime = CACurrentMediaTime()
         self.updateElapsed(startTime)
-        if semaphoreCounter <= 0 { return }
+//        if semaphoreCounter <= 0 { return }
         guard let resizeImage = self.resizeImage(pixelBuffer: pixelBuffer) else { return }
         let inputImageWidth = CGFloat(CVPixelBufferGetWidth(pixelBuffer))
         let inputImageHeight = CGFloat(CVPixelBufferGetHeight(pixelBuffer))
         self.saveImageToDisk(pixelBuffer: pixelBuffer, resizeImage: resizeImage)
 
-        
-        self.getBBsFromAPI(image: resizeImage, imagew: inputImageWidth, imageh: inputImageHeight, completionHandler: { [weak self] data, _, error in
+        switch self.inferenceType {
+        case .local:
+            self.onDeviceInference()
+        case .api:
+            self.onDeviceInference()
+        case .edge:
+            self.edgeConnection(resizeImage: resizeImage, imageWidth: inputImageWidth, imageHeight: inputImageHeight)
+        case .clound:
+            return
+        }
+    }
+    
+    private func onDeviceInference() {
+        guard let resizedPixelBuffer = resizedPixelBuffer else { return }
+        if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
+            showOnMainThread(boundingBoxes)
+        }
+    }
+    
+    private func edgeConnection(resizeImage: UIImage, imageWidth: CGFloat, imageHeight: CGFloat) {
+        self.getBBsFromAPI(image: resizeImage, imagew: imageWidth, imageh: imageHeight, completionHandler: { [weak self] data, _, error in
             guard let self = self else { return }
             
             if error == nil {
