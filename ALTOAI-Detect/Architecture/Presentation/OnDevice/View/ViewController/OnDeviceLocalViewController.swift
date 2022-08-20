@@ -57,14 +57,11 @@ final class OnDeviceLocalViewController: BaseViewController {
     func loadData(animated: Bool = true) {
         displayAnimatedActivityIndicatorView()
         viewModel.getData()
-        
         let hasData = viewModel.objects?.count ?? 0 > 0
-
         tableView.isHidden = !hasData
         localView.isHidden = hasData
-        
+//        hasModelSubject.send(true)
         tableView.reloadData()
-
         hideAnimatedActivityIndicatorView()
     }
 }
@@ -119,7 +116,45 @@ extension OnDeviceLocalViewController {
 extension OnDeviceLocalViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Did press on indexPath")
+        tableView.deselectRow(at: indexPath, animated: true)
+        if let object = viewModel.objects?[indexPath.row] {
+            self.displayAnimatedActivityIndicatorView()
+            viewModel.openModel(name: object) { (yolo, errorString) in
+                self.hideAnimatedActivityIndicatorView()
+                if let yolo = yolo {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    
+                    if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraViewController {
+                        cameraVC.yolo = yolo
+                        cameraVC.modalPresentationStyle = .fullScreen
+                        self.present(cameraVC, animated: true, completion: nil)
+                    }
+                } else {
+                    let alert = UIAlertController(title: nil, message: errorString, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            if let object = viewModel.objects?[indexPath.row] {
+                let alert = UIAlertController(title: "Delete download?", message: "Downloaded model will be deleted, you may download it again anytime", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                    self.viewModel.removeModel(name: object)
+                    self.loadData()
+                    self.tableView.reloadData()
+                }))
+                self.present(alert, animated: true)
+            }
+        }
     }
 }
 
