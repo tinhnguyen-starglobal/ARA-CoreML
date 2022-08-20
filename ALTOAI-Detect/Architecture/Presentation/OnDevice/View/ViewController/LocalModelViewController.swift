@@ -31,7 +31,7 @@ final class LocalModelViewController: BaseViewController {
     private func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.registerReusableCell(SearchTableViewCell.self)
+//        tableView.registerReusableCell(SearchTableViewCell.self)
     }
 }
 
@@ -69,7 +69,7 @@ extension LocalModelViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        return UITableViewCell()
     }
 }
 

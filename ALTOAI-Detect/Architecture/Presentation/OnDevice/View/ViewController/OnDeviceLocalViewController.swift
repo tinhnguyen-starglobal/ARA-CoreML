@@ -17,6 +17,15 @@ final class OnDeviceLocalViewController: BaseViewController {
         return view
     }()
     
+    lazy var tableView: DynamicTableView = {
+        let tableView = DynamicTableView(frame: .zero, style: .grouped)
+        tableView.estimatedRowHeight = 100
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
+        tableView.rowHeight = UITableView.automaticDimension
+        return tableView
+    }()
+    
     var hasModelPublisher: AnyPublisher<Bool, Never> {
         hasModelSubject.eraseToAnyPublisher()
     }
@@ -25,8 +34,16 @@ final class OnDeviceLocalViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
         configurePublisher()
         constructHierarchy()
+    }
+    
+    private func configureTableView() {
+//        self.tableView = DynamicTableView(frame: self.tableView.frame, style: .grouped)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.registerReusableCell(LocalDeviceTableViewCell.self)
     }
 }
 
@@ -50,7 +67,7 @@ extension OnDeviceLocalViewController {
 extension OnDeviceLocalViewController {
     
     private func constructHierarchy() {
-        layoutLocalView()
+        layoutTableView()
     }
 
     private func layoutLocalView() {
@@ -59,6 +76,36 @@ extension OnDeviceLocalViewController {
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
         }
+    }
+    
+    private func layoutTableView() {
+        self.view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(-Dimension.Spacing.spacing16)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension OnDeviceLocalViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Did press on indexPath")
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension OnDeviceLocalViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: LocalDeviceTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.configureData(title: "coreml_printerxxxxx")
+        return cell
     }
 }
 

@@ -55,7 +55,7 @@
 		1939A82D28AE368C002C2F22 /* OnDeviceRemoteUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82C28AE368C002C2F22 /* OnDeviceRemoteUseCasePort.swift */; };
 		1939A82F28AE37E3002C2F22 /* OnDeviceRemoteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82E28AE37E3002C2F22 /* OnDeviceRemoteUseCase.swift */; };
 		1939A83328AE991E002C2F22 /* LocalModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83228AE991E002C2F22 /* LocalModelViewController.swift */; };
-		1939A83528B09ADC002C2F22 /* LocalModelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83428B09ADC002C2F22 /* LocalModelTableViewCell.swift */; };
+		1939A83528B09ADC002C2F22 /* LocalDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83428B09ADC002C2F22 /* LocalDeviceTableViewCell.swift */; };
 		1939A83828B09F5E002C2F22 /* LabelDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83728B09F5E002C2F22 /* LabelDecorator.swift */; };
 		1939A83A28B09FE1002C2F22 /* LabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83928B09FE1002C2F22 /* LabelStyle.swift */; };
 		1939A83C28B0A1BB002C2F22 /* Constant+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83B28B0A1BB002C2F22 /* Constant+Font.swift */; };
@@ -170,7 +170,7 @@
 		1939A82C28AE368C002C2F22 /* OnDeviceRemoteUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteUseCasePort.swift; sourceTree = "<group>"; };
 		1939A82E28AE37E3002C2F22 /* OnDeviceRemoteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteUseCase.swift; sourceTree = "<group>"; };
 		1939A83228AE991E002C2F22 /* LocalModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalModelViewController.swift; sourceTree = "<group>"; };
-		1939A83428B09ADC002C2F22 /* LocalModelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalModelTableViewCell.swift; sourceTree = "<group>"; };
+		1939A83428B09ADC002C2F22 /* LocalDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		1939A83728B09F5E002C2F22 /* LabelDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDecorator.swift; sourceTree = "<group>"; };
 		1939A83928B09FE1002C2F22 /* LabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelStyle.swift; sourceTree = "<group>"; };
 		1939A83B28B0A1BB002C2F22 /* Constant+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Font.swift"; sourceTree = "<group>"; };
@@ -716,7 +716,7 @@
 			children = (
 				19829A8428A4DEDF0036C7E7 /* OnDeviceLocalView.swift */,
 				19829A3728A36BBE0036C7E7 /* OnDeviceRemoteView.swift */,
-				1939A83428B09ADC002C2F22 /* LocalModelTableViewCell.swift */,
+				1939A83428B09ADC002C2F22 /* LocalDeviceTableViewCell.swift */,
 			);
 			path = ViewLayout;
 			sourceTree = "<group>";
@@ -725,8 +725,8 @@
 			isa = PBXGroup;
 			children = (
 				19829A3928A36BCB0036C7E7 /* OnDeviceViewController.swift */,
-				1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */,
 				1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */,
+				1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */,
 				1939A83228AE991E002C2F22 /* LocalModelViewController.swift */,
 			);
 			path = ViewController;
@@ -1016,7 +1016,7 @@
 				1939A83E28B0A2EE002C2F22 /* Label.swift in Sources */,
 				19829A3428A36B9B0036C7E7 /* OnDeviceLocalViewModel.swift in Sources */,
 				0D712D8D269F8E490031D2E3 /* yolo_model.swift in Sources */,
-				1939A83528B09ADC002C2F22 /* LocalModelTableViewCell.swift in Sources */,
+				1939A83528B09ADC002C2F22 /* LocalDeviceTableViewCell.swift in Sources */,
 				0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */,
 				19829A0E28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift in Sources */,
 				19829A6128A429460036C7E7 /* UIControl+Combine.swift in Sources */,
