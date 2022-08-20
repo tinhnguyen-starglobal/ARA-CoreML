@@ -161,7 +161,6 @@ extension OnDeviceLocalViewController: UITableViewDataSource {
         if let object = viewModel.objects?[indexPath.row] {
             cell.configureData(title: object)
         }
-        
         return cell
     }
 }

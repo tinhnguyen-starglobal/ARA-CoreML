@@ -316,6 +316,7 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
     }
 }
 
+// MARK: VideoCaptureDelegate
 extension CameraViewController: VideoCaptureDelegate {
     func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame pixelBuffer: CVPixelBuffer?, timestamp: CMTime) {
         if let pixelBuffer = pixelBuffer {
