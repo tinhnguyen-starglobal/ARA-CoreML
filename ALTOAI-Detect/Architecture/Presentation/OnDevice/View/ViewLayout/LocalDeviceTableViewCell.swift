@@ -27,6 +27,12 @@ final class LocalDeviceTableViewCell: BaseTableViewCell {
         return button
     }()
     
+    private let dividerLine: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = Constant.Color.Background.background2
+        return view
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         constructHierarchy()
@@ -44,6 +50,7 @@ extension LocalDeviceTableViewCell {
         layoutContainerView()
         layoutTitleLabel()
         layoutPlayButton()
+        layoutDividerLine()
     }
     
     private func layoutContainerView() {
@@ -58,7 +65,7 @@ extension LocalDeviceTableViewCell {
         containerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(Dimension.Spacing.spacing16)
-            make.top.bottom.equalToSuperview().inset(Dimension.Spacing.spacing12)
+            make.top.bottom.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
     }
     
@@ -68,6 +75,15 @@ extension LocalDeviceTableViewCell {
             make.centerY.equalToSuperview()
             make.leading.equalTo(titleLabel.snp.trailing).offset(Dimension.Spacing.spacing8)
             make.trailing.equalToSuperview().inset(Dimension.Spacing.spacing12)
+        }
+    }
+    
+    private func layoutDividerLine() {
+        containerView.addSubview(dividerLine)
+        dividerLine.snp.makeConstraints { make in
+            make.height.equalTo(0.7)
+            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
+            make.bottom.equalToSuperview()
         }
     }
 }

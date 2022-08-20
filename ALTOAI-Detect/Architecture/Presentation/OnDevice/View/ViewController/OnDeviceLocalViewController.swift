@@ -25,7 +25,7 @@ final class OnDeviceLocalViewController: BaseViewController {
         tableView.isScrollEnabled = false
         tableView.layer.cornerRadius = 10
         tableView.estimatedRowHeight = 100
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
@@ -84,7 +84,7 @@ extension OnDeviceLocalViewController {
     private func layoutTableView() {
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview()//.offset(-Dimension.Spacing.spacing16)
+            make.top.equalToSuperview().offset(Dimension.Spacing.spacing16)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
     }
@@ -102,7 +102,7 @@ extension OnDeviceLocalViewController: UITableViewDelegate {
 extension OnDeviceLocalViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
