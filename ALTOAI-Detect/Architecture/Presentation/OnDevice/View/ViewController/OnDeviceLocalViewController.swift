@@ -34,12 +34,7 @@ final class OnDeviceLocalViewController: BaseViewController {
         return LocalViewModel()
     }()
     
-    var hasModelPublisher: AnyPublisher<Bool, Never> {
-        hasModelSubject.eraseToAnyPublisher()
-    }
-    
     @Published var hasModel: Bool = false
-    private let hasModelSubject = PassthroughSubject<Bool, Never>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,11 +67,6 @@ extension OnDeviceLocalViewController {
     private func configurePublisher() {
         localView.submitButton.tapPublisher.sink { [weak self] _ in
             self?.presentDocumentPicker()
-        }.store(in: &self.cancellable)
-        
-        hasModelPublisher.sink { [weak self] hasModel in
-            self?.tableView.isHidden = !hasModel
-            self?.localView.isHidden = hasModel
         }.store(in: &self.cancellable)
     }
     
@@ -185,7 +175,6 @@ extension OnDeviceLocalViewController: UIDocumentPickerDelegate {
             self.hideAnimatedActivityIndicatorView()
             if let _ = yolo {
                 self.hasModel = true
-//                self.hasModelSubject.send(true)
                 self.loadData()
                 self.tableView.reloadData()
             } else {

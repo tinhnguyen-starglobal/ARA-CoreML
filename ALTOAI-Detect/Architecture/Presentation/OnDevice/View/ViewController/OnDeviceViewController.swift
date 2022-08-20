@@ -97,6 +97,7 @@ extension OnDeviceViewController {
     }
     
     @objc private func addTapped() {
+        self.localViewController.presentDocumentPicker()
         print("Did press add button")
     }
     
