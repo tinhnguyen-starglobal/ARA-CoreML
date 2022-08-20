@@ -59,6 +59,7 @@
 		1939A83828B09F5E002C2F22 /* LabelDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83728B09F5E002C2F22 /* LabelDecorator.swift */; };
 		1939A83A28B09FE1002C2F22 /* LabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83928B09FE1002C2F22 /* LabelStyle.swift */; };
 		1939A83C28B0A1BB002C2F22 /* Constant+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83B28B0A1BB002C2F22 /* Constant+Font.swift */; };
+		1939A83E28B0A2EE002C2F22 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83D28B0A2EE002C2F22 /* Label.swift */; };
 		195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A62E928ACA72900A65AA5 /* FPSCounter.swift */; };
 		19829A0E28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift */; };
 		19829A1028A364B10036C7E7 /* OutDeviceCloundUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* OutDeviceCloundUseCase.swift */; };
@@ -173,6 +174,7 @@
 		1939A83728B09F5E002C2F22 /* LabelDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelDecorator.swift; sourceTree = "<group>"; };
 		1939A83928B09FE1002C2F22 /* LabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelStyle.swift; sourceTree = "<group>"; };
 		1939A83B28B0A1BB002C2F22 /* Constant+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Font.swift"; sourceTree = "<group>"; };
+		1939A83D28B0A2EE002C2F22 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		195A62E928ACA72900A65AA5 /* FPSCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSCounter.swift; sourceTree = "<group>"; };
 		19829A0D28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceEdgeUseCase.swift; sourceTree = "<group>"; };
 		19829A0F28A364B10036C7E7 /* OutDeviceCloundUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceCloundUseCase.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 		1939A83628B09F46002C2F22 /* Label */ = {
 			isa = PBXGroup;
 			children = (
+				1939A83D28B0A2EE002C2F22 /* Label.swift */,
 				1939A83928B09FE1002C2F22 /* LabelStyle.swift */,
 				1939A83728B09F5E002C2F22 /* LabelDecorator.swift */,
 			);
@@ -1010,6 +1013,7 @@
 				89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */,
 				19829A8128A452750036C7E7 /* ViewModelPort.swift in Sources */,
 				0DB4AAB626B2BF9B001F5CD3 /* ExperimentsViewModel.swift in Sources */,
+				1939A83E28B0A2EE002C2F22 /* Label.swift in Sources */,
 				19829A3428A36B9B0036C7E7 /* OnDeviceLocalViewModel.swift in Sources */,
 				0D712D8D269F8E490031D2E3 /* yolo_model.swift in Sources */,
 				1939A83528B09ADC002C2F22 /* LocalModelTableViewCell.swift in Sources */,
