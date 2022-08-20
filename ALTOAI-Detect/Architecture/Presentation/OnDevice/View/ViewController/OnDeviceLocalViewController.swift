@@ -30,6 +30,10 @@ final class OnDeviceLocalViewController: BaseViewController {
         return tableView
     }()
     
+    lazy var viewModel: LocalViewModel = {
+        return LocalViewModel()
+    }()
+    
     var hasModelPublisher: AnyPublisher<Bool, Never> {
         hasModelSubject.eraseToAnyPublisher()
     }
@@ -41,12 +45,27 @@ final class OnDeviceLocalViewController: BaseViewController {
         configureTableView()
         configurePublisher()
         constructHierarchy()
+        loadData()
     }
     
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerReusableCell(LocalDeviceTableViewCell.self)
+    }
+    
+    func loadData(animated: Bool = true) {
+        displayAnimatedActivityIndicatorView()
+        viewModel.getData()
+        
+        let hasData = viewModel.objects?.count ?? 0 > 0
+
+        tableView.isHidden = !hasData
+        localView.isHidden = hasData
+        
+        tableView.reloadData()
+
+        hideAnimatedActivityIndicatorView()
     }
 }
 
@@ -55,6 +74,11 @@ extension OnDeviceLocalViewController {
     private func configurePublisher() {
         localView.submitButton.tapPublisher.sink { [weak self] _ in
             self?.presentDocumentPicker()
+        }.store(in: &self.cancellable)
+        
+        hasModelPublisher.sink { [weak self] hasModel in
+            self?.tableView.isHidden = !hasModel
+            self?.localView.isHidden = hasModel
         }.store(in: &self.cancellable)
     }
     
@@ -70,6 +94,7 @@ extension OnDeviceLocalViewController {
 extension OnDeviceLocalViewController {
     
     private func constructHierarchy() {
+        layoutLocalView()
         layoutTableView()
     }
 
@@ -102,12 +127,15 @@ extension OnDeviceLocalViewController: UITableViewDelegate {
 extension OnDeviceLocalViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return viewModel.objects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: LocalDeviceTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.configureData(title: "coreml_printerxxxxx")
+        if let object = viewModel.objects?[indexPath.row] {
+            cell.configureData(title: object)
+        }
+        
         return cell
     }
 }
@@ -121,6 +149,8 @@ extension OnDeviceLocalViewController: UIDocumentPickerDelegate {
             self.hideAnimatedActivityIndicatorView()
             if let _ = yolo {
                 self.hasModelSubject.send(true)
+                self.loadData()
+                self.tableView.reloadData()
             } else {
                 self.showAlert()
             }
