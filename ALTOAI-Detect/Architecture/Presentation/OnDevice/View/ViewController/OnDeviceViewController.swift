@@ -47,7 +47,7 @@ final class OnDeviceViewController: BaseViewController {
 // MARK: - Configure Publisher
 extension OnDeviceViewController {
     private func configurePublisher() {
-        localViewController.hasModelPublisher.sink { [weak self] isLocal in
+        localViewController.$hasModel.sink { [weak self] isLocal in
             self?.isLocal = isLocal
             self?.configureSegmentState()
         }.store(in: &cancellable)
