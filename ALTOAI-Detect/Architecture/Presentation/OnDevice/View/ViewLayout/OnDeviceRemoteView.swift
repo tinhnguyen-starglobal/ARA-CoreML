@@ -19,13 +19,13 @@ final class OnDeviceRemoteView: BaseView {
         return stackView
     }()
     
-    let keyTextField: TextFieldView = {
+    var keyTextField: TextFieldView = {
         let textfieldView = TextFieldView(style: .normal(), state: .normal)
         textfieldView.placeholder = "API key"
         return textfieldView
     }()
     
-    let secretTextField: TextFieldView = {
+    var secretTextField: TextFieldView = {
         let textfieldView = TextFieldView(style: .normal(), state: .normal)
         textfieldView.placeholder = "API secret"
         return textfieldView
