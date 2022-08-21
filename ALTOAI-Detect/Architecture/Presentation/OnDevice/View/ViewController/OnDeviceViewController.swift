@@ -21,6 +21,12 @@ final class OnDeviceViewController: BaseViewController {
         return view
     }()
     
+    private let logOutButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "ic_logout"), for: .normal)
+        return button
+    }()
+    
     private lazy var remoteViewController: OnDeviceRemoteViewController = {
         let viewController = OnDeviceRemoteViewController()
         self.addViewController(child: viewController)
@@ -38,6 +44,10 @@ final class OnDeviceViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let _ = KeyChainManager.shared.getToken() {
+            print("Already login with account ❇️")
+            self.isRemote = true
+        }
         configurePublisher()
         configureSegmentView()
         constructHierarchy()
@@ -51,6 +61,15 @@ extension OnDeviceViewController {
             self?.isLocal = isLocal
             self?.configureSegmentState()
         }.store(in: &cancellable)
+        
+        remoteViewController.$hasModel.sink { [weak self] isRemote in
+            self?.isRemote = isRemote
+            self?.configureSegmentState()
+        }.store(in: &cancellable)
+        
+        logOutButton.tapPublisher.sink { [weak self] in
+            self?.remoteViewController.performLogOut()
+        }.store(in: &self.cancellable)
     }
 }
 
@@ -82,9 +101,7 @@ extension OnDeviceViewController {
         addViewController(child: remoteViewController)
         removeViewController(child: localViewController)
         navigationItem.title = isRemote ? "Workspace" : "Access"
-        navigationItem.rightBarButtonItem = isRemote ? UIBarButtonItem(barButtonSystemItem: .add,
-                                                                      target: self,
-                                                                      action: #selector(addTapped)) : nil
+        navigationItem.rightBarButtonItem = isRemote ? UIBarButtonItem(customView: logOutButton) : nil
     }
     
     private func configureLocalView() {
@@ -98,7 +115,6 @@ extension OnDeviceViewController {
     
     @objc private func addTapped() {
         self.localViewController.presentDocumentPicker()
-        print("Did press add button")
     }
     
     private func addViewController(child viewController: UIViewController) {
@@ -120,6 +136,7 @@ extension OnDeviceViewController {
 extension OnDeviceViewController {
     
     private func constructHierarchy() {
+        layoutBackButton()
         configureNavigation()
         layoutSegmentControl()
         layoutContainerView()
@@ -127,6 +144,12 @@ extension OnDeviceViewController {
     
     private func configureNavigation() {
         self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func layoutBackButton() {
+        logOutButton.snp.makeConstraints { make in
+            make.width.height.equalTo(36)
+        }
     }
     
     private func layoutSegmentControl() {

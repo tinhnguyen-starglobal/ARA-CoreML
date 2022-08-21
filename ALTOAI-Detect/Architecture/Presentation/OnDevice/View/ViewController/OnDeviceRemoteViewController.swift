@@ -14,13 +14,81 @@ final class OnDeviceRemoteViewController: BaseViewController {
         return view
     }()
     
+    lazy var tableView: DynamicTableView = {
+        let tableView = DynamicTableView(frame: .zero)
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
+        tableView.clipsToBounds = true
+        tableView.isScrollEnabled = false
+        tableView.layer.cornerRadius = 10
+        tableView.estimatedRowHeight = 100
+        tableView.separatorStyle = .none
+        tableView.rowHeight = UITableView.automaticDimension
+        return tableView
+    }()
+    
+    lazy var viewModel: ProjectsViewModel = {
+        return ProjectsViewModel()
+    }()
+    
+    let refreshControl = UIRefreshControl()
+    private var isLoading = false
+    @Published var hasModel: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePublisher()
         constructHierarchy()
+        configureTableView()
+        configureRefreshControl()
+        
+        if let _ = KeyChainManager.shared.getToken() {
+            print("Already login with account ❇️")
+            
+            
+        }
         
         remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
         remoteView.secretTextField.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let _ = KeyChainManager.shared.getToken() {
+            print("Already login with account ❇️")
+            self.hasModel = true
+        }
+        loadData()
+    }
+    
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.registerReusableCell(LocalDeviceTableViewCell.self)
+    }
+    
+    private func configureRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    func loadData(animated: Bool = true) {
+        self.tableView.displayAnimatedActivityIndicatorView()
+        isLoading = true
+        viewModel.getData { _ in
+            self.isLoading = false
+            self.refreshControl.endRefreshing()
+            self.tableView.hideAnimatedActivityIndicatorView()
+            self.tableView.reloadData()
+        }
+        
+        tableView.isHidden = !hasModel
+        remoteView.isHidden = hasModel
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        loadData()
     }
 }
 
@@ -51,6 +119,7 @@ extension OnDeviceRemoteViewController {
             guard let self = self else { return }
             self.performLogin()
         }.store(in: &self.cancellable)
+
     }
     
     private func performLogin() {
@@ -62,7 +131,8 @@ extension OnDeviceRemoteViewController {
             self?.hideAnimatedActivityIndicatorView()
         
             if (isSuccess) {
-                self?.presentProject()
+                self?.hasModel = true
+                self?.loadData()
             } else {
                 var message = "Something is wrong. Please try again"
                 if let error = error as? CustomError {
@@ -82,6 +152,21 @@ extension OnDeviceRemoteViewController {
             self.navigationController?.pushViewController(projectVC, animated: true)
         }
     }
+    
+    func performLogOut() {
+        let logoutAlert = UIAlertController(title: nil, message: "Are you sure want to logout?", preferredStyle: .alert)
+
+        logoutAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] (action: UIAlertAction!) in
+            KeyChainManager.shared.signOutUser()
+            self?.hasModel = false
+            self?.loadData()
+        }))
+
+        logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+        }))
+
+        present(logoutAlert, animated: true, completion: nil)
+    }
 }
 
 // MARK: Configure Views
@@ -89,6 +174,7 @@ extension OnDeviceRemoteViewController {
     
     private func constructHierarchy() {
         layoutRemoteView()
+        layoutTableView()
     }
     
     private func layoutRemoteView() {
@@ -97,5 +183,35 @@ extension OnDeviceRemoteViewController {
             make.top.equalToSuperview().offset(Dimension.Spacing.spacing24)
             make.leading.trailing.equalToSuperview()
         }
+    }
+    
+    private func layoutTableView() {
+        self.view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Dimension.Spacing.spacing16)
+            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
+        }
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension OnDeviceRemoteViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.objects?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: LocalDeviceTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        if let object = viewModel.objects?[indexPath.row] {
+            cell.configureData(title: object.name!)
+        }
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension OnDeviceRemoteViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
 }
