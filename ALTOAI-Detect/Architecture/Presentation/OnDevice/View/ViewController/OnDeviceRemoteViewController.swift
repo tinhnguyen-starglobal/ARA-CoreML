@@ -78,9 +78,8 @@ extension OnDeviceRemoteViewController {
     
     private func presentProject() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let cameraVC = storyboard.instantiateViewController(withIdentifier: "ProjectsVC") as? ProjectsVC {
-            cameraVC.modalPresentationStyle = .fullScreen
-            self.present(cameraVC, animated: true, completion: nil)
+        if let projectVC = storyboard.instantiateViewController(withIdentifier: "ProjectsVC") as? ProjectsVC {
+            self.navigationController?.pushViewController(projectVC, animated: true)
         }
     }
 }
