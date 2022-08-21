@@ -169,6 +169,7 @@ extension OutDeviceViewController {
         //TODO: Refactor CameraVC
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraViewController {
+            cameraVC.inferenceType = .edge
             cameraVC.edgeComputingUrl = self.edgeComputingView.urlTextField.text
             cameraVC.modalPresentationStyle = .fullScreen
             self.present(cameraVC, animated: true, completion: nil)

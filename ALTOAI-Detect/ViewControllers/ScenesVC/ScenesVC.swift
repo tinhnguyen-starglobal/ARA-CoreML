@@ -19,11 +19,6 @@ class ScenesVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
         return ScenesViewModel()
     }()
     
-//    init?(viewModel: ScenesViewModel, coder: NSCoder) {
-//        super.init(coder: coder)
-//        self.viewModel = viewModel
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadData()
@@ -31,7 +26,7 @@ class ScenesVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.prefersLargeTitles = false
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.layoutMargins = UIEdgeInsets.zero
         tableView.separatorInset = UIEdgeInsets.zero

@@ -231,8 +231,6 @@ extension CameraViewController {
         switch self.inferenceType {
         case .local:
             self.onDeviceInference()
-        case .api:
-            self.onDeviceInference()
         case .edge:
             self.edgeConnection(resizeImage: resizeImage, imageWidth: inputImageWidth, imageHeight: inputImageHeight)
         case .clound:

@@ -117,6 +117,7 @@ extension OnDeviceLocalViewController: UITableViewDelegate {
                     
                     if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraViewController {
                         cameraVC.yolo = yolo
+                        cameraVC.inferenceType = .local
                         cameraVC.modalPresentationStyle = .fullScreen
                         self.present(cameraVC, animated: true, completion: nil)
                     }
