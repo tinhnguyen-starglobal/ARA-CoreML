@@ -491,7 +491,7 @@
         <!--ProjectsVC-->
         <scene sceneID="xBD-ef-LdY">
             <objects>
-                <viewController id="88a-si-fU7" customClass="ProjectsVC" customModule="ALTOAI_Detect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProjectsVC" id="88a-si-fU7" customClass="ProjectsVC" customModule="ALTOAI_Detect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="E5F-oo-4rl"/>
                         <viewControllerLayoutGuide type="bottom" id="IzT-te-gXx"/>

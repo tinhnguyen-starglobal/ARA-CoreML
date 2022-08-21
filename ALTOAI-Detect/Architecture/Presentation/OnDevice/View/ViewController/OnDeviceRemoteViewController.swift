@@ -18,6 +18,9 @@ final class OnDeviceRemoteViewController: BaseViewController {
         super.viewDidLoad()
         configurePublisher()
         constructHierarchy()
+        
+        remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
+        remoteView.secretTextField.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
     }
 }
 
@@ -55,11 +58,11 @@ extension OnDeviceRemoteViewController {
               let apiSecret = self.remoteView.secretTextField.text else { return
         }
         self.displayAnimatedActivityIndicatorView()
-        APIManager.shared.authorize(apiKey: apiKey, apiSecret: apiSecret) { (isSuccess, error) in
-            self.hideAnimatedActivityIndicatorView()
-            
+        APIManager.shared.authorize(apiKey: apiKey, apiSecret: apiSecret) { [weak self] (isSuccess, error) in
+            self?.hideAnimatedActivityIndicatorView()
+        
             if (isSuccess) {
-                self.performSegue(withIdentifier: "toProjects", sender: self)
+                self?.presentProject()
             } else {
                 var message = "Something is wrong. Please try again"
                 if let error = error as? CustomError {
@@ -68,8 +71,16 @@ extension OnDeviceRemoteViewController {
                 
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true)
+                self?.present(alert, animated: true)
             }
+        }
+    }
+    
+    private func presentProject() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let cameraVC = storyboard.instantiateViewController(withIdentifier: "ProjectsVC") as? ProjectsVC {
+            cameraVC.modalPresentationStyle = .fullScreen
+            self.present(cameraVC, animated: true, completion: nil)
         }
     }
 }
