@@ -19,7 +19,7 @@ enum LabelStyle {
         case .titleMedium:
             return LabelDecorator(font: Constants.Font.titleMedium)
         case .paragraphMedium:
-            return LabelDecorator(font: Constants.Font.paragraphMedium)
+            return LabelDecorator(font: Constants.Font.paragraphMedium, textColor: .lightGray)
         }
     }
 }

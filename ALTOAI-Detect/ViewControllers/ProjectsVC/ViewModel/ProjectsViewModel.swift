@@ -19,8 +19,8 @@ class ProjectsViewModel {
     }
     
     func getData(completion: ((Bool) -> Void)?) {
-        APIManager.shared.getProjects() { (fetched, error) in
-            self.objects = fetched
+        APIManager.shared.getProjects() { [weak self] (fetched, error) in
+            self?.objects = fetched
             completion?(error == nil)
         }
     }

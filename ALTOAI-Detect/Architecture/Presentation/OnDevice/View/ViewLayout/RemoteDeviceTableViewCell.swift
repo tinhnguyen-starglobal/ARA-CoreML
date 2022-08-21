@@ -1,13 +1,13 @@
 //
-//  LocalModelTableViewCell.swift
+//  RemoteDeviceTableViewCell.swift
 //  ALTOAI-Detect
 //
-//  Created by Tinh Nguyen on 20/08/2022.
+//  Created by Tinh Nguyen on 22/08/2022.
 //
 
 import UIKit
 
-final class LocalDeviceTableViewCell: BaseTableViewCell {
+final class RemoteDeviceTableViewCell: BaseTableViewCell {
     
     private let containerView: UIView = {
         let view = UIView(frame: .zero)
@@ -20,9 +20,15 @@ final class LocalDeviceTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    private let playButton: UIButton = {
+    private let numberLabel: Label = {
+        let label = Label(style: .paragraphMedium)
+        label.numberOfLines = 1
+        return label
+    }()
+    
+    private let nextButton: UIButton = {
         let button = UIButton(frame: .zero)
-        button.setImage(UIImage(named: "ic_play"), for: .normal)
+        button.setImage(UIImage(named: "ic_next"), for: .normal)
         return button
     }()
     
@@ -43,12 +49,13 @@ final class LocalDeviceTableViewCell: BaseTableViewCell {
 }
 
 // MARK: - Configure Views
-extension LocalDeviceTableViewCell {
+extension RemoteDeviceTableViewCell {
     
     private func constructHierarchy() {
         layoutContainerView()
         layoutTitleLabel()
-        layoutPlayButton()
+        layoutNextButton()
+//        layoutNumberLabel()
         layoutDividerLine()
     }
     
@@ -68,12 +75,20 @@ extension LocalDeviceTableViewCell {
         }
     }
     
-    private func layoutPlayButton() {
-        containerView.addSubview(playButton)
-        playButton.snp.makeConstraints { make in
+    private func layoutNextButton() {
+        containerView.addSubview(nextButton)
+        nextButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(titleLabel.snp.trailing).offset(Dimension.Spacing.spacing8)
             make.trailing.equalToSuperview().inset(Dimension.Spacing.spacing12)
+        }
+    }
+    
+    private func layoutNumberLabel() {
+        containerView.addSubview(numberLabel)
+        numberLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalTo(nextButton.snp.leading).inset(Dimension.Spacing.spacing8)
         }
     }
     
@@ -86,3 +101,4 @@ extension LocalDeviceTableViewCell {
         }
     }
 }
+

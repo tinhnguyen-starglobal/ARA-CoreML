@@ -110,6 +110,7 @@
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		19EE7CF328B16E19002D8920 /* InferenceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE7CF228B16E19002D8920 /* InferenceType.swift */; };
+		19EE7CF828B2B833002D8920 /* RemoteDeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE7CF728B2B833002D8920 /* RemoteDeviceTableViewCell.swift */; };
 		89BBF9BD268E9AE400FA46B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89BBF9BC268E9AE400FA46B6 /* Assets.xcassets */; };
 		89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9C8268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift */; };
 		89BBF9D4268E9B6100FA46B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89BBF9C9268E9B6100FA46B6 /* AppDelegate.swift */; };
@@ -225,6 +226,7 @@
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		19EE7CF228B16E19002D8920 /* InferenceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceType.swift; sourceTree = "<group>"; };
+		19EE7CF728B2B833002D8920 /* RemoteDeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDeviceTableViewCell.swift; sourceTree = "<group>"; };
 		59CFA31D914711661177F13E /* Pods-ARA-CoreML.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARA-CoreML.release.xcconfig"; path = "Target Support Files/Pods-ARA-CoreML/Pods-ARA-CoreML.release.xcconfig"; sourceTree = "<group>"; };
 		5B5F16DCF5ACE4A2BB15E825 /* Pods-ALTOAI-Detect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ALTOAI-Detect.release.xcconfig"; path = "Target Support Files/Pods-ALTOAI-Detect/Pods-ALTOAI-Detect.release.xcconfig"; sourceTree = "<group>"; };
 		7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ALTOAI_Detect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -715,6 +717,7 @@
 				19829A8428A4DEDF0036C7E7 /* OnDeviceLocalView.swift */,
 				19829A3728A36BBE0036C7E7 /* OnDeviceRemoteView.swift */,
 				1939A83428B09ADC002C2F22 /* LocalDeviceTableViewCell.swift */,
+				19EE7CF728B2B833002D8920 /* RemoteDeviceTableViewCell.swift */,
 			);
 			path = ViewLayout;
 			sourceTree = "<group>";
@@ -1087,6 +1090,7 @@
 				19829A6528A429B20036C7E7 /* CombineControlProperty.swift in Sources */,
 				19829A3828A36BBE0036C7E7 /* OnDeviceRemoteView.swift in Sources */,
 				0D51403226A5D23000CEE1DD /* LocalModelsVC.swift in Sources */,
+				19EE7CF828B2B833002D8920 /* RemoteDeviceTableViewCell.swift in Sources */,
 				19829A7628A43ADE0036C7E7 /* InitializeComponentCommand.swift in Sources */,
 				89BBF9D9268E9B6100FA46B6 /* Helpers.swift in Sources */,
 				0DE25C3F26BD2666001B1620 /* AltoActivityIndicatorView.swift in Sources */,

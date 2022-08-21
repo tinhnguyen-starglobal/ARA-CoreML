@@ -14,12 +14,17 @@ final class OnDeviceRemoteViewController: BaseViewController {
         return view
     }()
     
+    private let titleLabel: Label = {
+        let label = Label(style: .paragraphMedium)
+        label.text = "PROJECTS"
+        return label
+    }()
+    
     lazy var tableView: DynamicTableView = {
         let tableView = DynamicTableView(frame: .zero)
         tableView.separatorStyle = .none
         tableView.backgroundColor = .white
         tableView.clipsToBounds = true
-        tableView.isScrollEnabled = false
         tableView.layer.cornerRadius = 10
         tableView.estimatedRowHeight = 100
         tableView.separatorStyle = .none
@@ -43,9 +48,9 @@ final class OnDeviceRemoteViewController: BaseViewController {
         configureRefreshControl()
         
         if let _ = KeyChainManager.shared.getToken() {
-            print("Already login with account ❇️")
-            
-            
+            if let _ = KeyChainManager.shared.getToken() {
+                self.hasModel = true
+            }
         }
         
         remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
@@ -54,17 +59,13 @@ final class OnDeviceRemoteViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let _ = KeyChainManager.shared.getToken() {
-            print("Already login with account ❇️")
-            self.hasModel = true
-        }
         loadData()
     }
     
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerReusableCell(LocalDeviceTableViewCell.self)
+        tableView.registerReusableCell(RemoteDeviceTableViewCell.self)
     }
     
     private func configureRefreshControl() {
@@ -83,6 +84,7 @@ final class OnDeviceRemoteViewController: BaseViewController {
             self.tableView.reloadData()
         }
         
+        titleLabel.isHidden = !hasModel
         tableView.isHidden = !hasModel
         remoteView.isHidden = hasModel
     }
@@ -173,8 +175,17 @@ extension OnDeviceRemoteViewController {
 extension OnDeviceRemoteViewController {
     
     private func constructHierarchy() {
+        layoutTitleLabel()
         layoutRemoteView()
         layoutTableView()
+    }
+    
+    private func layoutTitleLabel() {
+        self.view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing32)
+        }
     }
     
     private func layoutRemoteView() {
@@ -188,7 +199,7 @@ extension OnDeviceRemoteViewController {
     private func layoutTableView() {
         self.view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Dimension.Spacing.spacing16)
+            make.top.equalTo(titleLabel.snp.bottom).offset(Dimension.Spacing.spacing4)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
     }
@@ -201,9 +212,9 @@ extension OnDeviceRemoteViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: LocalDeviceTableViewCell = tableView.dequeueReusableCell(for: indexPath)
-        if let object = viewModel.objects?[indexPath.row] {
-            cell.configureData(title: object.name!)
+        let cell: RemoteDeviceTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        if let object = viewModel.objects?[indexPath.row], let name = object.name {
+            cell.configureData(title: name)
         }
         return cell
     }
