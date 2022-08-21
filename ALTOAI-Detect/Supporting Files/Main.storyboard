@@ -584,7 +584,7 @@
         <!--ScenesVC-->
         <scene sceneID="xny-py-Y0R">
             <objects>
-                <viewController id="LAA-Vz-Uge" customClass="ScenesVC" customModule="ALTOAI_Detect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScenesVC" id="LAA-Vz-Uge" customClass="ScenesVC" customModule="ALTOAI_Detect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OMq-g4-4GL"/>
                         <viewControllerLayoutGuide type="bottom" id="hzu-hb-2lG"/>

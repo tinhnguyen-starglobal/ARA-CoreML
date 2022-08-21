@@ -223,6 +223,14 @@ extension OnDeviceRemoteViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension OnDeviceRemoteViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let projectVC = storyboard.instantiateViewController(withIdentifier: "ScenesVC") as? ScenesVC {
+            guard let project = viewModel.objects?[indexPath.row] else {
+                return
+            }
+            let viewModel = ScenesViewModel(project: project)
+            projectVC.viewModel = viewModel
+            self.navigationController?.pushViewController(projectVC, animated: true)
+        }
     }
 }

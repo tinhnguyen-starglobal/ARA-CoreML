@@ -19,18 +19,13 @@ class ScenesVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
         return ScenesViewModel()
     }()
     
-    init?(viewModel: ScenesViewModel, coder: NSCoder) {
-        super.init(coder: coder)
-        self.viewModel = viewModel
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init?(viewModel: ScenesViewModel, coder: NSCoder) {
+//        super.init(coder: coder)
+//        self.viewModel = viewModel
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         loadData()
     }
     

@@ -107,13 +107,13 @@ class ProjectsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
-    @IBSegueAction func makeScenesVC(_ coder: NSCoder) -> ScenesVC? {
-        guard let selectedRow = tableView.indexPathForSelectedRow?.row, let project = viewModel.objects?[selectedRow] else {
-            return nil
-        }
-        let viewModel = ScenesViewModel(project: project)
-        return ScenesVC(viewModel: viewModel, coder: coder)
-    }
+//    @IBSegueAction func makeScenesVC(_ coder: NSCoder) -> ScenesVC? {
+////        guard let selectedRow = tableView.indexPathForSelectedRow?.row, let project = viewModel.objects?[selectedRow] else {
+////            return nil
+////        }
+////        let viewModel = ScenesViewModel(project: project)
+////        return ScenesVC(viewModel: viewModel, coder: coder)
+//    }
     
     @IBAction func logout(_ sender: Any) {
         let logoutAlert = UIAlertController(title: nil, message: "Are you sure want to logout?", preferredStyle: .alert)
