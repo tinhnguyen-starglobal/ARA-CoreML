@@ -53,8 +53,8 @@ final class OnDeviceRemoteViewController: BaseViewController {
             }
         }
         
-        remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
-        remoteView.secretTextField.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
+//        remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
+//        remoteView.secretTextField.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
     }
     
     override func viewWillAppear(_ animated: Bool) {
