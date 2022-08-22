@@ -17,6 +17,7 @@ final class OnDeviceRemoteViewController: BaseViewController {
     private let titleLabel: Label = {
         let label = Label(style: .paragraphMedium)
         label.text = "PROJECTS"
+        label.contentHuggingPriority(for: .vertical)
         return label
     }()
     
@@ -28,6 +29,7 @@ final class OnDeviceRemoteViewController: BaseViewController {
         tableView.layer.cornerRadius = 10
         tableView.estimatedRowHeight = 100
         tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
@@ -55,6 +57,9 @@ final class OnDeviceRemoteViewController: BaseViewController {
         
 //        remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
 //        remoteView.secretTextField.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
+//        remoteView.keyTextField.text = "07a1b9a5-c654-4e22-adc0-af9ee2480bc0"
+//        remoteView.secretTextField.text = "5a373342-b0e7-4454-b603-e4a1a697179a"
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -201,6 +206,7 @@ extension OnDeviceRemoteViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(Dimension.Spacing.spacing4)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
+            make.bottom.lessThanOrEqualToSuperview().inset(Dimension.Spacing.spacing8)
         }
     }
 }

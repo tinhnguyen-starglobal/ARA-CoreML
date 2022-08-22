@@ -79,8 +79,9 @@ extension RemoteDeviceTableViewCell {
         containerView.addSubview(nextButton)
         nextButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(titleLabel.snp.trailing).offset(Dimension.Spacing.spacing8)
+            make.width.height.equalTo(24)
             make.trailing.equalToSuperview().inset(Dimension.Spacing.spacing12)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(-Dimension.Spacing.spacing8)
         }
     }
     
