@@ -122,7 +122,7 @@ extension OnDeviceLocalViewController: UITableViewDelegate {
                         self.present(cameraVC, animated: true, completion: nil)
                     }
                 } else {
-                    let alert = UIAlertController(title: nil, message: errorString, preferredStyle: .alert)
+                    let alert = UIAlertController(title: nil, message: "The model format requires the CoreML model", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true)
                 }

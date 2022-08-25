@@ -8,10 +8,13 @@
 import Alamofire
 
 class NetworkLogger: EventMonitor {
+    
     let queue = DispatchQueue(label: "com.altoai.networklogger")
+    
     func requestDidFinish(_ request: Request) {
         print(request.description)
     }
+    
     func request<Value>(_ request: DataRequest, didParseResponse response: DataResponse<Value, AFError>) {
         guard let data = response.data else {
             return
