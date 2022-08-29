@@ -24,22 +24,41 @@ class NetworkRequestInterceptor: RequestInterceptor {
     func retry(_ request: Request, for session: Session, dueTo error: Error,
                completion: @escaping (RetryResult) -> Void) {
         
-        let response = request.task?.response as? HTTPURLResponse
+        guard let statusCode = request.response?.statusCode else {
+            completion(.doNotRetry)
+            return
+        }
         
-        if response?.statusCode == 401, request.retryCount < retryLimit {
-            print("\nretried; retry count: \(request.retryCount)\n")
-
-            let credentials =  KeyChainManager.shared.getUserCredentials()
-            if let apiKey = credentials.apiKey, let apiSecret = credentials.secretKey {
-                APIManager.shared.authorize(apiKey: apiKey, apiSecret: apiSecret) { (isSuccess, error) in
-                    isSuccess ? completion(.retry) : completion(.doNotRetry)
+        guard request.retryCount < retryLimit else {
+            completion(.doNotRetry)
+            return
+        }
+        
+        switch statusCode {
+        case 200...299:
+            completion(.doNotRetry)
+        case 401:
+            completion(.doNotRetry)
+//            self.reAuthorize { isSuccess in
+//                isSuccess ? completion(.retry) : completion(.doNotRetry)
+//            }
+//            break
+        default:
+            completion(.retry)
+        }
+        
+    }
+    
+    private func reAuthorize(completion: @escaping (_ isSuccess: Bool) -> Void) {
+        let credentials =  KeyChainManager.shared.getUserCredentials()
+        if let apiKey = credentials.apiKey, let apiSecret = credentials.secretKey {
+            APIManager.shared.authorize(apiKey: apiKey, apiSecret: apiSecret) { (isSuccess, error) in
+                if isSuccess {
+                    completion(true)
+                } else {
+                    completion(false)
                 }
-            } else {
-                return completion(.doNotRetry)
             }
-        } else {
-            return completion(.doNotRetry)
-          }
-        
+        }
     }
 }

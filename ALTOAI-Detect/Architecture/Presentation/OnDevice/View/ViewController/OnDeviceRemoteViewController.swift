@@ -55,16 +55,18 @@ final class OnDeviceRemoteViewController: BaseViewController {
             }
         }
         
-//        remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
-//        remoteView.secretTextField.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
-//        remoteView.keyTextField.text = "07a1b9a5-c654-4e22-adc0-af9ee2480bc0"
-//        remoteView.secretTextField.text = "5a373342-b0e7-4454-b603-e4a1a697179a"
-
+        remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
+        remoteView.secretTextField.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
+        //        remoteView.keyTextField.text = "07a1b9a5-c654-4e22-adc0-af9ee2480bc0"
+        //        remoteView.secretTextField.text = "5a373342-b0e7-4454-b603-e4a1a697179a"
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadData()
+        if hasModel {
+            loadData()
+        }
     }
     
     private func configureTableView() {
@@ -82,11 +84,17 @@ final class OnDeviceRemoteViewController: BaseViewController {
     func loadData(animated: Bool = true) {
         self.tableView.displayAnimatedActivityIndicatorView()
         isLoading = true
-        viewModel.getData { _ in
-            self.isLoading = false
-            self.refreshControl.endRefreshing()
-            self.tableView.hideAnimatedActivityIndicatorView()
-            self.tableView.reloadData()
+        viewModel.getData { [weak self] isFetched in
+            guard let self = self else { return }
+            if isFetched {
+                self.isLoading = false
+                self.refreshControl.endRefreshing()
+                self.tableView.hideAnimatedActivityIndicatorView()
+                self.tableView.reloadData()
+            } else {
+                KeyChainManager.shared.signOutUser()
+                self.hasModel = false
+            }
         }
         
         titleLabel.isHidden = !hasModel
@@ -126,7 +134,7 @@ extension OnDeviceRemoteViewController {
             guard let self = self else { return }
             self.performLogin()
         }.store(in: &self.cancellable)
-
+        
     }
     
     private func performLogin() {
@@ -136,7 +144,7 @@ extension OnDeviceRemoteViewController {
         self.displayAnimatedActivityIndicatorView()
         APIManager.shared.authorize(apiKey: apiKey, apiSecret: apiSecret) { [weak self] (isSuccess, error) in
             self?.hideAnimatedActivityIndicatorView()
-        
+            
             if (isSuccess) {
                 self?.hasModel = true
                 self?.loadData()
@@ -162,16 +170,16 @@ extension OnDeviceRemoteViewController {
     
     func performLogOut() {
         let logoutAlert = UIAlertController(title: nil, message: "Are you sure want to logout?", preferredStyle: .alert)
-
+        
         logoutAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] (action: UIAlertAction!) in
             KeyChainManager.shared.signOutUser()
             self?.hasModel = false
             self?.loadData()
         }))
-
+        
         logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
         }))
-
+        
         present(logoutAlert, animated: true, completion: nil)
     }
 }
