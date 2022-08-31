@@ -128,6 +128,7 @@ extension OnDeviceRemoteViewController {
         
         remoteView.submitButton.tapPublisher.sink { [weak self] _ in
             guard let self = self else { return }
+            self.view.endEditing(true)
             self.performLogin()
         }.store(in: &self.cancellable)
         
