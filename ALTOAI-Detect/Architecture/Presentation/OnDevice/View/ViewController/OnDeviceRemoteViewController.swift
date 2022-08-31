@@ -54,12 +54,6 @@ final class OnDeviceRemoteViewController: BaseViewController {
                 self.hasModel = true
             }
         }
-        
-        remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
-        remoteView.secretTextField.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
-        //        remoteView.keyTextField.text = "07a1b9a5-c654-4e22-adc0-af9ee2480bc0"
-        //        remoteView.secretTextField.text = "5a373342-b0e7-4454-b603-e4a1a697179a"
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,17 +80,19 @@ final class OnDeviceRemoteViewController: BaseViewController {
         isLoading = true
         viewModel.getData { [weak self] isFetched in
             guard let self = self else { return }
+            self.tableView.hideAnimatedActivityIndicatorView()
             if isFetched {
                 self.isLoading = false
                 self.refreshControl.endRefreshing()
-                self.tableView.hideAnimatedActivityIndicatorView()
                 self.tableView.reloadData()
             } else {
-                KeyChainManager.shared.signOutUser()
-                self.hasModel = false
+                self.logOut()
             }
         }
-        
+        self.updateUI()
+    }
+    
+    private func updateUI() {
         titleLabel.isHidden = !hasModel
         tableView.isHidden = !hasModel
         remoteView.isHidden = hasModel
@@ -172,15 +168,19 @@ extension OnDeviceRemoteViewController {
         let logoutAlert = UIAlertController(title: nil, message: "Are you sure want to logout?", preferredStyle: .alert)
         
         logoutAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak self] (action: UIAlertAction!) in
-            KeyChainManager.shared.signOutUser()
-            self?.hasModel = false
-            self?.loadData()
+            self?.logOut()
         }))
         
         logoutAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
         }))
         
         present(logoutAlert, animated: true, completion: nil)
+    }
+    
+    private func logOut() {
+        KeyChainManager.shared.signOutUser()
+        self.hasModel = false
+        self.updateUI()
     }
 }
 
