@@ -10,6 +10,11 @@ import Combine
 
 final class EnvironmentView: BaseView {
     
+    enum EnvironmentType {
+        case qaServer(title: String)
+        case proServer(title: String)
+    }
+    
     private let titleLabel: Label = {
         let label = Label(style: .titleMedium)
         label.numberOfLines = 1
@@ -26,6 +31,8 @@ final class EnvironmentView: BaseView {
     required init() {
         super.init(frame: .zero)
         constructHierarchy()
+        environmentListView.setData(["QA servers", "Production servers"])
+        environmentListView.setSelected(at: 0)
     }
 }
 

@@ -22,9 +22,9 @@ enum RadioButtonStyle {
 
     private func selectedOfFocused() -> RadioButtonDecorator {
         return RadioButtonDecorator(
-            borderColor: Constant.Color.Neutral.fog,
+            borderColor: Constant.Color.Primary.blue,
             borderWidth: Dimension.RadioButton.focusedBorderWidth,
-            centerCircleColor: Constant.Color.Neutral.fog
+            centerCircleColor: Constant.Color.Primary.blue
         )
     }
 
@@ -38,8 +38,8 @@ enum RadioButtonStyle {
 
     private func selectedOfUnfocused() -> RadioButtonDecorator {
         return RadioButtonDecorator(
-            borderColor: Constant.Color.Neutral.fog,
-            centerCircleColor: Constant.Color.Neutral.fog
+            borderColor: Constant.Color.Primary.blue,
+            centerCircleColor: Constant.Color.Primary.blue
         )
     }
 

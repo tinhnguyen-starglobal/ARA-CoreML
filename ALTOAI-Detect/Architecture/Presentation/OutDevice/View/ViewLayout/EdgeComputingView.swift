@@ -40,7 +40,7 @@ extension EdgeComputingView {
     private func layoutURLTextField() {
         self.addSubview(urlTextField)
         urlTextField.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Dimension.Spacing.spacing24)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
     }

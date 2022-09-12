@@ -8,7 +8,7 @@
 import UIKit
 
 struct RadioButtonDecorator {
-    var borderColor: UIColor = Constant.Color.Neutral.fog
+    var borderColor: UIColor = Constant.Color.Neutral.lightGray
     var borderWidth: CGFloat = Dimension.RadioButton.unfocusedBorderWidth
-    var centerCircleColor: UIColor = Constant.Color.Neutral.lightGray
+    var centerCircleColor: UIColor = .clear
 }
