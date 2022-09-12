@@ -112,6 +112,8 @@
 		1988A71928CF26A700B9C009 /* RadioButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A71828CF26A700B9C009 /* RadioButtonStyle.swift */; };
 		1988A71B28CF26C900B9C009 /* RadioButtonDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A71A28CF26C900B9C009 /* RadioButtonDecorator.swift */; };
 		1988A71D28CF270A00B9C009 /* Dimension+RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A71C28CF270A00B9C009 /* Dimension+RadioButton.swift */; };
+		1988A71F28CF292000B9C009 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A71E28CF292000B9C009 /* UIView+Extension.swift */; };
+		1988A72128CF297100B9C009 /* GesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72028CF297100B9C009 /* GesturePublisher.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		19EE7CF328B16E19002D8920 /* InferenceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE7CF228B16E19002D8920 /* InferenceType.swift */; };
@@ -233,6 +235,8 @@
 		1988A71828CF26A700B9C009 /* RadioButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonStyle.swift; sourceTree = "<group>"; };
 		1988A71A28CF26C900B9C009 /* RadioButtonDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonDecorator.swift; sourceTree = "<group>"; };
 		1988A71C28CF270A00B9C009 /* Dimension+RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dimension+RadioButton.swift"; sourceTree = "<group>"; };
+		1988A71E28CF292000B9C009 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		1988A72028CF297100B9C009 /* GesturePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturePublisher.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		19EE7CF228B16E19002D8920 /* InferenceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceType.swift; sourceTree = "<group>"; };
@@ -791,6 +795,8 @@
 			isa = PBXGroup;
 			children = (
 				19829A6628A42A600036C7E7 /* Defaultable.swift */,
+				1988A72028CF297100B9C009 /* GesturePublisher.swift */,
+				1988A71E28CF292000B9C009 /* UIView+Extension.swift */,
 				19829A4E28A3A8F50036C7E7 /* UIColor+Extension.swift */,
 				19829A5D28A428E10036C7E7 /* UITextField+Extension.swift */,
 			);
@@ -1082,7 +1088,9 @@
 				0DE4F1E526B7F43E007053DB /* AppStyle.swift in Sources */,
 				1939A82D28AE368C002C2F22 /* OnDeviceRemoteUseCasePort.swift in Sources */,
 				0DFA24DB26A6E6770014CD6E /* Constants.swift in Sources */,
+				1988A71F28CF292000B9C009 /* UIView+Extension.swift in Sources */,
 				0DB4AAA526B29B87001F5CD3 /* ScenesVC.swift in Sources */,
+				1988A72128CF297100B9C009 /* GesturePublisher.swift in Sources */,
 				0DB4AA9026B07472001F5CD3 /* NetworkRequestInterceptor.swift in Sources */,
 				19829A4328A3A7890036C7E7 /* Dimension.swift in Sources */,
 				19829A7F28A452610036C7E7 /* Bindable.swift in Sources */,
