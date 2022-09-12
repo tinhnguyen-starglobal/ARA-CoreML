@@ -116,6 +116,7 @@
 		1988A72128CF297100B9C009 /* GesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72028CF297100B9C009 /* GesturePublisher.swift */; };
 		1988A72328CF2BAC00B9C009 /* ListRadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72228CF2BAC00B9C009 /* ListRadioButtonView.swift */; };
 		1988A72528CF2C0800B9C009 /* RadioButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72428CF2C0800B9C009 /* RadioButtonTableViewCell.swift */; };
+		1988A72928CF8B6A00B9C009 /* EnvironmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72828CF8B6A00B9C009 /* EnvironmentView.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		19EE7CF328B16E19002D8920 /* InferenceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE7CF228B16E19002D8920 /* InferenceType.swift */; };
@@ -241,6 +242,7 @@
 		1988A72028CF297100B9C009 /* GesturePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturePublisher.swift; sourceTree = "<group>"; };
 		1988A72228CF2BAC00B9C009 /* ListRadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRadioButtonView.swift; sourceTree = "<group>"; };
 		1988A72428CF2C0800B9C009 /* RadioButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonTableViewCell.swift; sourceTree = "<group>"; };
+		1988A72828CF8B6A00B9C009 /* EnvironmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentView.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		19EE7CF228B16E19002D8920 /* InferenceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceType.swift; sourceTree = "<group>"; };
@@ -690,6 +692,7 @@
 		19829A2A28A36AE90036C7E7 /* ViewLayout */ = {
 			isa = PBXGroup;
 			children = (
+				1988A72828CF8B6A00B9C009 /* EnvironmentView.swift */,
 				19829A2C28A36AFC0036C7E7 /* EdgeComputingView.swift */,
 				19829A8228A4D8340036C7E7 /* CloudComputingView.swift */,
 			);
@@ -1152,6 +1155,7 @@
 				0DE4F1EA26B7FBAA007053DB /* TableViewHeader.swift in Sources */,
 				89BBF9DA268E9B6100FA46B6 /* VideoCapture.swift in Sources */,
 				19829A3F28A371400036C7E7 /* MainTabbarController.swift in Sources */,
+				1988A72928CF8B6A00B9C009 /* EnvironmentView.swift in Sources */,
 				19829A7D28A450600036C7E7 /* BaseViewModel.swift in Sources */,
 				19829A2728A36A310036C7E7 /* TabbarItem.swift in Sources */,
 				89BBF9D7268E9B6100FA46B6 /* YOLO.swift in Sources */,
