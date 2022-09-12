@@ -114,6 +114,8 @@
 		1988A71D28CF270A00B9C009 /* Dimension+RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A71C28CF270A00B9C009 /* Dimension+RadioButton.swift */; };
 		1988A71F28CF292000B9C009 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A71E28CF292000B9C009 /* UIView+Extension.swift */; };
 		1988A72128CF297100B9C009 /* GesturePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72028CF297100B9C009 /* GesturePublisher.swift */; };
+		1988A72328CF2BAC00B9C009 /* ListRadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72228CF2BAC00B9C009 /* ListRadioButtonView.swift */; };
+		1988A72528CF2C0800B9C009 /* RadioButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72428CF2C0800B9C009 /* RadioButtonTableViewCell.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		19EE7CF328B16E19002D8920 /* InferenceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE7CF228B16E19002D8920 /* InferenceType.swift */; };
@@ -237,6 +239,8 @@
 		1988A71C28CF270A00B9C009 /* Dimension+RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dimension+RadioButton.swift"; sourceTree = "<group>"; };
 		1988A71E28CF292000B9C009 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		1988A72028CF297100B9C009 /* GesturePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturePublisher.swift; sourceTree = "<group>"; };
+		1988A72228CF2BAC00B9C009 /* ListRadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRadioButtonView.swift; sourceTree = "<group>"; };
+		1988A72428CF2C0800B9C009 /* RadioButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonTableViewCell.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		19EE7CF228B16E19002D8920 /* InferenceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceType.swift; sourceTree = "<group>"; };
@@ -849,8 +853,10 @@
 			children = (
 				1988A71628CF267C00B9C009 /* RadioButton.swift */,
 				1988A71828CF26A700B9C009 /* RadioButtonStyle.swift */,
+				1988A72228CF2BAC00B9C009 /* ListRadioButtonView.swift */,
 				1988A71A28CF26C900B9C009 /* RadioButtonDecorator.swift */,
 				1988A71428CF264A00B9C009 /* RadioButtonWithLabel.swift */,
+				1988A72428CF2C0800B9C009 /* RadioButtonTableViewCell.swift */,
 			);
 			path = RadioButton;
 			sourceTree = "<group>";
@@ -1075,6 +1081,7 @@
 				1939A83A28B09FE1002C2F22 /* LabelStyle.swift in Sources */,
 				19829A7828A43F000036C7E7 /* UIButton+Combine.swift in Sources */,
 				89BBF9D8268E9B6100FA46B6 /* CVPixelBuffer+Helpers.swift in Sources */,
+				1988A72528CF2C0800B9C009 /* RadioButtonTableViewCell.swift in Sources */,
 				19829A8128A452750036C7E7 /* ViewModelPort.swift in Sources */,
 				0DB4AAB626B2BF9B001F5CD3 /* ExperimentsViewModel.swift in Sources */,
 				1939A83E28B0A2EE002C2F22 /* Label.swift in Sources */,
@@ -1100,6 +1107,7 @@
 				0DB4AAB326B2BF77001F5CD3 /* ExperimentsVC.swift in Sources */,
 				19829A5428A422890036C7E7 /* TextFieldDecorator.swift in Sources */,
 				19829A8328A4D8340036C7E7 /* CloudComputingView.swift in Sources */,
+				1988A72328CF2BAC00B9C009 /* ListRadioButtonView.swift in Sources */,
 				195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */,
 				1988A71B28CF26C900B9C009 /* RadioButtonDecorator.swift in Sources */,
 				19829A6A28A4319E0036C7E7 /* ButtonState.swift in Sources */,
