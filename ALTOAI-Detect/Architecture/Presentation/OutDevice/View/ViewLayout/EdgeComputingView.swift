@@ -13,6 +13,7 @@ final class EdgeComputingView: BaseView {
     let urlTextField: TextFieldView = {
         let textfieldView = TextFieldView(style: .normal(), state: .normal)
         textfieldView.placeholder = "URL"
+        textfieldView.title = "URL"
         return textfieldView
     }()
     

@@ -55,7 +55,7 @@ extension EnvironmentView {
     private func layoutEnvironmentListView() {
         self.addSubview(environmentListView)
         environmentListView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(Dimension.Spacing.spacing16)
+            make.top.equalTo(titleLabel.snp.bottom).offset(Dimension.Spacing.spacing8)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
