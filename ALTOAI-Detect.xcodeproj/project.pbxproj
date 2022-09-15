@@ -60,6 +60,10 @@
 		1939A83C28B0A1BB002C2F22 /* Constant+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83B28B0A1BB002C2F22 /* Constant+Font.swift */; };
 		1939A83E28B0A2EE002C2F22 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A83D28B0A2EE002C2F22 /* Label.swift */; };
 		195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195A62E928ACA72900A65AA5 /* FPSCounter.swift */; };
+		197F753528D2DFAF00E260C4 /* ListEnvironmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197F753428D2DFAF00E260C4 /* ListEnvironmentViewController.swift */; };
+		197F753728D2E19300E260C4 /* SingleChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197F753628D2E19300E260C4 /* SingleChoiceView.swift */; };
+		197F753928D2E28200E260C4 /* SingleChoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197F753828D2E28200E260C4 /* SingleChoiceTableViewCell.swift */; };
+		197F753B28D2E7CC00E260C4 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197F753A28D2E7CC00E260C4 /* Environment.swift */; };
 		19829A0E28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0D28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift */; };
 		19829A1028A364B10036C7E7 /* OutDeviceCloundUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A0F28A364B10036C7E7 /* OutDeviceCloundUseCase.swift */; };
 		19829A1228A364BE0036C7E7 /* OutDeviceEdgeUseCasePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19829A1128A364BE0036C7E7 /* OutDeviceEdgeUseCasePort.swift */; };
@@ -186,6 +190,10 @@
 		1939A83B28B0A1BB002C2F22 /* Constant+Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constant+Font.swift"; sourceTree = "<group>"; };
 		1939A83D28B0A2EE002C2F22 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		195A62E928ACA72900A65AA5 /* FPSCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPSCounter.swift; sourceTree = "<group>"; };
+		197F753428D2DFAF00E260C4 /* ListEnvironmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEnvironmentViewController.swift; sourceTree = "<group>"; };
+		197F753628D2E19300E260C4 /* SingleChoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleChoiceView.swift; sourceTree = "<group>"; };
+		197F753828D2E28200E260C4 /* SingleChoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleChoiceTableViewCell.swift; sourceTree = "<group>"; };
+		197F753A28D2E7CC00E260C4 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		19829A0D28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceEdgeUseCase.swift; sourceTree = "<group>"; };
 		19829A0F28A364B10036C7E7 /* OutDeviceCloundUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceCloundUseCase.swift; sourceTree = "<group>"; };
 		19829A1128A364BE0036C7E7 /* OutDeviceEdgeUseCasePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutDeviceEdgeUseCasePort.swift; sourceTree = "<group>"; };
@@ -692,9 +700,11 @@
 		19829A2A28A36AE90036C7E7 /* ViewLayout */ = {
 			isa = PBXGroup;
 			children = (
+				197F753628D2E19300E260C4 /* SingleChoiceView.swift */,
 				1988A72828CF8B6A00B9C009 /* EnvironmentView.swift */,
 				19829A2C28A36AFC0036C7E7 /* EdgeComputingView.swift */,
 				19829A8228A4D8340036C7E7 /* CloudComputingView.swift */,
+				197F753828D2E28200E260C4 /* SingleChoiceTableViewCell.swift */,
 			);
 			path = ViewLayout;
 			sourceTree = "<group>";
@@ -703,6 +713,7 @@
 			isa = PBXGroup;
 			children = (
 				19829A2E28A36B060036C7E7 /* OutDeviceViewController.swift */,
+				197F753428D2DFAF00E260C4 /* ListEnvironmentViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -846,6 +857,7 @@
 		19829A7928A449FD0036C7E7 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				197F753A28D2E7CC00E260C4 /* Environment.swift */,
 				19829A7A28A44A0A0036C7E7 /* OutDeviceViewModel.swift */,
 			);
 			path = ViewModel;
@@ -1112,6 +1124,7 @@
 				19829A8328A4D8340036C7E7 /* CloudComputingView.swift in Sources */,
 				1988A72328CF2BAC00B9C009 /* ListRadioButtonView.swift in Sources */,
 				195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */,
+				197F753928D2E28200E260C4 /* SingleChoiceTableViewCell.swift in Sources */,
 				1988A71B28CF26C900B9C009 /* RadioButtonDecorator.swift in Sources */,
 				19829A6A28A4319E0036C7E7 /* ButtonState.swift in Sources */,
 				0DB4AA9726B1B8AC001F5CD3 /* ProjectsVC.swift in Sources */,
@@ -1147,6 +1160,7 @@
 				1988A71728CF267C00B9C009 /* RadioButton.swift in Sources */,
 				89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */,
 				19829A5828A424910036C7E7 /* TextFieldStyle.swift in Sources */,
+				197F753B28D2E7CC00E260C4 /* Environment.swift in Sources */,
 				19829A2D28A36AFC0036C7E7 /* EdgeComputingView.swift in Sources */,
 				1988A71D28CF270A00B9C009 /* Dimension+RadioButton.swift in Sources */,
 				19829A5E28A428E10036C7E7 /* UITextField+Extension.swift in Sources */,
@@ -1155,8 +1169,10 @@
 				0DE4F1EA26B7FBAA007053DB /* TableViewHeader.swift in Sources */,
 				89BBF9DA268E9B6100FA46B6 /* VideoCapture.swift in Sources */,
 				19829A3F28A371400036C7E7 /* MainTabbarController.swift in Sources */,
+				197F753528D2DFAF00E260C4 /* ListEnvironmentViewController.swift in Sources */,
 				1988A72928CF8B6A00B9C009 /* EnvironmentView.swift in Sources */,
 				19829A7D28A450600036C7E7 /* BaseViewModel.swift in Sources */,
+				197F753728D2E19300E260C4 /* SingleChoiceView.swift in Sources */,
 				19829A2728A36A310036C7E7 /* TabbarItem.swift in Sources */,
 				89BBF9D7268E9B6100FA46B6 /* YOLO.swift in Sources */,
 				0DE4F1E126B7F3C9007053DB /* Colors.swift in Sources */,
