@@ -12,6 +12,12 @@ final class SingleChoiceView: BaseView {
     
     private(set) var environments: [Environment] = []
     
+    var environmentsPublisher: AnyPublisher<[Environment], Never> {
+        environmentsSubject.eraseToAnyPublisher()
+    }
+    
+    private let environmentsSubject = PassthroughSubject<[Environment], Never>()
+    
     lazy var tableView: DynamicTableView = {
         let tableView = DynamicTableView(frame: .zero, style: .plain)
         tableView.rowHeight = UITableView.automaticDimension
@@ -27,11 +33,26 @@ final class SingleChoiceView: BaseView {
         super.layoutSubviews()
         self.updateTableView()
     }
+    
+    convenience init(data: [Environment]) {
+        self.init(frame: .zero)
+        self.environments = data
+        self.setupTableView()
+    }
 }
 
 // MARK: - Configure data
 extension SingleChoiceView {
+    func configureView(_ environments: [Environment]) {
+        self.environments = environments
+        self.tableView.reloadData()
+        self.updateTableView()
+    }
     
+    func setSelected(at index: Int) {
+        self.tableView.selectRow(at: IndexPath(row: index, section: 0),
+                                 animated: true, scrollPosition: .none)
+    }
 }
 
 // MARK: - Configure Views
@@ -70,5 +91,14 @@ extension SingleChoiceView: UITableViewDataSource {
 extension SingleChoiceView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        willSelectSingleItem(indexPath: indexPath)
+        environmentsSubject.send(environments)
+        tableView.reloadData()
+    }
+    
+    func willSelectSingleItem(indexPath: IndexPath) {
+        for index in 0..<self.environments.count {
+            self.environments[index].selected = index == indexPath.row ? true : false
+        }
     }
 }
