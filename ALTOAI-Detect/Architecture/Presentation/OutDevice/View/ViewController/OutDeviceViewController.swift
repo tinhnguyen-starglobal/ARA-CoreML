@@ -29,9 +29,11 @@ final class OutDeviceViewController: BaseViewController, Bindable {
     }()
     
     var viewModel: OutDeviceViewModel!
+    private var environments: [Environment] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.environments = self.getURLEnvironments()
         configureSegmentView()
         configurePublisher()
         constructHierarchy()
@@ -184,8 +186,14 @@ extension OutDeviceViewController {
     }
     
     private func presentEnvironment() {
-        let env = self.getURLEnvironments()
-        let environmentVC = ListEnvironmentViewController(items: env)
+        let environmentVC = ListEnvironmentViewController(items: environments)
+        
+        environmentVC.selectedItemsPublisher.sink { [weak self] items in
+            guard let self = self else { return }
+            self.environments = items
+            self.dismiss(animated: true)
+        }.store(in: &cancellable)
+        
         environmentVC.modalTransitionStyle = .crossDissolve
         environmentVC.modalPresentationStyle = .overFullScreen
         self.present(environmentVC, animated: true)
@@ -214,6 +222,7 @@ extension OutDeviceViewController {
     }
     
     private func getURLEnvironments() -> [Environment] {
+        //TODO: base on single choice
         return generatedQAEnv()
     }
 }

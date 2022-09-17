@@ -32,6 +32,12 @@ final class ListEnvironmentViewController: BaseViewController {
     
     private(set) var environments: [Environment] = []
     
+    var selectedItemsPublisher: AnyPublisher<[Environment], Never> {
+        selectedItemsSubject.eraseToAnyPublisher()
+    }
+    
+    private let selectedItemsSubject = PassthroughSubject<[Environment], Never>()
+    
     init(items: [Environment]) {
         self.environments = items
         super.init()
@@ -39,6 +45,7 @@ final class ListEnvironmentViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurePublisher()
         configureView()
         constructHierarchy()
         environmentListView.setData(environments)
@@ -46,6 +53,17 @@ final class ListEnvironmentViewController: BaseViewController {
     
     private func configureView() {
         view.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
+    }
+}
+
+// MARK: - Configure Publisher
+extension ListEnvironmentViewController {
+    private func configurePublisher() {
+        self.environmentListView.environmentsPublisher.sink { [weak self] items in
+            guard let self = self else { return }
+            self.environments = items
+            self.selectedItemsSubject.send(items)
+        }.store(in: &cancellable)
     }
 }
 
