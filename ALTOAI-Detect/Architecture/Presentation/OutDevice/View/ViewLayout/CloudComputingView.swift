@@ -10,7 +10,7 @@ import SnapKit
 
 final class CloudComputingView: BaseView {
     
-    private let environmentView: EnvironmentView = {
+    let environmentView: EnvironmentView = {
         let view = EnvironmentView()
         return view
     }()

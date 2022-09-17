@@ -33,7 +33,6 @@ final class OutDeviceViewController: BaseViewController, Bindable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.environments = self.getURLEnvironments()
         configureSegmentView()
         configurePublisher()
         constructHierarchy()
@@ -90,6 +89,11 @@ extension OutDeviceViewController {
             if !value.isEmpty {
                 self.presentEnvironment()
             }
+        }.store(in: &self.cancellable)
+        
+        cloudComputingView.environmentView.listView.$selectedIndex.sink { [weak self] index in
+            guard let self = self else { return }
+            self.environments = self.getURLEnvironments(index: index ?? 0)
         }.store(in: &self.cancellable)
     }
 }
@@ -221,8 +225,10 @@ extension OutDeviceViewController {
         return items
     }
     
-    private func getURLEnvironments() -> [Environment] {
-        //TODO: base on single choice
+    private func getURLEnvironments(index: Int) -> [Environment] {
+        if index != 0 {
+            return generatedProductEnv()
+        }
         return generatedQAEnv()
     }
 }

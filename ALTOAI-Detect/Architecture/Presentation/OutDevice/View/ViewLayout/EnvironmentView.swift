@@ -10,11 +10,6 @@ import Combine
 
 final class EnvironmentView: BaseView {
     
-    enum EnvironmentType {
-        case qaServer(title: String)
-        case proServer(title: String)
-    }
-    
     private let titleLabel: Label = {
         let label = Label(style: .titleMedium)
         label.numberOfLines = 1
@@ -22,7 +17,7 @@ final class EnvironmentView: BaseView {
         return label
     }()
     
-    private let environmentListView: ListRadioButtonView = {
+    let listView: ListRadioButtonView = {
         let view = ListRadioButtonView()
         view.tableView.isScrollEnabled = false
         return view
@@ -31,8 +26,8 @@ final class EnvironmentView: BaseView {
     required init() {
         super.init(frame: .zero)
         constructHierarchy()
-        environmentListView.setData(["QA servers", "Production servers"])
-        environmentListView.setSelected(at: 0)
+        listView.setData([EnvironmentType.qaServer.title, EnvironmentType.proServer.title])
+        listView.setSelected(at: 0)
     }
 }
 
@@ -53,8 +48,8 @@ extension EnvironmentView {
     }
     
     private func layoutEnvironmentListView() {
-        self.addSubview(environmentListView)
-        environmentListView.snp.makeConstraints { make in
+        self.addSubview(listView)
+        listView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(Dimension.Spacing.spacing8)
             make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(Dimension.Spacing.spacing16)
