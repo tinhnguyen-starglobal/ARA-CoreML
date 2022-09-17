@@ -30,17 +30,18 @@ final class ListEnvironmentViewController: BaseViewController {
         return view
     }()
     
+    private(set) var environments: [Environment] = []
+    
+    init(items: [Environment]) {
+        self.environments = items
+        super.init()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         constructHierarchy()
-        let array = [Environment(title: "url1", selected: false),
-                     Environment(title: "url2", selected: false),
-                     Environment(title: "url333", selected: false),
-                     Environment(title: "url4", selected: false),
-                     Environment(title: "url5", selected: false),
-                     Environment(title: "url6", selected: false)]
-        environmentListView.setData(array)
+        environmentListView.setData(environments)
     }
     
     private func configureView() {

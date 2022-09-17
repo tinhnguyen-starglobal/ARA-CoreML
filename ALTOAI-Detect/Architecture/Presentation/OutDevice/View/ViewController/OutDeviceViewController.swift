@@ -184,9 +184,36 @@ extension OutDeviceViewController {
     }
     
     private func presentEnvironment() {
-        let environmentVC = ListEnvironmentViewController()
+        let env = self.getURLEnvironments()
+        let environmentVC = ListEnvironmentViewController(items: env)
         environmentVC.modalTransitionStyle = .crossDissolve
         environmentVC.modalPresentationStyle = .overFullScreen
         self.present(environmentVC, animated: true)
+    }
+    
+    private func generatedQAEnv() -> [Environment] {
+        let items = [
+            Environment(title: "gateway-qa-1.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-qa-2.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-qa-3.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-e2e.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-demo.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-demo.ca.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-demo.eu.qa.alto-platform.ai/api", selected: false)
+        ]
+        return items
+    }
+    
+    private func generatedProductEnv() -> [Environment] {
+        let items = [
+            Environment(title: "app.alto-platform.ai/api", selected: false),
+            Environment(title: "app.ca.alto-platform.ai/api", selected: false),
+            Environment(title: "app.eu.alto-platform.ai/api", selected: false)
+        ]
+        return items
+    }
+    
+    private func getURLEnvironments() -> [Environment] {
+        return generatedQAEnv()
     }
 }
