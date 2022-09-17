@@ -46,8 +46,8 @@ extension SingleChoiceTableViewCell {
     private func layoutTitleLabel() {
         self.contentView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(Dimension.Spacing.spacing16)
-            make.top.bottom.equalToSuperview().inset(Dimension.Spacing.spacing16)
+            make.leading.equalToSuperview().offset(Dimension.Spacing.spacing20)
+            make.top.bottom.equalToSuperview().inset(Dimension.Spacing.spacing12)
         }
     }
     

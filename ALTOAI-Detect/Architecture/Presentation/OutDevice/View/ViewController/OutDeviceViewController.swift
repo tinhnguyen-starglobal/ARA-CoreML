@@ -82,6 +82,13 @@ extension OutDeviceViewController {
                 self.edgeComputingView.urlTextField.setState(.error(message: "Something went wrong, try to check URL"))
             }
         }.store(in: &self.cancellable)
+        
+        cloudComputingView.urlTextField.textPublisher.sink { [weak self] value in
+            guard let self = self else { return }
+            if !value.isEmpty {
+                self.presentEnvironment()
+            }
+        }.store(in: &self.cancellable)
     }
 }
 
@@ -174,5 +181,12 @@ extension OutDeviceViewController {
             cameraVC.modalPresentationStyle = .fullScreen
             self.present(cameraVC, animated: true, completion: nil)
         }
+    }
+    
+    private func presentEnvironment() {
+        let environmentVC = ListEnvironmentViewController()
+        environmentVC.modalTransitionStyle = .crossDissolve
+        environmentVC.modalPresentationStyle = .overFullScreen
+        self.present(environmentVC, animated: true)
     }
 }

@@ -39,6 +39,12 @@ final class SingleChoiceView: BaseView {
         self.environments = data
         self.setupTableView()
     }
+    
+    func setData(_ data: [Environment]) {
+        self.environments = data
+        self.tableView.reloadData()
+        self.updateTableView()
+    }
 }
 
 // MARK: - Configure data

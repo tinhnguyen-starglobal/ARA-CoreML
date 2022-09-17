@@ -70,7 +70,7 @@ extension CloudComputingView {
     private func layoutEnvironmentView() {
         self.addSubview(environmentView)
         environmentView.snp.makeConstraints { make in
-            make.top.equalToSuperview()//.offset(Dimension.Spacing.spacing20)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
         }
     }
