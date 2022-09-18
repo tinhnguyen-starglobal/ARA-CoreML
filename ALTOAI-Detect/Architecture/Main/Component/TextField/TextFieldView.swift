@@ -389,7 +389,6 @@ final class TextFieldView: UIView {
 }
 
 // MARK: Logic UI States
-
 extension TextFieldView {
     func setState(_ state: TextFieldState) {
         self.state = state

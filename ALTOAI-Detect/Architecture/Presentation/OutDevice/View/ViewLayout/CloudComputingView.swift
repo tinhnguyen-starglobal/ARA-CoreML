@@ -62,6 +62,13 @@ final class CloudComputingView: BaseView {
     required init() {
         super.init(frame: .zero)
         constructHierarchy()
+        configureURLTextField()
+    }
+    
+    private func configureURLTextField() {
+        urlTextField.textField.tintColor = .white
+        urlTextField.textField.inputView = UIView()
+        urlTextField.textField.inputAccessoryView = UIView()
     }
 }
 
