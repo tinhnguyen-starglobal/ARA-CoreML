@@ -91,11 +91,43 @@ extension OutDeviceViewController {
             self.presentEnvironment()
         }.store(in: &self.cancellable)
         
+        cloudComputingView.keyTextField.textPublisher.sink { [weak self] value in
+            guard let self = self else { return }
+            guard !value.isEmpty else {
+                self.cloudComputingView.submitButton.isEnabled = false
+                return
+            }
+            self.validateCloundAuth()
+        }.store(in: &self.cancellable)
+        
+        cloudComputingView.secretTextField.textPublisher.sink { [weak self] value in
+            guard let self = self else { return }
+            guard !value.isEmpty else {
+                self.cloudComputingView.submitButton.isEnabled = false
+                return
+            }
+            self.validateCloundAuth()
+        }.store(in: &self.cancellable)
+        
         cloudComputingView.environmentView.listView.$selectedIndex.sink { [weak self] index in
             guard let self = self else { return }
             self.environments = self.getURLEnvironments(index: index ?? 0)
             self.cloudComputingView.urlTextField.text = ""
         }.store(in: &self.cancellable)
+        
+        cloudComputingView.submitButton.tapPublisher.sink { [weak self] _ in
+            guard let self = self else { return }
+            self.checkPermissions()
+            self.presentCamera()
+        }.store(in: &self.cancellable)
+    }
+    
+    private func validateCloundAuth() {
+        let hasURL = cloudComputingView.urlTextField.text != ""
+        let hasKey = cloudComputingView.keyTextField.text != ""
+        let hasSecretKey = cloudComputingView.secretTextField.text != ""
+        let isEnable = hasURL && hasKey && hasSecretKey
+        cloudComputingView.submitButton.isEnabled = isEnable
     }
 }
 
