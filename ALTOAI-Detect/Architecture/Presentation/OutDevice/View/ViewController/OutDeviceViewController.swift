@@ -7,10 +7,8 @@
 
 import UIKit
 import Combine
-import SnapKit
-import AVFoundation
 
-final class OutDeviceViewController: BaseViewController, Bindable {
+final class OutDeviceViewController: BaseViewController {
     
     private let segmentControl: UISegmentedControl = {
         let segment = UISegmentedControl(items: ["Edge Computing", "Cloud Computing"])
@@ -18,116 +16,105 @@ final class OutDeviceViewController: BaseViewController, Bindable {
         return segment
     }()
     
-    private let edgeComputingView: EdgeComputingView = {
-        let view = EdgeComputingView()
+    private let containerView: UIView = {
+        let view = UIView(frame: .zero)
         return view
     }()
     
-    private let cloudComputingView: CloudComputingView = {
-        let view = CloudComputingView()
-        return view
+    private let logOutButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "ic_logout"), for: .normal)
+        return button
     }()
     
-    var viewModel: OutDeviceViewModel!
-    private var environments: [Environment] = []
+    private lazy var edgeViewController: EdgeComputingViewController = {
+        let viewController = EdgeComputingViewController()
+        self.addViewController(child: viewController)
+        return viewController
+    }()
+    
+    private lazy var cloudViewController: CloudComputingViewController = {
+        let viewController = CloudComputingViewController()
+        self.addViewController(child: viewController)
+        return viewController
+    }()
+    
+    private(set) var isCloud = false
+    private(set) var isEdge = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let _ = KeyChainManager.shared.getToken() {
+            self.isCloud = true
+        }
         configureSegmentView()
         configurePublisher()
         constructHierarchy()
-    }
-    
-    private func configureSegmentView() {
-        edgeComputingView.isHidden = false
-        cloudComputingView.isHidden = true
-        segmentControl.addTarget(self, action: #selector(changeSegmentType(_:)), for: .valueChanged)
-    }
-    
-    func bindViewModel() {
-        
-    }
-    
-    @objc func changeSegmentType(_ segmentedControl: UISegmentedControl) {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            self.edgeComputingView.isHidden = false
-            self.cloudComputingView.isHidden = true
-        case 1:
-            self.edgeComputingView.isHidden = true
-            self.cloudComputingView.isHidden = false
-        default:
-            break
-        }
     }
 }
 
 // MARK: - Configure Publisher
 extension OutDeviceViewController {
     private func configurePublisher() {
-        edgeComputingView.urlTextField.textPublisher.sink { [weak self] value in
-            guard let self = self else { return }
-            guard !value.isEmpty else {
-                self.edgeComputingView.submitButton.isEnabled = false
-                return
-            }
-            self.edgeComputingView.submitButton.isEnabled = true
-        }.store(in: &self.cancellable)
+        cloudViewController.$hasModel.sink { [weak self] isCloud in
+            self?.isCloud = isCloud
+            self?.configureSegmentState()
+        }.store(in: &cancellable)
         
-        edgeComputingView.submitButton.tapPublisher.sink { [weak self] _ in
-            guard let self = self else { return }
-            if self.viewModel.verifyUrl(urlString: self.edgeComputingView.urlTextField.text) {
-                self.checkPermissions()
-                self.presentCamera()
-            } else {
-                self.edgeComputingView.urlTextField.setState(.error(message: "Something went wrong, try to check URL"))
-            }
-        }.store(in: &self.cancellable)
-        
-        cloudComputingView.urlTextField.textPublisher
-            .dropFirst()
-            .sink { [weak self] value in
-            guard let self = self else { return }
-            self.presentEnvironment()
-        }.store(in: &self.cancellable)
-        
-        cloudComputingView.keyTextField.textPublisher.sink { [weak self] value in
-            guard let self = self else { return }
-            guard !value.isEmpty else {
-                self.cloudComputingView.submitButton.isEnabled = false
-                return
-            }
-            self.validateCloundAuth()
-        }.store(in: &self.cancellable)
-        
-        cloudComputingView.secretTextField.textPublisher.sink { [weak self] value in
-            guard let self = self else { return }
-            guard !value.isEmpty else {
-                self.cloudComputingView.submitButton.isEnabled = false
-                return
-            }
-            self.validateCloundAuth()
-        }.store(in: &self.cancellable)
-        
-        cloudComputingView.environmentView.listView.$selectedIndex.sink { [weak self] index in
-            guard let self = self else { return }
-            self.environments = self.getURLEnvironments(index: index ?? 0)
-            self.cloudComputingView.urlTextField.text = ""
-        }.store(in: &self.cancellable)
-        
-        cloudComputingView.submitButton.tapPublisher.sink { [weak self] _ in
-            guard let self = self else { return }
-            self.checkPermissions()
-            self.presentCamera()
+        logOutButton.tapPublisher.sink { [weak self] in
+            self?.cloudViewController.performLogOut()
         }.store(in: &self.cancellable)
     }
+}
+
+// MARK: Configure SegmentControler
+extension OutDeviceViewController {
+    private func configureSegmentView() {
+        configureSegmentState()
+        segmentControl.addTarget(self, action: #selector(changeSegmentType(_:)), for: .valueChanged)
+    }
     
-    private func validateCloundAuth() {
-        let hasURL = cloudComputingView.urlTextField.text != ""
-        let hasKey = cloudComputingView.keyTextField.text != ""
-        let hasSecretKey = cloudComputingView.secretTextField.text != ""
-        let isEnable = hasURL && hasKey && hasSecretKey
-        cloudComputingView.submitButton.isEnabled = isEnable
+    @objc func changeSegmentType(_ segmentedControl: UISegmentedControl) {
+        configureSegmentState()
+    }
+    
+    private func configureSegmentState() {
+        let index = segmentControl.selectedSegmentIndex
+        switch index {
+        case 0:
+            configureEdgeView()
+        case 1:
+            configureCloudView()
+        default:
+            break
+        }
+    }
+    
+    private func configureEdgeView() {
+        addViewController(child: edgeViewController)
+        removeViewController(child: cloudViewController)
+        navigationItem.title = isCloud ? "Workspace" : "Access"
+        navigationItem.rightBarButtonItem = isCloud ? UIBarButtonItem(customView: logOutButton) : nil
+    }
+    
+    private func configureCloudView() {
+        addViewController(child: cloudViewController)
+        removeViewController(child: edgeViewController)
+        navigationItem.title = "Access"
+    }
+    
+    private func addViewController(child viewController: UIViewController) {
+        addChild(viewController)
+        containerView.addSubview(viewController.view)
+        viewController.view.frame = containerView.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        viewController.didMove(toParent: self)
+    }
+    
+    private func removeViewController(child viewController: UIViewController) {
+        viewController.willMove(toParent: nil)
+        viewController.view.removeFromSuperview()
+        viewController.removeFromParent()
     }
 }
 
@@ -135,15 +122,20 @@ extension OutDeviceViewController {
 extension OutDeviceViewController {
     
     private func constructHierarchy() {
+        layoutBackButton()
         configureNavigation()
         layoutSegmentControl()
-        layoutEdgeComputingView()
-        layoutCloudComputingView()
+        layoutContainerView()
     }
     
     private func configureNavigation() {
-        self.navigationItem.title = "Access"
         self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func layoutBackButton() {
+        logOutButton.snp.makeConstraints { make in
+            make.width.height.equalTo(36)
+        }
     }
     
     private func layoutSegmentControl() {
@@ -154,122 +146,13 @@ extension OutDeviceViewController {
         }
     }
     
-    private func layoutEdgeComputingView() {
-        self.view.addSubview(edgeComputingView)
-        edgeComputingView.snp.makeConstraints { make in
+    private func layoutContainerView() {
+        self.view.addSubview(containerView)
+        containerView.snp.makeConstraints { make in
             make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
             make.leading.trailing.equalToSuperview()
-        }
-    }
-    
-    private func layoutCloudComputingView() {
-        self.view.addSubview(cloudComputingView)
-        cloudComputingView.snp.makeConstraints { make in
-            make.top.equalTo(segmentControl.snp.bottom).offset(Dimension.Spacing.spacing24)
-            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }
 }
 
-extension OutDeviceViewController {
-    //MARK:- Permissions
-    func checkPermissions() {
-        let status =  AVCaptureDevice.authorizationStatus(for: .video)
-        switch status {
-        case .authorized:
-            return
-        case .denied:
-            presentCameraSettings()
-        case .notDetermined:
-            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler:
-                                            { (authorized) in
-                if(!authorized){
-                    print("Permission denied")
-                }
-            })
-        case .restricted:
-            print("Restricted, device owner must approve")
-        @unknown default:
-            print("Restricted, device owner must approve")
-        }
-    }
-    
-    func presentCameraSettings() {
-        DispatchQueue.main.async {
-            let alertController = UIAlertController(title: "Please allow camera assets",
-                                                    message: "go to setttings and allow camera assets",
-                                                    preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            alertController.addAction(UIAlertAction(title: "Settings", style: .default) { _ in
-                if let url = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: { _ in
-                        // Handle
-                    })
-                }
-            })
-            self.present(alertController, animated: true)
-        }
-    }
-    
-    private func presentCamera() {
-        //TODO: Refactor CameraVC
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraViewController {
-            cameraVC.inferenceType = .edge
-            cameraVC.edgeComputingUrl = self.edgeComputingView.urlTextField.text
-            cameraVC.modalPresentationStyle = .fullScreen
-            self.present(cameraVC, animated: true, completion: nil)
-        }
-    }
-    
-    private func presentEnvironment() {
-        let environmentVC = ListEnvironmentViewController(items: environments)
-        
-        environmentVC.selectedItemsPublisher.sink { [weak self] items in
-            guard let self = self else { return }
-            self.environments = items
-            self.updateSelectedIndex()
-            self.dismiss(animated: true)
-        }.store(in: &cancellable)
-        
-        environmentVC.modalTransitionStyle = .crossDissolve
-        environmentVC.modalPresentationStyle = .overFullScreen
-        self.present(environmentVC, animated: true)
-    }
-    
-    private func generatedQAEnv() -> [Environment] {
-        let items = [
-            Environment(title: "gateway-qa-1.qa.alto-platform.ai/api", selected: false),
-            Environment(title: "gateway-qa-2.qa.alto-platform.ai/api", selected: false),
-            Environment(title: "gateway-qa-3.qa.alto-platform.ai/api", selected: false),
-            Environment(title: "gateway-e2e.qa.alto-platform.ai/api", selected: false),
-            Environment(title: "gateway-demo.qa.alto-platform.ai/api", selected: false),
-            Environment(title: "gateway-demo.ca.qa.alto-platform.ai/api", selected: false),
-            Environment(title: "gateway-demo.eu.qa.alto-platform.ai/api", selected: false)
-        ]
-        return items
-    }
-    
-    private func generatedProductEnv() -> [Environment] {
-        let items = [
-            Environment(title: "app.alto-platform.ai/api", selected: false),
-            Environment(title: "app.ca.alto-platform.ai/api", selected: false),
-            Environment(title: "app.eu.alto-platform.ai/api", selected: false)
-        ]
-        return items
-    }
-    
-    private func getURLEnvironments(index: Int) -> [Environment] {
-        if index != 0 {
-            return generatedProductEnv()
-        }
-        return generatedQAEnv()
-    }
-    
-    private func updateSelectedIndex() {
-        let items = self.environments.filter { item -> Bool in
-            return item.selected
-        }
-        self.cloudComputingView.urlTextField.text = items.first?.title
-    }
-}

@@ -1,16 +1,17 @@
 //
-//  OnDeviceRemoteViewController.swift
+//  CloudComputingViewController.swift
 //  ALTOAI-Detect
 //
-//  Created by Tinh Nguyen on 18/08/2022.
+//  Created by Tinh Nguyen on 19/09/2022.
 //
 
 import UIKit
+import Combine
 
-final class OnDeviceRemoteViewController: BaseViewController {
+final class CloudComputingViewController: BaseViewController {
     
-    private let remoteView: OnDeviceRemoteView = {
-        let view = OnDeviceRemoteView()
+    private let cloudComputingView: CloudComputingView = {
+        let view = CloudComputingView()
         return view
     }()
     
@@ -37,6 +38,8 @@ final class OnDeviceRemoteViewController: BaseViewController {
     lazy var viewModel: ProjectsViewModel = {
         return ProjectsViewModel()
     }()
+    
+    private var environments: [Environment] = []
     
     let refreshControl = UIRefreshControl()
     private var isLoading = false
@@ -95,7 +98,7 @@ final class OnDeviceRemoteViewController: BaseViewController {
     private func updateUI() {
         titleLabel.isHidden = !hasModel
         tableView.isHidden = !hasModel
-        remoteView.isHidden = hasModel
+        cloudComputingView.isHidden = hasModel
     }
     
     @objc func refresh(_ sender: AnyObject) {
@@ -104,38 +107,57 @@ final class OnDeviceRemoteViewController: BaseViewController {
 }
 
 // MARK: - Configure Publisher
-extension OnDeviceRemoteViewController {
+extension CloudComputingViewController {
     private func configurePublisher() {
-        remoteView.keyTextField.textPublisher.sink { [weak self] value in
+        cloudComputingView.urlTextField.textPublisher
+            .dropFirst()
+            .sink { [weak self] value in
             guard let self = self else { return }
-            guard !value.isEmpty else {
-                self.remoteView.submitButton.isEnabled = false
-                return
-            }
-            let isEnable = self.remoteView.secretTextField.text != ""
-            self.remoteView.submitButton.isEnabled = isEnable
+            self.presentEnvironment()
         }.store(in: &self.cancellable)
         
-        remoteView.secretTextField.textPublisher.sink { [weak self] value in
+        cloudComputingView.keyTextField.textPublisher.sink { [weak self] value in
             guard let self = self else { return }
             guard !value.isEmpty else {
-                self.remoteView.submitButton.isEnabled = false
+                self.cloudComputingView.submitButton.isEnabled = false
                 return
             }
-            let isEnable = self.remoteView.keyTextField.text != ""
-            self.remoteView.submitButton.isEnabled = isEnable
+            self.validateCloundAuth()
         }.store(in: &self.cancellable)
         
-        remoteView.submitButton.tapPublisher.sink { [weak self] _ in
+        cloudComputingView.secretTextField.textPublisher.sink { [weak self] value in
+            guard let self = self else { return }
+            guard !value.isEmpty else {
+                self.cloudComputingView.submitButton.isEnabled = false
+                return
+            }
+            self.validateCloundAuth()
+        }.store(in: &self.cancellable)
+        
+        cloudComputingView.environmentView.listView.$selectedIndex.sink { [weak self] index in
+            guard let self = self else { return }
+            self.environments = self.getURLEnvironments(index: index ?? 0)
+            self.cloudComputingView.urlTextField.text = ""
+        }.store(in: &self.cancellable)
+        
+        cloudComputingView.submitButton.tapPublisher.sink { [weak self] _ in
             guard let self = self else { return }
             self.view.endEditing(true)
             self.performLogin()
         }.store(in: &self.cancellable)
     }
     
+    private func validateCloundAuth() {
+        let hasURL = cloudComputingView.urlTextField.text != ""
+        let hasKey = cloudComputingView.keyTextField.text != ""
+        let hasSecretKey = cloudComputingView.secretTextField.text != ""
+        let isEnable = hasURL && hasKey && hasSecretKey
+        cloudComputingView.submitButton.isEnabled = isEnable
+    }
+    
     private func performLogin() {
-        guard let apiKey = self.remoteView.keyTextField.text,
-              let apiSecret = self.remoteView.secretTextField.text else { return
+        guard let apiKey = self.cloudComputingView.keyTextField.text,
+              let apiSecret = self.cloudComputingView.secretTextField.text else { return
         }
         self.displayAnimatedActivityIndicatorView()
         APIManager.shared.authorize(apiKey: apiKey, apiSecret: apiSecret) { [weak self] (isSuccess, error) in
@@ -185,11 +207,11 @@ extension OnDeviceRemoteViewController {
 }
 
 // MARK: Configure Views
-extension OnDeviceRemoteViewController {
+extension CloudComputingViewController {
     
     private func constructHierarchy() {
         layoutTitleLabel()
-        layoutRemoteView()
+        layoutCloudView()
         layoutTableView()
     }
     
@@ -201,9 +223,9 @@ extension OnDeviceRemoteViewController {
         }
     }
     
-    private func layoutRemoteView() {
-        self.view.addSubview(remoteView)
-        remoteView.snp.makeConstraints { make in
+    private func layoutCloudView() {
+        self.view.addSubview(cloudComputingView)
+        cloudComputingView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Dimension.Spacing.spacing24)
             make.leading.trailing.equalToSuperview()
         }
@@ -220,7 +242,7 @@ extension OnDeviceRemoteViewController {
 }
 
 // MARK: - UITableViewDataSource
-extension OnDeviceRemoteViewController: UITableViewDataSource {
+extension CloudComputingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.objects?.count ?? 0
     }
@@ -235,16 +257,62 @@ extension OnDeviceRemoteViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension OnDeviceRemoteViewController: UITableViewDelegate {
+extension CloudComputingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let projectVC = storyboard.instantiateViewController(withIdentifier: "ScenesVC") as? ScenesVC {
-            guard let project = viewModel.objects?[indexPath.row] else {
-                return
-            }
-            let viewModel = ScenesViewModel(project: project)
-            projectVC.viewModel = viewModel
-            self.navigationController?.pushViewController(projectVC, animated: true)
+        
+    }
+}
+
+extension CloudComputingViewController {
+    
+    private func presentEnvironment() {
+        let environmentVC = ListEnvironmentViewController(items: environments)
+        
+        environmentVC.selectedItemsPublisher.sink { [weak self] items in
+            guard let self = self else { return }
+            self.environments = items
+            self.updateSelectedIndex()
+            self.dismiss(animated: true)
+        }.store(in: &cancellable)
+        
+        environmentVC.modalTransitionStyle = .crossDissolve
+        environmentVC.modalPresentationStyle = .overFullScreen
+        self.present(environmentVC, animated: true)
+    }
+    
+    private func generatedQAEnv() -> [Environment] {
+        let items = [
+            Environment(title: "gateway-qa-1.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-qa-2.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-qa-3.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-e2e.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-demo.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-demo.ca.qa.alto-platform.ai/api", selected: false),
+            Environment(title: "gateway-demo.eu.qa.alto-platform.ai/api", selected: false)
+        ]
+        return items
+    }
+    
+    private func generatedProductEnv() -> [Environment] {
+        let items = [
+            Environment(title: "app.alto-platform.ai/api", selected: false),
+            Environment(title: "app.ca.alto-platform.ai/api", selected: false),
+            Environment(title: "app.eu.alto-platform.ai/api", selected: false)
+        ]
+        return items
+    }
+    
+    private func getURLEnvironments(index: Int) -> [Environment] {
+        if index != 0 {
+            return generatedProductEnv()
         }
+        return generatedQAEnv()
+    }
+    
+    private func updateSelectedIndex() {
+        let items = self.environments.filter { item -> Bool in
+            return item.selected
+        }
+        self.cloudComputingView.urlTextField.text = items.first?.title
     }
 }

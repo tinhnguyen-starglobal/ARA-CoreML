@@ -45,6 +45,8 @@
 		0DFA24DB26A6E6770014CD6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DA26A6E6770014CD6E /* Constants.swift */; };
 		0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */; };
 		1007AEDB05DE2E0D1B2679CC /* Pods_ALTOAI_Detect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */; };
+		19083C4028D79AA90064727C /* CloudComputingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C3F28D79AA90064727C /* CloudComputingViewController.swift */; };
+		19083C4228D79AB80064727C /* EdgeComputingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C4128D79AB80064727C /* EdgeComputingViewController.swift */; };
 		1939A81E28AD7D58002C2F22 /* OnDeviceLocalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */; };
 		1939A82028AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */; };
 		1939A82228AE2297002C2F22 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82128AE2297002C2F22 /* DynamicTableView.swift */; };
@@ -175,6 +177,8 @@
 		0DE4F1E926B7FBAA007053DB /* TableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeader.swift; sourceTree = "<group>"; };
 		0DFA24DA26A6E6770014CD6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		19083C3F28D79AA90064727C /* CloudComputingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudComputingViewController.swift; sourceTree = "<group>"; };
+		19083C4128D79AB80064727C /* EdgeComputingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingViewController.swift; sourceTree = "<group>"; };
 		1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalViewController.swift; sourceTree = "<group>"; };
 		1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteViewController.swift; sourceTree = "<group>"; };
 		1939A82128AE2297002C2F22 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
@@ -713,6 +717,8 @@
 			isa = PBXGroup;
 			children = (
 				19829A2E28A36B060036C7E7 /* OutDeviceViewController.swift */,
+				19083C4128D79AB80064727C /* EdgeComputingViewController.swift */,
+				19083C3F28D79AA90064727C /* CloudComputingViewController.swift */,
 				197F753428D2DFAF00E260C4 /* ListEnvironmentViewController.swift */,
 			);
 			path = ViewController;
@@ -1083,6 +1089,7 @@
 				0DB4AA8C26B07252001F5CD3 /* APIManager.swift in Sources */,
 				0D51402F26A5A88600CEE1DD /* LoginVC.swift in Sources */,
 				19829A1228A364BE0036C7E7 /* OutDeviceEdgeUseCasePort.swift in Sources */,
+				19083C4228D79AB80064727C /* EdgeComputingViewController.swift in Sources */,
 				19829A6C28A431BA0036C7E7 /* Button.swift in Sources */,
 				89BBF9D5268E9B6100FA46B6 /* BoundingBox.swift in Sources */,
 				19829A6E28A432030036C7E7 /* Dimension+Button.swift in Sources */,
@@ -1142,6 +1149,7 @@
 				19829A7028A432800036C7E7 /* ButtonStyle.swift in Sources */,
 				0D7ECD2826BC2045004D40DD /* ActivityIndicatorOverlay.swift in Sources */,
 				0DB4AA9A26B1BC37001F5CD3 /* Project.swift in Sources */,
+				19083C4028D79AA90064727C /* CloudComputingViewController.swift in Sources */,
 				89BBF9DB268E9B6100FA46B6 /* CameraViewController.swift in Sources */,
 				19829A6528A429B20036C7E7 /* CombineControlProperty.swift in Sources */,
 				1988A71928CF26A700B9C009 /* RadioButtonStyle.swift in Sources */,

@@ -43,7 +43,7 @@ enum TabbarItem: CaseIterable {
         switch self {
         case .outDevice:
             let outDeviceVC = OutDeviceViewController()
-            outDeviceVC.bindViewModel(to: OutDeviceViewModel())
+//            outDeviceVC.bindViewModel(to: OutDeviceViewModel())
             return BaseTabbarController(type: .outDevice, rootVC: outDeviceVC)
         case .onDevice:
             let onDeviceVC = OnDeviceViewController()

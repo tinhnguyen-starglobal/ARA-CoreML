@@ -73,7 +73,7 @@ enum APIRouter: APIConfiguration {
     
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
-        let url = try Constants.ProductionServer.baseURL.asURL()
+        let url = try Constants.DemoServer.baseURL.asURL()
         
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         
