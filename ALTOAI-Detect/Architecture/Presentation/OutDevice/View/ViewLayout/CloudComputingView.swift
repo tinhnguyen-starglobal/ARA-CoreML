@@ -28,6 +28,7 @@ final class CloudComputingView: BaseView {
         let textfieldView = TextFieldView(style: .normal(), state: .normal)
         textfieldView.placeholder = "URL"
         textfieldView.title = "URL"
+        textfieldView.textField.tintColor = .clear
         return textfieldView
     }()
     
@@ -99,7 +100,7 @@ extension CloudComputingView {
         iconView.snp.makeConstraints { make in
             make.width.height.equalTo(24)
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().inset(Dimension.Spacing.spacing8)
+            make.trailing.equalToSuperview().inset(Dimension.Spacing.spacing4)
         }
     }
     

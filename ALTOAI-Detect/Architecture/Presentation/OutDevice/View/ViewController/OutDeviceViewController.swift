@@ -94,6 +94,7 @@ extension OutDeviceViewController {
         cloudComputingView.environmentView.listView.$selectedIndex.sink { [weak self] index in
             guard let self = self else { return }
             self.environments = self.getURLEnvironments(index: index ?? 0)
+            self.cloudComputingView.urlTextField.text = ""
         }.store(in: &self.cancellable)
     }
 }
@@ -195,6 +196,7 @@ extension OutDeviceViewController {
         environmentVC.selectedItemsPublisher.sink { [weak self] items in
             guard let self = self else { return }
             self.environments = items
+            self.updateSelectedIndex()
             self.dismiss(animated: true)
         }.store(in: &cancellable)
         
@@ -230,5 +232,12 @@ extension OutDeviceViewController {
             return generatedProductEnv()
         }
         return generatedQAEnv()
+    }
+    
+    private func updateSelectedIndex() {
+        let items = self.environments.filter { item -> Bool in
+            return item.selected
+        }
+        self.cloudComputingView.urlTextField.text = items.first?.title
     }
 }
