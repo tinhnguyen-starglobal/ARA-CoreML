@@ -84,11 +84,11 @@ extension OutDeviceViewController {
             }
         }.store(in: &self.cancellable)
         
-        cloudComputingView.urlTextField.textPublisher.sink { [weak self] value in
+        cloudComputingView.urlTextField.textPublisher
+            .dropFirst()
+            .sink { [weak self] value in
             guard let self = self else { return }
-            if !value.isEmpty {
-                self.presentEnvironment()
-            }
+            self.presentEnvironment()
         }.store(in: &self.cancellable)
         
         cloudComputingView.environmentView.listView.$selectedIndex.sink { [weak self] index in

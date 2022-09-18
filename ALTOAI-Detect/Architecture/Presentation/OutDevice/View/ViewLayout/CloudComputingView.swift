@@ -31,6 +31,12 @@ final class CloudComputingView: BaseView {
         return textfieldView
     }()
     
+    let iconView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.image = UIImage(named: "arrow-down")
+        return imageView
+    }()
+    
     let keyTextField: TextFieldView = {
         let textfieldView = TextFieldView(style: .normal(), state: .normal)
         textfieldView.placeholder = "API key"
@@ -64,6 +70,7 @@ extension CloudComputingView {
     private func constructHierarchy() {
         layoutEnvironmentView()
         layoutStackView()
+        layoutIconView()
         layoutSubmitButton()
     }
     
@@ -85,6 +92,15 @@ extension CloudComputingView {
         stackView.addArrangedSubview(urlTextField)
         stackView.addArrangedSubview(keyTextField)
         stackView.addArrangedSubview(secretTextField)
+    }
+    
+    private func layoutIconView() {
+        self.urlTextField.textField.addSubview(iconView)
+        iconView.snp.makeConstraints { make in
+            make.width.height.equalTo(24)
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(Dimension.Spacing.spacing8)
+        }
     }
     
     private func layoutSubmitButton() {

@@ -72,7 +72,7 @@ final class TextFieldView: UIView {
         }
     }
 
-    private var textField: UITextField = {
+    var textField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .none
         textField.clearButtonMode = .whileEditing
