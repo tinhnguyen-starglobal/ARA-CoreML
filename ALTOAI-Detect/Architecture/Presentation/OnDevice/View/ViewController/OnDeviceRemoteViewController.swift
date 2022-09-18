@@ -11,6 +11,7 @@ final class OnDeviceRemoteViewController: BaseViewController {
     
     private let remoteView: OnDeviceRemoteView = {
         let view = OnDeviceRemoteView()
+//        view.backgroundColor = Constant.Color.Background.background2
         return view
     }()
     
@@ -58,6 +59,7 @@ final class OnDeviceRemoteViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        titleLabel.isHidden = true
         if hasModel {
             loadData()
         }
@@ -188,8 +190,8 @@ extension OnDeviceRemoteViewController {
 extension OnDeviceRemoteViewController {
     
     private func constructHierarchy() {
-        layoutTitleLabel()
         layoutRemoteView()
+        layoutTitleLabel()
         layoutTableView()
     }
     
@@ -204,7 +206,7 @@ extension OnDeviceRemoteViewController {
     private func layoutRemoteView() {
         self.view.addSubview(remoteView)
         remoteView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Dimension.Spacing.spacing24)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
         }
     }

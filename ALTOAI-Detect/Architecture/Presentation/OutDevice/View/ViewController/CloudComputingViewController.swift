@@ -61,6 +61,7 @@ final class CloudComputingViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        titleLabel.isHidden = true
         if hasModel {
             loadData()
         }
@@ -210,8 +211,8 @@ extension CloudComputingViewController {
 extension CloudComputingViewController {
     
     private func constructHierarchy() {
-        layoutTitleLabel()
         layoutCloudView()
+        layoutTitleLabel()
         layoutTableView()
     }
     
@@ -226,7 +227,7 @@ extension CloudComputingViewController {
     private func layoutCloudView() {
         self.view.addSubview(cloudComputingView)
         cloudComputingView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(Dimension.Spacing.spacing24)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
         }
     }
