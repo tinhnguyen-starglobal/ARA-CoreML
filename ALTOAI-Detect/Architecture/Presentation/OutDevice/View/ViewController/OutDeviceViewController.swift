@@ -29,6 +29,7 @@ final class OutDeviceViewController: BaseViewController {
     
     private lazy var edgeViewController: EdgeComputingViewController = {
         let viewController = EdgeComputingViewController()
+        viewController.bindViewModel(to: OutDeviceViewModel())
         self.addViewController(child: viewController)
         return viewController
     }()

@@ -11,7 +11,6 @@ final class OnDeviceRemoteViewController: BaseViewController {
     
     private let remoteView: OnDeviceRemoteView = {
         let view = OnDeviceRemoteView()
-//        view.backgroundColor = Constant.Color.Background.background2
         return view
     }()
     

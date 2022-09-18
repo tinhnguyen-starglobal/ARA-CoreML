@@ -9,7 +9,7 @@ import UIKit
 import Combine
 import AVFoundation
 
-final class EdgeComputingViewController: BaseViewController {
+final class EdgeComputingViewController: BaseViewController, Bindable {
     
     private let edgeComputingView: EdgeComputingView = {
         let view = EdgeComputingView()
@@ -22,6 +22,10 @@ final class EdgeComputingViewController: BaseViewController {
         super.viewDidLoad()
         configurePublisher()
         constructHierarchy()
+    }
+    
+    func bindViewModel() {
+        
     }
 }
 
