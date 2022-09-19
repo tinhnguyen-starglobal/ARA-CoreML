@@ -119,7 +119,7 @@ class ProjectsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
         let logoutAlert = UIAlertController(title: nil, message: "Are you sure want to logout?", preferredStyle: .alert)
 
         logoutAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-            KeyChainManager.shared.signOutUser()
+            KeyChainManager.shared.signOutUserOnDevice()
             self.navigationController?.popToRootViewController(animated: true)
         }))
 

@@ -50,7 +50,7 @@ class NetworkRequestInterceptor: RequestInterceptor {
     }
     
     private func reAuthorize(completion: @escaping (_ isSuccess: Bool) -> Void) {
-        let credentials =  KeyChainManager.shared.getUserCredentials()
+        let credentials =  KeyChainManager.shared.getUserOnDevice()
         if let apiKey = credentials.apiKey, let apiSecret = credentials.secretKey {
             APIManager.shared().authorize(apiKey: apiKey, apiSecret: apiSecret) { (isSuccess, error) in
                 if isSuccess {

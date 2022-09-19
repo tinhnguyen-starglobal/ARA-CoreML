@@ -17,7 +17,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let _ = KeyChainManager.shared.getToken() {
+        if let _ = KeyChainManager.shared.getTokenOnDevice() {
             performSegue(withIdentifier: "toProjects", sender: self)
         }
     }

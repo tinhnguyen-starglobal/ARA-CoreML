@@ -39,14 +39,20 @@ class APIManager {
     }()
 
     func authorize(apiKey: String, apiSecret: String, completion: @escaping (Bool, Error?) -> Void) {
-        sessionManager.request(APIRouter.login(apiKey: apiKey, apiSecret: apiSecret)).responseDecodable(of: AccessToken.self) { response in
+        sessionManager.request(APIRouter.login(apiKey: apiKey, apiSecret: apiSecret)).responseDecodable(of: AccessToken.self) { [weak self] response in
+            guard let self = self else { return }
             if response.response?.statusCode == 400 {
                 completion(false, CustomError.incorrectCredentials)
             } else {
                 guard let token = response.value else {
                     return completion(false, response.error)
                 }
-                KeyChainManager.shared.signIn(apiKey: apiKey, secretKey: apiSecret, token: token.accessToken)
+                switch self.type {
+                case .outDevice:
+                    KeyChainManager.shared.signIn(apiKey: apiKey, secretKey: apiSecret, token: token.accessToken)
+                case .onDevice:
+                    KeyChainManager.shared.signIn(apiKey: apiKey, secretKey: apiSecret, token: token.accessToken)
+                }
                 completion(true, nil)
             }
         }
