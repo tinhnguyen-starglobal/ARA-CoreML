@@ -568,10 +568,10 @@
 		198299F028A362C60036C7E7 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
-				19083C4328D839200064727C /* Framework */,
 				198299F128A362D00036C7E7 /* Main */,
 				198299F328A363350036C7E7 /* Domain */,
 				198299F228A362D60036C7E7 /* Presentation */,
+				19083C4328D839200064727C /* Framework */,
 			);
 			path = Architecture;
 			sourceTree = "<group>";

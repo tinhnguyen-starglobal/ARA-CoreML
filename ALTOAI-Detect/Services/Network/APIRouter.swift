@@ -36,7 +36,7 @@ enum APIRouter: APIConfiguration {
         }
     }
     // MARK: - Parameters
-     var parameters: RequestParams {
+    var parameters: RequestParams {
         switch self {
         case .login(let apiKey, let apiSecret):
             return .body(["client_id":apiKey,"client_secret":apiSecret])
@@ -111,13 +111,13 @@ enum APIRouter: APIConfiguration {
                 }
             }
         case .url(let params):
-                let queryParams = params.map { pair  in
-                    return URLQueryItem(name: pair.key, value: "\(pair.value)")
-                }
-                var components = URLComponents(string:url.appendingPathComponent(path).absoluteString)
-                components?.queryItems = queryParams
-                urlRequest.url = components?.url
+            let queryParams = params.map { pair  in
+                return URLQueryItem(name: pair.key, value: "\(pair.value)")
+            }
+            var components = URLComponents(string:url.appendingPathComponent(path).absoluteString)
+            components?.queryItems = queryParams
+            urlRequest.url = components?.url
         }
-            return urlRequest
+        return urlRequest
     }
 }

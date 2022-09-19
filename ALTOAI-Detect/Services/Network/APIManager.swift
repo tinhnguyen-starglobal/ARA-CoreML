@@ -8,6 +8,7 @@
 import Alamofire
 
 class APIManager {
+    
     static let shared: APIManager = {
         return APIManager()
     }()
@@ -24,7 +25,7 @@ class APIManager {
         return Session(configuration: configuration, interceptor: interceptor, eventMonitors: [networkLogger])
     }()
 
-    func authorize(apiKey:String, apiSecret: String, completion: @escaping (Bool, Error?) -> Void) {
+    func authorize(apiKey: String, apiSecret: String, completion: @escaping (Bool, Error?) -> Void) {
         sessionManager.request(APIRouter.login(apiKey: apiKey, apiSecret: apiSecret)).responseDecodable(of: AccessToken.self) { response in
             if response.response?.statusCode == 400 {
                 completion(false, CustomError.incorrectCredentials)
