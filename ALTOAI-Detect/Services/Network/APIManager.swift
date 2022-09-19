@@ -98,7 +98,9 @@ class APIManager {
     }
     
     func getExperimentRuns(experimentId : String, completion: @escaping ([ExperimentRun]?, Error?) -> Void) {
-        sessionManager.request(APIRouter.getExperimentRun(experimentId: experimentId)).responseDecodable(of: [ExperimentRun].self) { response in
+        (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
+        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
+        sessionManager.request(APIRouter.getExperimentRun(experimentId: experimentId, url: url)).responseDecodable(of: [ExperimentRun].self) { response in
             guard let objects = response.value else {
                 completion(nil, CustomError.cantGetExperimentRuns)
                 return

@@ -15,7 +15,6 @@ class ExperimentsVC : UIViewController, UITableViewDelegate, UITableViewDataSour
     let refreshControl = UIRefreshControl()
     
     var isLoading = false
-    var apiType: APIType = .onDevice
     
     lazy var viewModel: ExperimentsViewModel = {
         return ExperimentsViewModel()
@@ -119,6 +118,7 @@ class ExperimentsVC : UIViewController, UITableViewDelegate, UITableViewDataSour
             return nil
         }
         let viewModel = ExperimentRunViewModel(experiment: experiment)
+        viewModel.apiType = self.viewModel.apiType
         return ExperimentRunVC(viewModel: viewModel, coder: coder)
     }
 }
