@@ -47,6 +47,13 @@
 		1007AEDB05DE2E0D1B2679CC /* Pods_ALTOAI_Detect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7165750EEFD0D4FBC986A65C /* Pods_ALTOAI_Detect.framework */; };
 		19083C4028D79AA90064727C /* CloudComputingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C3F28D79AA90064727C /* CloudComputingViewController.swift */; };
 		19083C4228D79AB80064727C /* EdgeComputingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C4128D79AB80064727C /* EdgeComputingViewController.swift */; };
+		19083C4728D83A210064727C /* APIEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C4628D83A210064727C /* APIEndPoint.swift */; };
+		19083C4928D83A550064727C /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C4828D83A550064727C /* APIError.swift */; };
+		19083C4B28D83A820064727C /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C4A28D83A820064727C /* APIResponse.swift */; };
+		19083C4D28D83AAA0064727C /* APIBaseInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C4C28D83AAA0064727C /* APIBaseInput.swift */; };
+		19083C4F28D83ACC0064727C /* APIBaseOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C4E28D83ACC0064727C /* APIBaseOutput.swift */; };
+		19083C5128D83AE60064727C /* APIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C5028D83AE60064727C /* APIServiceProtocol.swift */; };
+		19083C5328D83C1C0064727C /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C5228D83C1C0064727C /* APIBase.swift */; };
 		1939A81E28AD7D58002C2F22 /* OnDeviceLocalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */; };
 		1939A82028AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */; };
 		1939A82228AE2297002C2F22 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82128AE2297002C2F22 /* DynamicTableView.swift */; };
@@ -179,6 +186,13 @@
 		0DFA24DC26A6E69F0014CD6E /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		19083C3F28D79AA90064727C /* CloudComputingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudComputingViewController.swift; sourceTree = "<group>"; };
 		19083C4128D79AB80064727C /* EdgeComputingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeComputingViewController.swift; sourceTree = "<group>"; };
+		19083C4628D83A210064727C /* APIEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndPoint.swift; sourceTree = "<group>"; };
+		19083C4828D83A550064727C /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		19083C4A28D83A820064727C /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		19083C4C28D83AAA0064727C /* APIBaseInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBaseInput.swift; sourceTree = "<group>"; };
+		19083C4E28D83ACC0064727C /* APIBaseOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBaseOutput.swift; sourceTree = "<group>"; };
+		19083C5028D83AE60064727C /* APIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceProtocol.swift; sourceTree = "<group>"; };
+		19083C5228D83C1C0064727C /* APIBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
 		1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalViewController.swift; sourceTree = "<group>"; };
 		1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteViewController.swift; sourceTree = "<group>"; };
 		1939A82128AE2297002C2F22 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
@@ -494,6 +508,36 @@
 			path = MainTabBarVC;
 			sourceTree = "<group>";
 		};
+		19083C4328D839200064727C /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				19083C4428D839F10064727C /* Remote */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
+		19083C4428D839F10064727C /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				19083C4528D83A140064727C /* Base */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		19083C4528D83A140064727C /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				19083C5228D83C1C0064727C /* APIBase.swift */,
+				19083C4828D83A550064727C /* APIError.swift */,
+				19083C4628D83A210064727C /* APIEndPoint.swift */,
+				19083C4A28D83A820064727C /* APIResponse.swift */,
+				19083C4C28D83AAA0064727C /* APIBaseInput.swift */,
+				19083C4E28D83ACC0064727C /* APIBaseOutput.swift */,
+				19083C5028D83AE60064727C /* APIServiceProtocol.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		1939A82528AE22D3002C2F22 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +568,7 @@
 		198299F028A362C60036C7E7 /* Architecture */ = {
 			isa = PBXGroup;
 			children = (
+				19083C4328D839200064727C /* Framework */,
 				198299F128A362D00036C7E7 /* Main */,
 				198299F328A363350036C7E7 /* Domain */,
 				198299F228A362D60036C7E7 /* Presentation */,
@@ -1144,6 +1189,7 @@
 				19829A4728A3A7DA0036C7E7 /* Dimension+Shadow.swift in Sources */,
 				0DB4AAB826B2C0E0001F5CD3 /* Experiment.swift in Sources */,
 				0DB4AAC026B2C63C001F5CD3 /* ExperimentRun.swift in Sources */,
+				19083C4728D83A210064727C /* APIEndPoint.swift in Sources */,
 				19829A2F28A36B060036C7E7 /* OutDeviceViewController.swift in Sources */,
 				19829A7428A43AC80036C7E7 /* AppCommandBuilder.swift in Sources */,
 				19829A7028A432800036C7E7 /* ButtonStyle.swift in Sources */,
@@ -1155,23 +1201,27 @@
 				1988A71928CF26A700B9C009 /* RadioButtonStyle.swift in Sources */,
 				19829A3828A36BBE0036C7E7 /* OnDeviceRemoteView.swift in Sources */,
 				0D51403226A5D23000CEE1DD /* LocalModelsVC.swift in Sources */,
+				19083C4B28D83A820064727C /* APIResponse.swift in Sources */,
 				19EE7CF828B2B833002D8920 /* RemoteDeviceTableViewCell.swift in Sources */,
 				1988A71528CF264A00B9C009 /* RadioButtonWithLabel.swift in Sources */,
 				19829A7628A43ADE0036C7E7 /* InitializeComponentCommand.swift in Sources */,
 				89BBF9D9268E9B6100FA46B6 /* Helpers.swift in Sources */,
 				0DE25C3F26BD2666001B1620 /* AltoActivityIndicatorView.swift in Sources */,
 				19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */,
+				19083C4928D83A550064727C /* APIError.swift in Sources */,
 				1939A83828B09F5E002C2F22 /* LabelDecorator.swift in Sources */,
 				0DE4F1E326B7F3E2007053DB /* Fonts.swift in Sources */,
 				1939A82428AE22C0002C2F22 /* BaseTableViewCell.swift in Sources */,
 				19829A1428A364C90036C7E7 /* OutDeviceCloundUseCasePort.swift in Sources */,
 				1988A71728CF267C00B9C009 /* RadioButton.swift in Sources */,
+				19083C5128D83AE60064727C /* APIServiceProtocol.swift in Sources */,
 				89BBF9D3268E9B6100FA46B6 /* UIImage+CVPixelBuffer.swift in Sources */,
 				19829A5828A424910036C7E7 /* TextFieldStyle.swift in Sources */,
 				197F753B28D2E7CC00E260C4 /* Environment.swift in Sources */,
 				19829A2D28A36AFC0036C7E7 /* EdgeComputingView.swift in Sources */,
 				1988A71D28CF270A00B9C009 /* Dimension+RadioButton.swift in Sources */,
 				19829A5E28A428E10036C7E7 /* UITextField+Extension.swift in Sources */,
+				19083C4F28D83ACC0064727C /* APIBaseOutput.swift in Sources */,
 				19829A3A28A36BCB0036C7E7 /* OnDeviceViewController.swift in Sources */,
 				1939A83C28B0A1BB002C2F22 /* Constant+Font.swift in Sources */,
 				0DE4F1EA26B7FBAA007053DB /* TableViewHeader.swift in Sources */,
@@ -1182,6 +1232,7 @@
 				19829A7D28A450600036C7E7 /* BaseViewModel.swift in Sources */,
 				197F753728D2E19300E260C4 /* SingleChoiceView.swift in Sources */,
 				19829A2728A36A310036C7E7 /* TabbarItem.swift in Sources */,
+				19083C5328D83C1C0064727C /* APIBase.swift in Sources */,
 				89BBF9D7268E9B6100FA46B6 /* YOLO.swift in Sources */,
 				0DE4F1E126B7F3C9007053DB /* Colors.swift in Sources */,
 				1939A82028AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift in Sources */,
@@ -1198,6 +1249,7 @@
 				19829A8528A4DEDF0036C7E7 /* OnDeviceLocalView.swift in Sources */,
 				0DB4AAA226B20331001F5CD3 /* AccessToken.swift in Sources */,
 				19829A1D28A368640036C7E7 /* BaseView.swift in Sources */,
+				19083C4D28D83AAA0064727C /* APIBaseInput.swift in Sources */,
 				0D7ECD2D26BC2FF8004D40DD /* LocalViewModel.swift in Sources */,
 				0DB4AAC626B2C7B6001F5CD3 /* ExperimentRunVC.swift in Sources */,
 				19829A4528A3A7C00036C7E7 /* Dimension+Spacing.swift in Sources */,
