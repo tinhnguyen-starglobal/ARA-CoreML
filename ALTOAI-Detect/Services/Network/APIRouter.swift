@@ -11,12 +11,12 @@ import SimpleKeychain
 
 enum APIRouter: APIConfiguration {
     
-    case login(apiKey:String, apiSecret:String)
+    case login(apiKey: String, apiSecret: String)
     case getProjects
-    case getScenes(projectId:String)
-    case getExperiments(sceneId:String)
-    case getExperimentRun(experimentId:String)
-    case getModel(experimentId:String, runId:String)
+    case getScenes(projectId: String)
+    case getExperiments(sceneId: String)
+    case getExperimentRun(experimentId: String)
+    case getModel(experimentId: String, runId: String)
     
     // MARK: - HTTPMethod
     var method: HTTPMethod {
@@ -39,7 +39,7 @@ enum APIRouter: APIConfiguration {
     var parameters: RequestParams {
         switch self {
         case .login(let apiKey, let apiSecret):
-            return .body(["client_id":apiKey,"client_secret":apiSecret])
+            return .body(["client_id": apiKey,"client_secret": apiSecret])
         case .getProjects:
             return.body([:])
         case .getScenes:
@@ -49,7 +49,7 @@ enum APIRouter: APIConfiguration {
         case .getExperimentRun:
             return.body([:])
         case .getModel:
-            return.url(["type":"ML"])
+            return.url(["type": "ML"])
         }
     }
     

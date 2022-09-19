@@ -52,7 +52,7 @@ class NetworkRequestInterceptor: RequestInterceptor {
     private func reAuthorize(completion: @escaping (_ isSuccess: Bool) -> Void) {
         let credentials =  KeyChainManager.shared.getUserCredentials()
         if let apiKey = credentials.apiKey, let apiSecret = credentials.secretKey {
-            APIManager.shared.authorize(apiKey: apiKey, apiSecret: apiSecret) { (isSuccess, error) in
+            APIManager.shared().authorize(apiKey: apiKey, apiSecret: apiSecret) { (isSuccess, error) in
                 if isSuccess {
                     completion(true)
                 } else {

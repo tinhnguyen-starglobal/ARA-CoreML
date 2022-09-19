@@ -161,7 +161,7 @@ extension CloudComputingViewController {
               let apiSecret = self.cloudComputingView.secretTextField.text else { return
         }
         self.displayAnimatedActivityIndicatorView()
-        APIManager.shared.authorize(apiKey: apiKey, apiSecret: apiSecret) { [weak self] (isSuccess, error) in
+        APIManager.shared(.outDevice).authorize(apiKey: apiKey, apiSecret: apiSecret) { [weak self] (isSuccess, error) in
             self?.hideAnimatedActivityIndicatorView()
             
             if (isSuccess) {

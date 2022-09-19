@@ -6,12 +6,25 @@
 //
 
 import Alamofire
+import Foundation
+
+enum APIType {
+    case outDevice
+    case onDevice
+}
 
 class APIManager {
     
-    static let shared: APIManager = {
+    static let sharedManager: APIManager = {
         return APIManager()
     }()
+    
+    var type: APIType = .onDevice
+    
+    class func shared(_ type: APIType = .onDevice) -> APIManager {
+        sharedManager.type = type
+        return sharedManager
+    }
     
     typealias completionHandler = ((Result<Data, CustomError>) -> Void)
     

@@ -80,7 +80,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBAction func login(_ sender: Any) {
         guard let apiKey = apiKeyTxtFld.text, let apiSecret = apiSecretTxtFld.text else { return }
         self.displayAnimatedActivityIndicatorView()
-        APIManager.shared.authorize(apiKey: apiKey, apiSecret: apiSecret) { (isSuccess, error) in
+        APIManager.shared().authorize(apiKey: apiKey, apiSecret: apiSecret) { (isSuccess, error) in
             self.hideAnimatedActivityIndicatorView()
             
             if (isSuccess) {

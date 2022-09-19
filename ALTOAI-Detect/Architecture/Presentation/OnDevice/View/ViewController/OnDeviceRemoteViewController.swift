@@ -139,7 +139,7 @@ extension OnDeviceRemoteViewController {
               let apiSecret = self.remoteView.secretTextField.text else { return
         }
         self.displayAnimatedActivityIndicatorView()
-        APIManager.shared.authorize(apiKey: apiKey, apiSecret: apiSecret) { [weak self] (isSuccess, error) in
+        APIManager.shared(.onDevice).authorize(apiKey: apiKey, apiSecret: apiSecret) { [weak self] (isSuccess, error) in
             self?.hideAnimatedActivityIndicatorView()
             
             if (isSuccess) {
