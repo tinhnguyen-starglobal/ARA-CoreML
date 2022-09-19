@@ -239,6 +239,7 @@ extension OnDeviceRemoteViewController: UITableViewDelegate {
             }
             let viewModel = ScenesViewModel(project: project)
             projectVC.viewModel = viewModel
+            projectVC.apiType = .onDevice
             self.navigationController?.pushViewController(projectVC, animated: true)
         }
     }

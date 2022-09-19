@@ -74,7 +74,9 @@ class APIManager {
     }
     
     func getScenes(projectId : String, completion: @escaping ([Scene]?, Error?) -> Void) {
-        sessionManager.request(APIRouter.getScenes(projectId: projectId)).responseDecodable(of: [Scene].self) { response in
+        (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
+        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
+        sessionManager.request(APIRouter.getScenes(projectId: projectId, url: url)).responseDecodable(of: [Scene].self) { response in
             guard let objects = response.value else {
                 completion(nil, CustomError.cantGetScenes)
                 return
@@ -84,7 +86,9 @@ class APIManager {
     }
     
     func getExperiments(sceneId : String, completion: @escaping ([Experiment]?, Error?) -> Void) {
-        sessionManager.request(APIRouter.getExperiments(sceneId: sceneId)).responseDecodable(of: [Experiment].self) { response in
+        (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
+        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
+        sessionManager.request(APIRouter.getExperiments(sceneId: sceneId, url: url)).responseDecodable(of: [Experiment].self) { response in
             guard let objects = response.value else {
                 completion(nil, CustomError.cantGetExperiments)
                 return

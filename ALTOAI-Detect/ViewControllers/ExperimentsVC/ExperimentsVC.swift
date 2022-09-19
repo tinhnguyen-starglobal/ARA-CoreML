@@ -15,6 +15,7 @@ class ExperimentsVC : UIViewController, UITableViewDelegate, UITableViewDataSour
     let refreshControl = UIRefreshControl()
     
     var isLoading = false
+    var apiType: APIType = .onDevice
     
     lazy var viewModel: ExperimentsViewModel = {
         return ExperimentsViewModel()
@@ -31,7 +32,6 @@ class ExperimentsVC : UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         loadData()
     }
     

@@ -10,6 +10,7 @@ import Foundation
 class ExperimentsViewModel {
     var scene : Scene?
     var objects: [Experiment]?
+    var apiType: APIType = .onDevice
     
     init(scene:Scene) {
         self.scene = scene
@@ -21,7 +22,7 @@ class ExperimentsViewModel {
     func getData(completion: ((Bool) -> Void)?) {
         guard let sceneId = scene?.id else {return}
         
-        APIManager.shared().getExperiments(sceneId: sceneId) { (fetched, error) in
+        APIManager.shared(apiType).getExperiments(sceneId: sceneId) { (fetched, error) in
             self.objects = fetched
             completion?(error == nil)
         }

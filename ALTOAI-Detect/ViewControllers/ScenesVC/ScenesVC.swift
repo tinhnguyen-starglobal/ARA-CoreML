@@ -14,6 +14,7 @@ class ScenesVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
     let refreshControl = UIRefreshControl()
     
     var isLoading = false
+    var apiType: APIType = .onDevice
     
     lazy var viewModel: ScenesViewModel = {
         return ScenesViewModel()
@@ -56,7 +57,7 @@ class ScenesVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
     func loadData(animated: Bool = true) {
         self.tableView.displayAnimatedActivityIndicatorView()
         isLoading = true
-        viewModel.getData { _ in
+        viewModel.getData(type: self.apiType) { _ in
             self.isLoading = false
             self.refreshControl.endRefreshing()
             self.tableView.hideAnimatedActivityIndicatorView()
@@ -108,6 +109,7 @@ class ScenesVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
             return nil
         }
         let viewModel = ExperimentsViewModel(scene: scene)
+        viewModel.apiType = self.apiType
         return ExperimentsVC(viewModel: viewModel, coder: coder)
     }
 }
