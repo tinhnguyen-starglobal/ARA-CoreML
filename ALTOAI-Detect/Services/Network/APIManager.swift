@@ -110,6 +110,8 @@ class APIManager {
     }
     
     func downloadModel(experimentId : String, runId: String, completion: @escaping (URL?) -> Void) {
+        (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
+        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
         let destination: DownloadRequest.Destination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let fileURL = documentsURL.appendingPathComponent("\(experimentId)-\(runId).zip")
@@ -117,7 +119,7 @@ class APIManager {
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
-        sessionManager.download(APIRouter.getModel(experimentId: experimentId, runId: runId) , to:destination).response { response in
+        sessionManager.download(APIRouter.getModel(experimentId: experimentId, runId: runId, url: url) , to:destination).response { response in
             if response.error == nil, let zipURL = response.fileURL {
                 print(zipURL)
                 completion(zipURL)

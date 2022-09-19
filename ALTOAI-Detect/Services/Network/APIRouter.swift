@@ -16,7 +16,7 @@ enum APIRouter: APIConfiguration {
     case getScenes(projectId: String, url: String)
     case getExperiments(sceneId: String, url: String)
     case getExperimentRun(experimentId: String, url: String)
-    case getModel(experimentId: String, runId: String)
+    case getModel(experimentId: String, runId: String, url: String)
     
     var url: String {
         switch self {
@@ -30,8 +30,8 @@ enum APIRouter: APIConfiguration {
             return url
         case .getExperimentRun(_, let url):
             return url
-        default:
-            return Constants.ProductionServer.baseURL
+        case .getModel(_, _, let url):
+            return url
         }
     }
     
@@ -83,7 +83,7 @@ enum APIRouter: APIConfiguration {
             return "/ar/data/scenes/\(sceneId)/experiments"
         case .getExperimentRun(let experimentId, _):
             return "/ar/data/experiments/\(experimentId)/run"
-        case .getModel(let experimentId, let runId):
+        case .getModel(let experimentId, let runId, _):
             return "/ar/data/experiments/\(experimentId)/run/\(runId)/models"
         }
     }
