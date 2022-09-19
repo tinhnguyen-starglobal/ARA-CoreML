@@ -49,10 +49,8 @@ final class OnDeviceRemoteViewController: BaseViewController {
         configureTableView()
         configureRefreshControl()
         
-        if let _ = KeyChainManager.shared.getToken() {
-            if let _ = KeyChainManager.shared.getToken() {
-                self.hasModel = true
-            }
+        if let _ = KeyChainManager.shared.getTokenOnDevice() {
+            self.hasModel = true
         }
     }
     
@@ -179,7 +177,7 @@ extension OnDeviceRemoteViewController {
     }
     
     private func logOut() {
-        KeyChainManager.shared.signOutUser()
+        KeyChainManager.shared.signOutUserOnDevice()
         self.hasModel = false
         self.updateUI()
     }

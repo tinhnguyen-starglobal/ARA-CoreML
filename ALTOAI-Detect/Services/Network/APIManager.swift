@@ -19,26 +19,26 @@ class APIManager {
         return APIManager()
     }()
     
-    var type: APIType = .onDevice
+    var typeAPI: APIType = .onDevice
     
     class func shared(_ type: APIType = .onDevice) -> APIManager {
-        sharedManager.type = type
+        sharedManager.typeAPI = type
         return sharedManager
     }
     
     typealias completionHandler = ((Result<Data, CustomError>) -> Void)
     
-    let sessionManager: Session = {
+    var sessionManager: Session = {
         let networkLogger = NetworkLogger()
-        let interceptor = NetworkRequestInterceptor()
+        var interceptor = NetworkRequestInterceptor()
         let configuration = URLSessionConfiguration.af.default
         configuration.timeoutIntervalForRequest = 30
         configuration.waitsForConnectivity = true
-    
         return Session(configuration: configuration, interceptor: interceptor, eventMonitors: [networkLogger])
     }()
 
     func authorize(apiKey: String, apiSecret: String, completion: @escaping (Bool, Error?) -> Void) {
+        (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
         sessionManager.request(APIRouter.login(apiKey: apiKey, apiSecret: apiSecret)).responseDecodable(of: AccessToken.self) { [weak self] response in
             guard let self = self else { return }
             if response.response?.statusCode == 400 {
@@ -47,12 +47,14 @@ class APIManager {
                 guard let token = response.value else {
                     return completion(false, response.error)
                 }
-                switch self.type {
-                case .outDevice:
-                    KeyChainManager.shared.signIn(apiKey: apiKey, secretKey: apiSecret, token: token.accessToken)
-                case .onDevice:
-                    KeyChainManager.shared.signIn(apiKey: apiKey, secretKey: apiSecret, token: token.accessToken)
+                
+                switch self.typeAPI {
+                    case .outDevice:
+                        KeyChainManager.shared.signInOutDevice(apiKey: apiKey, secretKey: apiSecret, token: token.accessToken)
+                    case .onDevice:
+                        KeyChainManager.shared.signInOnDevice(apiKey: apiKey, secretKey: apiSecret, token: token.accessToken)
                 }
+                
                 completion(true, nil)
             }
         }

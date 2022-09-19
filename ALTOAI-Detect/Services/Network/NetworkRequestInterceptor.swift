@@ -13,11 +13,18 @@ class NetworkRequestInterceptor: RequestInterceptor {
     let retryDelay : TimeInterval = 3
     var isRefreshing: Bool = false
     
+    var apiType: APIType = .onDevice
+    
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Swift.Result<URLRequest, Error>) -> Void) {
         var request = urlRequest
-        if let token = KeyChainManager.shared.getToken() {
-            request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        var token: String = ""
+        switch apiType {
+        case .outDevice:
+            token = KeyChainManager.shared.getTokenOutDevice() ?? ""
+        case .onDevice:
+            token = KeyChainManager.shared.getTokenOnDevice() ?? ""
         }
+        request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
         completion(.success(request))
     }
 

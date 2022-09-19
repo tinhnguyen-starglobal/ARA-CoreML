@@ -45,7 +45,7 @@ final class OutDeviceViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let _ = KeyChainManager.shared.getToken() {
+        if let _ = KeyChainManager.shared.getTokenOutDevice() {
             self.isCloud = true
         }
         configureSegmentView()

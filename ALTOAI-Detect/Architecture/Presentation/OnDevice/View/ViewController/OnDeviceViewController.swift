@@ -44,7 +44,7 @@ final class OnDeviceViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let _ = KeyChainManager.shared.getToken() {
+        if let _ = KeyChainManager.shared.getTokenOnDevice() {
             self.isRemote = true
         }
         configurePublisher()

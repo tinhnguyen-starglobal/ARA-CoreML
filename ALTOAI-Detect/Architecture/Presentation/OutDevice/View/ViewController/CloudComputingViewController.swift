@@ -52,10 +52,8 @@ final class CloudComputingViewController: BaseViewController {
         configureTableView()
         configureRefreshControl()
         
-        if let _ = KeyChainManager.shared.getToken() {
-            if let _ = KeyChainManager.shared.getToken() {
-                self.hasModel = true
-            }
+        if let _ = KeyChainManager.shared.getTokenOutDevice() {
+            self.hasModel = true
         }
     }
     
@@ -201,7 +199,7 @@ extension CloudComputingViewController {
     }
     
     private func logOut() {
-        KeyChainManager.shared.signOutUser()
+        KeyChainManager.shared.signOutUserOutDevice()
         self.hasModel = false
         self.updateUI()
     }

@@ -21,7 +21,7 @@ class ExperimentsViewModel {
     func getData(completion: ((Bool) -> Void)?) {
         guard let sceneId = scene?.id else {return}
         
-        APIManager.shared.getExperiments(sceneId: sceneId) { (fetched, error) in
+        APIManager.shared().getExperiments(sceneId: sceneId) { (fetched, error) in
             self.objects = fetched
             completion?(error == nil)
         }

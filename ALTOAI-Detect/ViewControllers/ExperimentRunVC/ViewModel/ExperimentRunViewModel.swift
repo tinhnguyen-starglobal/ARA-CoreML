@@ -21,7 +21,7 @@ class ExperimentRunViewModel {
     func getData(completion: ((Bool) -> Void)?) {
         guard let experimentId = experiment?.id else {return}
         
-        APIManager.shared.getExperimentRuns(experimentId: experimentId) { (fetched, error) in
+        APIManager.shared().getExperimentRuns(experimentId: experimentId) { (fetched, error) in
             
             self.objects = fetched?.filter({ run in
                 return run.status == "COMPLETED"
@@ -51,7 +51,7 @@ class ExperimentRunViewModel {
             if let yolo = yolo {
                 completion(yolo, nil)
             } else {
-                APIManager.shared.downloadModel(experimentId: experimentId, runId: experimentRunId) { zipURL in
+                APIManager.shared().downloadModel(experimentId: experimentId, runId: experimentRunId) { zipURL in
                     if let zipURL = zipURL {
                         ModelOperationsHelper.getModelFromArchive(zipURL) { yolo in
                             if let yolo = yolo {
