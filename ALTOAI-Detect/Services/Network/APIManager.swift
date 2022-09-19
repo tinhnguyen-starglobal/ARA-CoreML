@@ -63,7 +63,8 @@ class APIManager {
     
     func getProjects(completion: @escaping ([Project]?, Error?) -> Void) {
         (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
-        sessionManager.request(APIRouter.getProjects).responseDecodable(of: [Project].self) { response in
+        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
+        sessionManager.request(APIRouter.getProjects(url: url)).responseDecodable(of: [Project].self) { response in
             guard let objects = response.value else {
                 completion(nil, CustomError.cantGetProjects)
                 return

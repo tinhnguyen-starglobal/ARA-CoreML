@@ -12,7 +12,7 @@ import SimpleKeychain
 enum APIRouter: APIConfiguration {
 
     case login(apiKey: String, apiSecret: String, url: String)
-    case getProjects
+    case getProjects(url: String)
     case getScenes(projectId: String)
     case getExperiments(sceneId: String)
     case getExperimentRun(experimentId: String)
@@ -21,6 +21,8 @@ enum APIRouter: APIConfiguration {
     var url: String {
         switch self {
         case .login(_, _, let url):
+            return url
+        case .getProjects(let url):
             return url
         default:
             return Constants.ProductionServer.baseURL
