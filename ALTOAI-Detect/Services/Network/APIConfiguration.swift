@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 protocol APIConfiguration: URLRequestConvertible {
+    var url: String { get }
     var method: HTTPMethod { get }
     var path: String { get }
     var parameters: RequestParams { get }

@@ -62,7 +62,7 @@ class ProjectsVC : UIViewController, UITableViewDelegate, UITableViewDataSource 
     func loadData(animated: Bool = true) {
         self.tableView.displayAnimatedActivityIndicatorView()
         isLoading = true
-        viewModel.getData { _ in
+        viewModel.getData(type: .onDevice) { _ in
             self.isLoading = false
             self.refreshControl.endRefreshing()
             self.tableView.hideAnimatedActivityIndicatorView()

@@ -17,14 +17,17 @@ class NetworkRequestInterceptor: RequestInterceptor {
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Swift.Result<URLRequest, Error>) -> Void) {
         var request = urlRequest
-        var token: String = ""
         switch apiType {
         case .outDevice:
-            token = KeyChainManager.shared.getTokenOutDevice() ?? ""
+            if let token = KeyChainManager.shared.getTokenOutDevice() {
+                request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            }
         case .onDevice:
-            token = KeyChainManager.shared.getTokenOnDevice() ?? ""
+            if let token = KeyChainManager.shared.getTokenOnDevice() {
+                request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            }
         }
-        request.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        
         completion(.success(request))
     }
 

@@ -94,14 +94,14 @@ extension OutDeviceViewController {
     private func configureEdgeView() {
         addViewController(child: edgeViewController)
         removeViewController(child: cloudViewController)
-        navigationItem.title = isCloud ? "Workspace" : "Access"
-        navigationItem.rightBarButtonItem = isCloud ? UIBarButtonItem(customView: logOutButton) : nil
+        navigationItem.title = "Access"
     }
     
     private func configureCloudView() {
         addViewController(child: cloudViewController)
         removeViewController(child: edgeViewController)
-        navigationItem.title = "Access"
+        navigationItem.title = isCloud ? "Workspace" : "Access"
+        navigationItem.rightBarButtonItem = isCloud ? UIBarButtonItem(customView: logOutButton) : nil
     }
     
     private func addViewController(child viewController: UIViewController) {

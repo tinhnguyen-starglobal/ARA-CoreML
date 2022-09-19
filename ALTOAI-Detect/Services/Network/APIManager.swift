@@ -39,7 +39,8 @@ class APIManager {
 
     func authorize(apiKey: String, apiSecret: String, completion: @escaping (Bool, Error?) -> Void) {
         (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
-        sessionManager.request(APIRouter.login(apiKey: apiKey, apiSecret: apiSecret)).responseDecodable(of: AccessToken.self) { [weak self] response in
+        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
+        sessionManager.request(APIRouter.login(apiKey: apiKey, apiSecret: apiSecret, url: url)).responseDecodable(of: AccessToken.self) { [weak self] response in
             guard let self = self else { return }
             if response.response?.statusCode == 400 {
                 completion(false, CustomError.incorrectCredentials)
@@ -61,6 +62,7 @@ class APIManager {
     }
     
     func getProjects(completion: @escaping ([Project]?, Error?) -> Void) {
+        (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
         sessionManager.request(APIRouter.getProjects).responseDecodable(of: [Project].self) { response in
             guard let objects = response.value else {
                 completion(nil, CustomError.cantGetProjects)

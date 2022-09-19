@@ -49,6 +49,9 @@ final class OnDeviceRemoteViewController: BaseViewController {
         configureTableView()
         configureRefreshControl()
         
+        remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
+        remoteView.secretTextField.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
+        
         if let _ = KeyChainManager.shared.getTokenOnDevice() {
             self.hasModel = true
         }
@@ -77,7 +80,7 @@ final class OnDeviceRemoteViewController: BaseViewController {
     func loadData(animated: Bool = true) {
         self.tableView.displayAnimatedActivityIndicatorView()
         isLoading = true
-        viewModel.getData { [weak self] isFetched in
+        viewModel.getData(type: .onDevice) { [weak self] isFetched in
             guard let self = self else { return }
             self.tableView.hideAnimatedActivityIndicatorView()
             if isFetched {
@@ -153,13 +156,6 @@ extension OnDeviceRemoteViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self?.present(alert, animated: true)
             }
-        }
-    }
-    
-    private func presentProject() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let projectVC = storyboard.instantiateViewController(withIdentifier: "ProjectsVC") as? ProjectsVC {
-            self.navigationController?.pushViewController(projectVC, animated: true)
         }
     }
     

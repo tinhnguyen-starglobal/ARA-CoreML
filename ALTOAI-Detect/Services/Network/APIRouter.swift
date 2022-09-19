@@ -10,13 +10,22 @@ import Alamofire
 import SimpleKeychain
 
 enum APIRouter: APIConfiguration {
-    
-    case login(apiKey: String, apiSecret: String)
+
+    case login(apiKey: String, apiSecret: String, url: String)
     case getProjects
     case getScenes(projectId: String)
     case getExperiments(sceneId: String)
     case getExperimentRun(experimentId: String)
     case getModel(experimentId: String, runId: String)
+    
+    var url: String {
+        switch self {
+        case .login(_, _, let url):
+            return url
+        default:
+            return Constants.ProductionServer.baseURL
+        }
+    }
     
     // MARK: - HTTPMethod
     var method: HTTPMethod {
@@ -38,7 +47,7 @@ enum APIRouter: APIConfiguration {
     // MARK: - Parameters
     var parameters: RequestParams {
         switch self {
-        case .login(let apiKey, let apiSecret):
+        case .login(let apiKey, let apiSecret, _):
             return .body(["client_id": apiKey,"client_secret": apiSecret])
         case .getProjects:
             return.body([:])
@@ -73,7 +82,7 @@ enum APIRouter: APIConfiguration {
     
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
-        let url = try Constants.DemoServer.baseURL.asURL()
+        let url = try self.url.asURL()
         
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
         
@@ -82,6 +91,7 @@ enum APIRouter: APIConfiguration {
         
         // Common Headers
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
+        
         switch(self) {
         case .login:
             urlRequest.setValue(ContentType.formEncode.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)

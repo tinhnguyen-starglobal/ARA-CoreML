@@ -18,8 +18,8 @@ class ProjectsViewModel {
     init() {
     }
     
-    func getData(completion: ((Bool) -> Void)?) {
-        APIManager.shared().getProjects() { [weak self] (fetched, error) in
+    func getData(type: APIType, completion: ((Bool) -> Void)?) {
+        APIManager.shared(type).getProjects() { [weak self] (fetched, error) in
             self?.objects = fetched
             completion?(error == nil)
         }

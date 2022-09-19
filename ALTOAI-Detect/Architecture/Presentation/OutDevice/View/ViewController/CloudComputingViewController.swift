@@ -52,6 +52,9 @@ final class CloudComputingViewController: BaseViewController {
         configureTableView()
         configureRefreshControl()
         
+        cloudComputingView.keyTextField.text = "db3b9641-b897-4f17-bc20-690a7db1de1d"
+        cloudComputingView.secretTextField.text = "0bedd876-c4ab-43c2-99e1-0522ab755fc2"
+        
         if let _ = KeyChainManager.shared.getTokenOutDevice() {
             self.hasModel = true
         }
@@ -80,7 +83,7 @@ final class CloudComputingViewController: BaseViewController {
     func loadData(animated: Bool = true) {
         self.tableView.displayAnimatedActivityIndicatorView()
         isLoading = true
-        viewModel.getData { [weak self] isFetched in
+        viewModel.getData(type: .outDevice) { [weak self] isFetched in
             guard let self = self else { return }
             self.tableView.hideAnimatedActivityIndicatorView()
             if isFetched {
@@ -175,13 +178,6 @@ extension CloudComputingViewController {
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self?.present(alert, animated: true)
             }
-        }
-    }
-    
-    private func presentProject() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let projectVC = storyboard.instantiateViewController(withIdentifier: "ProjectsVC") as? ProjectsVC {
-            self.navigationController?.pushViewController(projectVC, animated: true)
         }
     }
     
