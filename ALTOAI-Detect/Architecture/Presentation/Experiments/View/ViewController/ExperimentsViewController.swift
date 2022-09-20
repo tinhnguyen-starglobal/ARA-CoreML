@@ -100,7 +100,8 @@ extension ExperimentsViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(Dimension.Spacing.spacing4)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
-            make.bottom.lessThanOrEqualToSuperview().inset(Dimension.Spacing.spacing8)
+            make.bottom.lessThanOrEqualTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(Dimension.Spacing.spacing12)
+//            make.bottom.lessThanOrEqualToSuperview().inset(Dimension.Spacing.spacing8)
         }
     }
 }
@@ -131,17 +132,6 @@ extension ExperimentsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension ExperimentsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        if let experimentRunVC = storyboard.instantiateViewController(withIdentifier: "ExperimentRunVC") as? ExperimentRunVC {
-//            guard let experiment = viewModel.objects?[indexPath.row] else {
-//                return
-//            }
-//            let viewModel = ExperimentRunViewModel(experiment: experiment)
-//            viewModel.apiType = self.viewModel.apiType
-//            experimentRunVC.viewModel = viewModel
-//            self.navigationController?.pushViewController(experimentRunVC, animated: true)
-//        }
-        
         let experimentRunVC = ExperimentRunViewController()
         guard let experiment = viewModel.objects?[indexPath.row] else {
             return

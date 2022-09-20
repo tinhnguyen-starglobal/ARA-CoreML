@@ -100,7 +100,8 @@ extension ExperimentRunViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(Dimension.Spacing.spacing4)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
-            make.bottom.lessThanOrEqualToSuperview().inset(Dimension.Spacing.spacing8)
+            make.bottom.lessThanOrEqualTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(Dimension.Spacing.spacing12)
+//            make.bottom.lessThanOrEqualToSuperview().inset(Dimension.Spacing.spacing8)
         }
     }
 }

@@ -107,7 +107,8 @@ extension ScenesViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(Dimension.Spacing.spacing4)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
-            make.bottom.lessThanOrEqualToSuperview().inset(Dimension.Spacing.spacing8)
+            make.bottom.lessThanOrEqualTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(Dimension.Spacing.spacing12)
+//            make.bottom.lessThanOrEqualToSuperview().inset(Dimension.Spacing.spacing8)
         }
     }
 }
@@ -138,17 +139,6 @@ extension ScenesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension ScenesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        if let experimentVC = storyboard.instantiateViewController(withIdentifier: "ExperimentsVC") as? ExperimentsVC {
-//            guard let scene = viewModel.objects?[indexPath.row] else {
-//                return
-//            }
-//            let viewModel = ExperimentsViewModel(scene: scene)
-//            viewModel.apiType = self.apiType
-//            experimentVC.viewModel = viewModel
-//            self.navigationController?.pushViewController(experimentVC, animated: true)
-//        }
-        
         let experimentVC = ExperimentsViewController()
         guard let scene = viewModel.objects?[indexPath.row] else {
             return
