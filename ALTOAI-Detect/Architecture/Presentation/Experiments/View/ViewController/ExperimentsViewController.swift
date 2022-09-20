@@ -26,6 +26,7 @@ final class ExperimentsViewController: BaseViewController {
         tableView.layer.cornerRadius = 10
         tableView.estimatedRowHeight = 100
         tableView.separatorStyle = .none
+        tableView.separatorColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = UITableView.automaticDimension
         return tableView

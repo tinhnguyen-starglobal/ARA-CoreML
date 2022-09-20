@@ -19,13 +19,14 @@ final class ScenesViewController: BaseViewController {
         return label
     }()
     
-    lazy var tableView: DynamicTableView = {
+    var tableView: DynamicTableView = {
         let tableView = DynamicTableView(frame: .zero)
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .clear
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 10
         tableView.estimatedRowHeight = 100
         tableView.separatorStyle = .none
+        tableView.separatorColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
@@ -54,6 +55,7 @@ final class ScenesViewController: BaseViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         tableView.registerReusableCell(RemoteDeviceTableViewCell.self)
     }
     

@@ -28,7 +28,6 @@ final class ExperimentTableViewCell: BaseTableViewCell {
     
     let runButton: UIButton = {
         let button = UIButton(frame: .zero)
-        button.setImage(UIImage(named: "ic_next"), for: .normal)
         return button
     }()
     

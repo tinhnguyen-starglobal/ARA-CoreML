@@ -26,6 +26,7 @@ final class ExperimentRunViewController: BaseViewController {
         tableView.layer.cornerRadius = 10
         tableView.estimatedRowHeight = 100
         tableView.separatorStyle = .none
+        tableView.separatorColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
@@ -101,7 +102,6 @@ extension ExperimentRunViewController {
             make.top.equalTo(titleLabel.snp.bottom).offset(Dimension.Spacing.spacing4)
             make.leading.trailing.equalToSuperview().inset(Dimension.Spacing.spacing16)
             make.bottom.lessThanOrEqualTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(Dimension.Spacing.spacing12)
-//            make.bottom.lessThanOrEqualToSuperview().inset(Dimension.Spacing.spacing8)
         }
     }
 }

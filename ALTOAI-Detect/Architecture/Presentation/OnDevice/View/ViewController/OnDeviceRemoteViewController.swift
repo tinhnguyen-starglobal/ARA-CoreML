@@ -23,7 +23,6 @@ final class OnDeviceRemoteViewController: BaseViewController {
     
     lazy var tableView: DynamicTableView = {
         let tableView = DynamicTableView(frame: .zero)
-        tableView.separatorStyle = .none
         tableView.backgroundColor = .white
         tableView.clipsToBounds = true
         tableView.layer.cornerRadius = 10
@@ -68,6 +67,7 @@ final class OnDeviceRemoteViewController: BaseViewController {
     private func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         tableView.registerReusableCell(RemoteDeviceTableViewCell.self)
     }
     
