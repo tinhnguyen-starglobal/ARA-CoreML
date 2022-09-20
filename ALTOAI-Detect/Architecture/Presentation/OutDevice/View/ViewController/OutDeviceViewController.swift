@@ -52,6 +52,11 @@ final class OutDeviceViewController: BaseViewController {
         configurePublisher()
         constructHierarchy()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
 }
 
 // MARK: - Configure Publisher

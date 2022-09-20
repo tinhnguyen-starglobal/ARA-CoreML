@@ -18,7 +18,7 @@ class ScenesViewModel {
     init() {}
     
     func getData(type: APIType, completion: ((Bool) -> Void)?) {
-        guard let projectId = project?.id else {return}
+        guard let projectId = project?.id else { return }
         
         APIManager.shared(type).getScenes(projectId: projectId) { [weak self] (fetched, error) in
             self?.objects = fetched

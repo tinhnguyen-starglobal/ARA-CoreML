@@ -255,16 +255,26 @@ extension CloudComputingViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension CloudComputingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let projectVC = storyboard.instantiateViewController(withIdentifier: "ScenesVC") as? ScenesVC {
-            guard let project = viewModel.objects?[indexPath.row] else {
-                return
-            }
-            let viewModel = ScenesViewModel(project: project)
-            projectVC.apiType = .outDevice
-            projectVC.viewModel = viewModel
-            self.navigationController?.pushViewController(projectVC, animated: true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        if let projectVC = storyboard.instantiateViewController(withIdentifier: "ScenesVC") as? ScenesVC {
+//            guard let project = viewModel.objects?[indexPath.row] else {
+//                return
+//            }
+//            let viewModel = ScenesViewModel(project: project)
+//            projectVC.apiType = .outDevice
+//            projectVC.viewModel = viewModel
+//            self.navigationController?.pushViewController(projectVC, animated: true)
+//        }
+        
+        let scencesVC = ScenesViewController()
+//        let navigation = BaseNavigationController(rootViewController: scencesVC)
+        guard let project = viewModel.objects?[indexPath.row] else {
+            return
         }
+        let viewModel = ScenesViewModel(project: project)
+        scencesVC.apiType = .outDevice
+        scencesVC.viewModel = viewModel
+        self.navigationController?.pushViewController(scencesVC, animated: true)
     }
 }
 

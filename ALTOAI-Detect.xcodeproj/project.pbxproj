@@ -54,6 +54,7 @@
 		19083C4F28D83ACC0064727C /* APIBaseOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C4E28D83ACC0064727C /* APIBaseOutput.swift */; };
 		19083C5128D83AE60064727C /* APIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C5028D83AE60064727C /* APIServiceProtocol.swift */; };
 		19083C5328D83C1C0064727C /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C5228D83C1C0064727C /* APIBase.swift */; };
+		1920BFFE28D9775600384596 /* ScenesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1920BFFD28D9775600384596 /* ScenesViewController.swift */; };
 		1939A81E28AD7D58002C2F22 /* OnDeviceLocalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */; };
 		1939A82028AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */; };
 		1939A82228AE2297002C2F22 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82128AE2297002C2F22 /* DynamicTableView.swift */; };
@@ -193,6 +194,7 @@
 		19083C4E28D83ACC0064727C /* APIBaseOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBaseOutput.swift; sourceTree = "<group>"; };
 		19083C5028D83AE60064727C /* APIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceProtocol.swift; sourceTree = "<group>"; };
 		19083C5228D83C1C0064727C /* APIBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
+		1920BFFD28D9775600384596 /* ScenesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesViewController.swift; sourceTree = "<group>"; };
 		1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalViewController.swift; sourceTree = "<group>"; };
 		1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteViewController.swift; sourceTree = "<group>"; };
 		1939A82128AE2297002C2F22 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
@@ -444,17 +446,8 @@
 			isa = PBXGroup;
 			children = (
 				0DB4AAA426B29B87001F5CD3 /* ScenesVC.swift */,
-				0DB4AAAA26B29DA3001F5CD3 /* ViewModel */,
 			);
 			path = ScenesVC;
-			sourceTree = "<group>";
-		};
-		0DB4AAAA26B29DA3001F5CD3 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0DB4AAA826B29D8F001F5CD3 /* ScenesViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0DB4AAAE26B2BA8B001F5CD3 /* ViewModel */ = {
@@ -538,6 +531,47 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
+		1920BFF828D9768500384596 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				1920BFFA28D9769F00384596 /* ViewModel */,
+				1920BFF928D9769300384596 /* View */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		1920BFF928D9769300384596 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1920BFFC28D976AD00384596 /* ViewController */,
+				1920BFFB28D976A600384596 /* ViewLayout */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1920BFFA28D9769F00384596 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0DB4AAA826B29D8F001F5CD3 /* ScenesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1920BFFB28D976A600384596 /* ViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewLayout;
+			sourceTree = "<group>";
+		};
+		1920BFFC28D976AD00384596 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1920BFFD28D9775600384596 /* ScenesViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		1939A82528AE22D3002C2F22 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,6 +626,7 @@
 		198299F228A362D60036C7E7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				1920BFF828D9768500384596 /* Scenes */,
 				195A62E828ACA70B00A65AA5 /* Camera */,
 				19829A2828A36AD40036C7E7 /* OutDevice */,
 				19829A3028A36B680036C7E7 /* OnDevice */,
@@ -1183,6 +1218,7 @@
 				0D51403726A6E51500CEE1DD /* APIConfiguration.swift in Sources */,
 				19829A5628A423F50036C7E7 /* Dimension+TextFieldView.swift in Sources */,
 				89BBF9D4268E9B6100FA46B6 /* AppDelegate.swift in Sources */,
+				1920BFFE28D9775600384596 /* ScenesViewController.swift in Sources */,
 				0DB4AAB026B2BAA6001F5CD3 /* ProjectsViewModel.swift in Sources */,
 				0DE4F1DA26B2F565007053DB /* ModelOperationsHelper.swift in Sources */,
 				19829A4C28A3A8C70036C7E7 /* Constant+Color.swift in Sources */,
