@@ -104,12 +104,12 @@ class ScenesVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
-    @IBSegueAction func makeExperimentsVC(_ coder: NSCoder) -> ExperimentsVC? {
-        guard let selectedRow = tableView.indexPathForSelectedRow?.row, let scene = viewModel.objects?[selectedRow] else {
-            return nil
-        }
-        let viewModel = ExperimentsViewModel(scene: scene)
-        viewModel.apiType = self.apiType
-        return ExperimentsVC(viewModel: viewModel, coder: coder)
-    }
+//    @IBSegueAction func makeExperimentsVC(_ coder: NSCoder) -> ExperimentsVC? {
+//        guard let selectedRow = tableView.indexPathForSelectedRow?.row, let scene = viewModel.objects?[selectedRow] else {
+//            return nil
+//        }
+//        let viewModel = ExperimentsViewModel(scene: scene)
+//        viewModel.apiType = self.apiType
+//        return ExperimentsVC(viewModel: viewModel, coder: coder)
+//    }
 }

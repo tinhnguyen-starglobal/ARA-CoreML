@@ -145,6 +145,7 @@ extension ScenesViewController: UITableViewDelegate {
             }
             let viewModel = ExperimentsViewModel(scene: scene)
             viewModel.apiType = self.apiType
+            experimentVC.viewModel = viewModel
             self.navigationController?.pushViewController(experimentVC, animated: true)
         }
     }

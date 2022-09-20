@@ -55,6 +55,7 @@
 		19083C5128D83AE60064727C /* APIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C5028D83AE60064727C /* APIServiceProtocol.swift */; };
 		19083C5328D83C1C0064727C /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C5228D83C1C0064727C /* APIBase.swift */; };
 		1920BFFE28D9775600384596 /* ScenesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1920BFFD28D9775600384596 /* ScenesViewController.swift */; };
+		1920C00528D9883E00384596 /* ExperimentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1920C00428D9883E00384596 /* ExperimentsViewController.swift */; };
 		1939A81E28AD7D58002C2F22 /* OnDeviceLocalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */; };
 		1939A82028AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */; };
 		1939A82228AE2297002C2F22 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82128AE2297002C2F22 /* DynamicTableView.swift */; };
@@ -195,6 +196,7 @@
 		19083C5028D83AE60064727C /* APIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceProtocol.swift; sourceTree = "<group>"; };
 		19083C5228D83C1C0064727C /* APIBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
 		1920BFFD28D9775600384596 /* ScenesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesViewController.swift; sourceTree = "<group>"; };
+		1920C00428D9883E00384596 /* ExperimentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentsViewController.swift; sourceTree = "<group>"; };
 		1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalViewController.swift; sourceTree = "<group>"; };
 		1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteViewController.swift; sourceTree = "<group>"; };
 		1939A82128AE2297002C2F22 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
@@ -462,35 +464,16 @@
 			isa = PBXGroup;
 			children = (
 				0DB4AAB226B2BF77001F5CD3 /* ExperimentsVC.swift */,
-				0DB4AAB426B2BF7C001F5CD3 /* ViewModel */,
 			);
 			path = ExperimentsVC;
-			sourceTree = "<group>";
-		};
-		0DB4AAB426B2BF7C001F5CD3 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0DB4AAB526B2BF9B001F5CD3 /* ExperimentsViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0DB4AAC326B2C791001F5CD3 /* ExperimentRunVC */ = {
 			isa = PBXGroup;
 			children = (
 				0DB4AAC526B2C7B6001F5CD3 /* ExperimentRunVC.swift */,
-				0D7ECD2526BC1A46004D40DD /* ExperimentRunTableViewCell.swift */,
-				0DB4AAC426B2C7A0001F5CD3 /* ViewModel */,
 			);
 			path = ExperimentRunVC;
-			sourceTree = "<group>";
-		};
-		0DB4AAC426B2C7A0001F5CD3 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				0DB4AAC726B2C7EB001F5CD3 /* ExperimentRunViewModel.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0DE4F1DB26B4311E007053DB /* MainTabBarVC */ = {
@@ -572,6 +555,49 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		1920BFFF28D987D600384596 /* Experiments */ = {
+			isa = PBXGroup;
+			children = (
+				1920C00128D987EF00384596 /* View */,
+				1920C00028D987E900384596 /* ViewModel */,
+			);
+			path = Experiments;
+			sourceTree = "<group>";
+		};
+		1920C00028D987E900384596 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0DB4AAB526B2BF9B001F5CD3 /* ExperimentsViewModel.swift */,
+				0DB4AAC726B2C7EB001F5CD3 /* ExperimentRunViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1920C00128D987EF00384596 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1920C00328D9880000384596 /* ViewController */,
+				1920C00228D987F500384596 /* ViewLayout */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1920C00228D987F500384596 /* ViewLayout */ = {
+			isa = PBXGroup;
+			children = (
+				0D7ECD2526BC1A46004D40DD /* ExperimentRunTableViewCell.swift */,
+			);
+			path = ViewLayout;
+			sourceTree = "<group>";
+		};
+		1920C00328D9880000384596 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1920C00428D9883E00384596 /* ExperimentsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		1939A82528AE22D3002C2F22 /* Reusable */ = {
 			isa = PBXGroup;
 			children = (
@@ -626,6 +652,7 @@
 		198299F228A362D60036C7E7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				1920BFFF28D987D600384596 /* Experiments */,
 				1920BFF828D9768500384596 /* Scenes */,
 				195A62E828ACA70B00A65AA5 /* Camera */,
 				19829A2828A36AD40036C7E7 /* OutDevice */,
@@ -1197,6 +1224,7 @@
 				0DE4F1E526B7F43E007053DB /* AppStyle.swift in Sources */,
 				1939A82D28AE368C002C2F22 /* OnDeviceRemoteUseCasePort.swift in Sources */,
 				0DFA24DB26A6E6770014CD6E /* Constants.swift in Sources */,
+				1920C00528D9883E00384596 /* ExperimentsViewController.swift in Sources */,
 				1988A71F28CF292000B9C009 /* UIView+Extension.swift in Sources */,
 				0DB4AAA526B29B87001F5CD3 /* ScenesVC.swift in Sources */,
 				1988A72128CF297100B9C009 /* GesturePublisher.swift in Sources */,
