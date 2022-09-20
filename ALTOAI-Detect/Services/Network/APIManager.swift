@@ -37,10 +37,9 @@ class APIManager {
         return Session(configuration: configuration, interceptor: interceptor, eventMonitors: [networkLogger])
     }()
 
-    func authorize(apiKey: String, apiSecret: String, completion: @escaping (Bool, Error?) -> Void) {
+    func authorize(apiKey: String, apiSecret: String, urlString: String = Constants.ProductionServer.baseURL, completion: @escaping (Bool, Error?) -> Void) {
         (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
-        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
-        sessionManager.request(APIRouter.login(apiKey: apiKey, apiSecret: apiSecret, url: url)).responseDecodable(of: AccessToken.self) { [weak self] response in
+        sessionManager.request(APIRouter.login(apiKey: apiKey, apiSecret: apiSecret, url: urlString)).responseDecodable(of: AccessToken.self) { [weak self] response in
             guard let self = self else { return }
             if response.response?.statusCode == 400 {
                 completion(false, CustomError.incorrectCredentials)
@@ -51,7 +50,7 @@ class APIManager {
                 
                 switch self.typeAPI {
                     case .outDevice:
-                        KeyChainManager.shared.signInOutDevice(apiKey: apiKey, secretKey: apiSecret, token: token.accessToken)
+                    KeyChainManager.shared.signInOutDevice(apiKey: apiKey, secretKey: apiSecret, token: token.accessToken, url: urlString)
                     case .onDevice:
                         KeyChainManager.shared.signInOnDevice(apiKey: apiKey, secretKey: apiSecret, token: token.accessToken)
                 }
@@ -63,7 +62,8 @@ class APIManager {
     
     func getProjects(completion: @escaping ([Project]?, Error?) -> Void) {
         (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
-        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
+        let outDeviceURL = KeyChainManager.shared.getOutDeviceURL() ?? Constants.DemoServer.baseURL
+        let url = typeAPI == .outDevice ? outDeviceURL : Constants.ProductionServer.baseURL
         sessionManager.request(APIRouter.getProjects(url: url)).responseDecodable(of: [Project].self) { response in
             guard let objects = response.value else {
                 completion(nil, CustomError.cantGetProjects)
@@ -75,7 +75,8 @@ class APIManager {
     
     func getScenes(projectId : String, completion: @escaping ([Scene]?, Error?) -> Void) {
         (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
-        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
+        let outDeviceURL = KeyChainManager.shared.getOutDeviceURL() ?? Constants.DemoServer.baseURL
+        let url = typeAPI == .outDevice ? outDeviceURL : Constants.ProductionServer.baseURL
         sessionManager.request(APIRouter.getScenes(projectId: projectId, url: url)).responseDecodable(of: [Scene].self) { response in
             guard let objects = response.value else {
                 completion(nil, CustomError.cantGetScenes)
@@ -87,7 +88,8 @@ class APIManager {
     
     func getExperiments(sceneId : String, completion: @escaping ([Experiment]?, Error?) -> Void) {
         (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
-        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
+        let outDeviceURL = KeyChainManager.shared.getOutDeviceURL() ?? Constants.DemoServer.baseURL
+        let url = typeAPI == .outDevice ? outDeviceURL : Constants.ProductionServer.baseURL
         sessionManager.request(APIRouter.getExperiments(sceneId: sceneId, url: url)).responseDecodable(of: [Experiment].self) { response in
             guard let objects = response.value else {
                 completion(nil, CustomError.cantGetExperiments)
@@ -99,7 +101,8 @@ class APIManager {
     
     func getExperimentRuns(experimentId : String, completion: @escaping ([ExperimentRun]?, Error?) -> Void) {
         (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
-        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
+        let outDeviceURL = KeyChainManager.shared.getOutDeviceURL() ?? Constants.DemoServer.baseURL
+        let url = typeAPI == .outDevice ? outDeviceURL : Constants.ProductionServer.baseURL
         sessionManager.request(APIRouter.getExperimentRun(experimentId: experimentId, url: url)).responseDecodable(of: [ExperimentRun].self) { response in
             guard let objects = response.value else {
                 completion(nil, CustomError.cantGetExperimentRuns)
@@ -111,7 +114,8 @@ class APIManager {
     
     func downloadModel(experimentId : String, runId: String, completion: @escaping (URL?) -> Void) {
         (sessionManager.interceptor as? NetworkRequestInterceptor)?.apiType = typeAPI
-        let url = typeAPI == .outDevice ? Constants.DemoServer.baseURL : Constants.ProductionServer.baseURL
+        let outDeviceURL = KeyChainManager.shared.getOutDeviceURL() ?? Constants.DemoServer.baseURL
+        let url = typeAPI == .outDevice ? outDeviceURL : Constants.ProductionServer.baseURL
         let destination: DownloadRequest.Destination = { _, _ in
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             let fileURL = documentsURL.appendingPathComponent("\(experimentId)-\(runId).zip")

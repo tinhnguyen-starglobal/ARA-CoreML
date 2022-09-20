@@ -20,6 +20,7 @@ class KeyChainManager {
         case outDeviceSecretKey
         case outDeviceToken
         case isOutDeviceSignedIn
+        case outDeviceURL
     }
     
     static let shared: KeyChainManager = {
@@ -56,12 +57,20 @@ class KeyChainManager {
         return A0SimpleKeychain().string(forKey: Key.outDeviceToken.rawValue)
     }
     
+    func getOutDeviceURL() -> String? {
+        return A0SimpleKeychain().string(forKey: Key.outDeviceURL.rawValue)
+    }
+    
     func setTokenOnDevice(token: String) {
         A0SimpleKeychain().setString(token, forKey: Key.onDeviceToken.rawValue)
     }
     
     func setTokenOutDevice(token: String) {
         A0SimpleKeychain().setString(token, forKey: Key.outDeviceToken.rawValue)
+    }
+    
+    func setOutDeviceURL(url: String) {
+        A0SimpleKeychain().setString(url, forKey: Key.outDeviceURL.rawValue)
     }
     
     func signInUserOnDevice() {
@@ -84,6 +93,7 @@ class KeyChainManager {
         A0SimpleKeychain().deleteEntry(forKey: Key.outDeviceToken.rawValue)
         A0SimpleKeychain().deleteEntry(forKey: Key.outDeviceAPIKey.rawValue)
         A0SimpleKeychain().deleteEntry(forKey: Key.outDeviceSecretKey.rawValue)
+        A0SimpleKeychain().deleteEntry(forKey: Key.outDeviceURL.rawValue)
     }
     
     func isUserSignedInOnDevice() -> Bool {
@@ -100,9 +110,10 @@ class KeyChainManager {
         signInUserOnDevice()
     }
     
-    func signInOutDevice(apiKey: String, secretKey: String, token: String) {
+    func signInOutDevice(apiKey: String, secretKey: String, token: String, url: String) {
         setUserOutDevice(apiKey: apiKey, secretKey: secretKey)
         setTokenOutDevice(token: token)
+        setOutDeviceURL(url: url)
         signInUserOutDevice()
     }
 }

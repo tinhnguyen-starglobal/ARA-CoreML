@@ -159,10 +159,11 @@ extension CloudComputingViewController {
     
     private func performLogin() {
         guard let apiKey = self.cloudComputingView.keyTextField.text,
-              let apiSecret = self.cloudComputingView.secretTextField.text else { return
+              let apiSecret = self.cloudComputingView.secretTextField.text,
+              let urlString = self.cloudComputingView.urlTextField.text else { return
         }
         self.displayAnimatedActivityIndicatorView()
-        APIManager.shared(.outDevice).authorize(apiKey: apiKey, apiSecret: apiSecret) { [weak self] (isSuccess, error) in
+        APIManager.shared(.outDevice).authorize(apiKey: apiKey, apiSecret: apiSecret, urlString: "https://" + urlString) { [weak self] (isSuccess, error) in
             self?.hideAnimatedActivityIndicatorView()
             
             if (isSuccess) {
