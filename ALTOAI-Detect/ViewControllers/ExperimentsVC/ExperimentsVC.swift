@@ -20,15 +20,6 @@ class ExperimentsVC : UIViewController, UITableViewDelegate, UITableViewDataSour
         return ExperimentsViewModel()
     }()
     
-//    init?(viewModel: ExperimentsViewModel, coder: NSCoder) {
-//        super.init(coder: coder)
-//        self.viewModel = viewModel
-//    }
-//    
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadData()
@@ -113,12 +104,12 @@ class ExperimentsVC : UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
-    @IBSegueAction func makeExperimentRunVC(_ coder: NSCoder) -> ExperimentRunVC? {
-        guard let selectedRow = tableView.indexPathForSelectedRow?.row, let experiment = viewModel.objects?[selectedRow] else {
-            return nil
-        }
-        let viewModel = ExperimentRunViewModel(experiment: experiment)
-        viewModel.apiType = self.viewModel.apiType
-        return ExperimentRunVC(viewModel: viewModel, coder: coder)
-    }
+//    @IBSegueAction func makeExperimentRunVC(_ coder: NSCoder) -> ExperimentRunVC? {
+//        guard let selectedRow = tableView.indexPathForSelectedRow?.row, let experiment = viewModel.objects?[selectedRow] else {
+//            return nil
+//        }
+//        let viewModel = ExperimentRunViewModel(experiment: experiment)
+//        viewModel.apiType = self.viewModel.apiType
+//        return ExperimentRunVC(viewModel: viewModel, coder: coder)
+//    }
 }

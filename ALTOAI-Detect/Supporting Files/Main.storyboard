@@ -686,7 +686,7 @@
         <!--Experiment RunVC-->
         <scene sceneID="RSX-9r-PdV">
             <objects>
-                <viewController id="HZM-VI-uoi" customClass="ExperimentRunVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ExperimentRunVC" id="HZM-VI-uoi" customClass="ExperimentRunVC" customModule="ALTOAI_Detect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lOo-Z4-Sdk"/>
                         <viewControllerLayoutGuide type="bottom" id="CZ4-OZ-rC4"/>

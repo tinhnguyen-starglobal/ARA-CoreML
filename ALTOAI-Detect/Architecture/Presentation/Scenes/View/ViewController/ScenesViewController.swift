@@ -138,15 +138,25 @@ extension ScenesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension ScenesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let experimentVC = storyboard.instantiateViewController(withIdentifier: "ExperimentsVC") as? ExperimentsVC {
-            guard let scene = viewModel.objects?[indexPath.row] else {
-                return
-            }
-            let viewModel = ExperimentsViewModel(scene: scene)
-            viewModel.apiType = self.apiType
-            experimentVC.viewModel = viewModel
-            self.navigationController?.pushViewController(experimentVC, animated: true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        if let experimentVC = storyboard.instantiateViewController(withIdentifier: "ExperimentsVC") as? ExperimentsVC {
+//            guard let scene = viewModel.objects?[indexPath.row] else {
+//                return
+//            }
+//            let viewModel = ExperimentsViewModel(scene: scene)
+//            viewModel.apiType = self.apiType
+//            experimentVC.viewModel = viewModel
+//            self.navigationController?.pushViewController(experimentVC, animated: true)
+//        }
+        
+        let experimentVC = ExperimentsViewController()
+        guard let scene = viewModel.objects?[indexPath.row] else {
+            return
         }
+        
+        let viewModel = ExperimentsViewModel(scene: scene)
+        viewModel.apiType = self.apiType
+        experimentVC.viewModel = viewModel
+        self.navigationController?.pushViewController(experimentVC, animated: true)
     }
 }
