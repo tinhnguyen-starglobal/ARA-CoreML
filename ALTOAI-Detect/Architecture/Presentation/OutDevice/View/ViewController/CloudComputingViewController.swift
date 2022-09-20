@@ -52,9 +52,6 @@ final class CloudComputingViewController: BaseViewController {
         configureTableView()
         configureRefreshControl()
         
-        cloudComputingView.keyTextField.text = "db3b9641-b897-4f17-bc20-690a7db1de1d"
-        cloudComputingView.secretTextField.text = "0bedd876-c4ab-43c2-99e1-0522ab755fc2"
-        
         if let _ = KeyChainManager.shared.getTokenOutDevice() {
             self.hasModel = true
         }
@@ -140,6 +137,7 @@ extension CloudComputingViewController {
             guard let self = self else { return }
             self.environments = self.getURLEnvironments(index: index ?? 0)
             self.cloudComputingView.urlTextField.text = ""
+            self.validateCloundAuth()
         }.store(in: &self.cancellable)
         
         cloudComputingView.submitButton.tapPublisher.sink { [weak self] _ in
@@ -275,6 +273,7 @@ extension CloudComputingViewController {
             guard let self = self else { return }
             self.environments = items
             self.updateSelectedIndex()
+            self.validateCloundAuth()
             self.dismiss(animated: true)
         }.store(in: &cancellable)
         
