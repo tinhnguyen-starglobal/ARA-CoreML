@@ -56,6 +56,8 @@
 		19083C5328D83C1C0064727C /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19083C5228D83C1C0064727C /* APIBase.swift */; };
 		1920BFFE28D9775600384596 /* ScenesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1920BFFD28D9775600384596 /* ScenesViewController.swift */; };
 		1920C00528D9883E00384596 /* ExperimentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1920C00428D9883E00384596 /* ExperimentsViewController.swift */; };
+		1920C00728D98F6F00384596 /* ExperimentRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1920C00628D98F6F00384596 /* ExperimentRunViewController.swift */; };
+		1920C00928D9AA0400384596 /* ExperimentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1920C00828D9AA0400384596 /* ExperimentTableViewCell.swift */; };
 		1939A81E28AD7D58002C2F22 /* OnDeviceLocalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */; };
 		1939A82028AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */; };
 		1939A82228AE2297002C2F22 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1939A82128AE2297002C2F22 /* DynamicTableView.swift */; };
@@ -197,6 +199,8 @@
 		19083C5228D83C1C0064727C /* APIBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
 		1920BFFD28D9775600384596 /* ScenesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesViewController.swift; sourceTree = "<group>"; };
 		1920C00428D9883E00384596 /* ExperimentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentsViewController.swift; sourceTree = "<group>"; };
+		1920C00628D98F6F00384596 /* ExperimentRunViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentRunViewController.swift; sourceTree = "<group>"; };
+		1920C00828D9AA0400384596 /* ExperimentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentTableViewCell.swift; sourceTree = "<group>"; };
 		1939A81D28AD7D58002C2F22 /* OnDeviceLocalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceLocalViewController.swift; sourceTree = "<group>"; };
 		1939A81F28AD7D7A002C2F22 /* OnDeviceRemoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnDeviceRemoteViewController.swift; sourceTree = "<group>"; };
 		1939A82128AE2297002C2F22 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
@@ -586,6 +590,7 @@
 			isa = PBXGroup;
 			children = (
 				0D7ECD2526BC1A46004D40DD /* ExperimentRunTableViewCell.swift */,
+				1920C00828D9AA0400384596 /* ExperimentTableViewCell.swift */,
 			);
 			path = ViewLayout;
 			sourceTree = "<group>";
@@ -594,6 +599,7 @@
 			isa = PBXGroup;
 			children = (
 				1920C00428D9883E00384596 /* ExperimentsViewController.swift */,
+				1920C00628D98F6F00384596 /* ExperimentRunViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1218,6 +1224,7 @@
 				0D712D8D269F8E490031D2E3 /* yolo_model.swift in Sources */,
 				1939A83528B09ADC002C2F22 /* LocalDeviceTableViewCell.swift in Sources */,
 				0DFA24DD26A6E69F0014CD6E /* APIRouter.swift in Sources */,
+				1920C00928D9AA0400384596 /* ExperimentTableViewCell.swift in Sources */,
 				19829A0E28A364A40036C7E7 /* OutDeviceEdgeUseCase.swift in Sources */,
 				19829A6128A429460036C7E7 /* UIControl+Combine.swift in Sources */,
 				0DB4AA9226B074E4001F5CD3 /* CustomError.swift in Sources */,
@@ -1259,6 +1266,7 @@
 				19829A7028A432800036C7E7 /* ButtonStyle.swift in Sources */,
 				0D7ECD2826BC2045004D40DD /* ActivityIndicatorOverlay.swift in Sources */,
 				0DB4AA9A26B1BC37001F5CD3 /* Project.swift in Sources */,
+				1920C00728D98F6F00384596 /* ExperimentRunViewController.swift in Sources */,
 				19083C4028D79AA90064727C /* CloudComputingViewController.swift in Sources */,
 				89BBF9DB268E9B6100FA46B6 /* CameraViewController.swift in Sources */,
 				19829A6528A429B20036C7E7 /* CombineControlProperty.swift in Sources */,

@@ -7,16 +7,17 @@
 
 import UIKit
 
-@objc protocol ExperimentRunTableViewCellDelegate {
-    @objc optional func didTapExperimentRunButtonInCell(cell: ExperimentRunTableViewCell)
-}
+//@objc protocol ExperimentRunTableViewCellDelegate {
+//    @objc optional func didTapExperimentRunButtonInCell(cell: ExperimentRunTableViewCell)
+//}
 
-class ExperimentRunTableViewCell : UITableViewCell {
+class ExperimentRunTableViewCell : UITableViewCell, Reusable {
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var statusImgView: UIImageView!
     @IBOutlet weak var runButton: UIButton!
     
-    weak var delegate: ExperimentRunTableViewCellDelegate?
+//    weak var delegate: ExperimentRunTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,7 +36,7 @@ class ExperimentRunTableViewCell : UITableViewCell {
         statusImgView.hideAnimatedActivityIndicatorView()
     }
     
-    @IBAction func tapRun(_ sender: Any) {
-        delegate?.didTapExperimentRunButtonInCell?(cell: self)
-    }
+//    @IBAction func tapRun(_ sender: Any) {
+//        delegate?.didTapExperimentRunButtonInCell?(cell: self)
+//    }
 }

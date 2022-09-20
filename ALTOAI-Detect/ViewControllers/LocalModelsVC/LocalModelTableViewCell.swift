@@ -19,8 +19,8 @@ class LocalModelTableViewCell : UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        runButton.setImage(UIImage(named:"play"), for: .normal)
-        runButton.setImage(UIImage(named:"play_disabled"), for: .disabled)
+        runButton.setImage(UIImage(named:"ic_play"), for: .normal)
+        runButton.setImage(UIImage(named:"ic_play_disable"), for: .disabled)
     }
 
     

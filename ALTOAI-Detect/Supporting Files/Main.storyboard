@@ -713,9 +713,6 @@
                                                         <constraint firstAttribute="height" constant="32" id="FBh-PZ-5pD"/>
                                                     </constraints>
                                                     <state key="normal" image="play"/>
-                                                    <connections>
-                                                        <action selector="tapRun:" destination="boO-Zh-yB9" eventType="touchUpInside" id="PAi-ga-VDQ"/>
-                                                    </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="download" translatesAutoresizingMaskIntoConstraints="NO" id="ODa-eK-v22">
                                                     <rect key="frame" x="322" y="10" width="40" height="40"/>
@@ -742,7 +739,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="runButton" destination="Fum-vi-bSx" id="Zoh-n9-W6F"/>
                                             <outlet property="statusImgView" destination="ODa-eK-v22" id="a7H-tM-Gu3"/>
                                             <outlet property="titleLabel" destination="MT7-if-fed" id="1oO-YS-GWq"/>
                                         </connections>

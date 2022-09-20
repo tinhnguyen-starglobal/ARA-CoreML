@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ExperimentRunVC : UIViewController, UITableViewDelegate, UITableViewDataSource, ExperimentRunTableViewCellDelegate {
+class ExperimentRunVC : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -94,7 +94,7 @@ class ExperimentRunVC : UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "experimentRunCell", for: indexPath) as! ExperimentRunTableViewCell
-        cell.delegate = self
+//        cell.delegate = self
         if let object = viewModel.objects?[indexPath.row] {
             cell.titleLabel?.text = object.id
             if let experimentId = viewModel.experiment?.id {

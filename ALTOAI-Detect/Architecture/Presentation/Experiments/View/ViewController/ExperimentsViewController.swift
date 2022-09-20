@@ -131,16 +131,26 @@ extension ExperimentsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension ExperimentsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let experimentRunVC = storyboard.instantiateViewController(withIdentifier: "ExperimentRunVC") as? ExperimentRunVC {
-            guard let experiment = viewModel.objects?[indexPath.row] else {
-                return
-            }
-            let viewModel = ExperimentRunViewModel(experiment: experiment)
-            viewModel.apiType = self.viewModel.apiType
-            experimentRunVC.viewModel = viewModel
-            self.navigationController?.pushViewController(experimentRunVC, animated: true)
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        if let experimentRunVC = storyboard.instantiateViewController(withIdentifier: "ExperimentRunVC") as? ExperimentRunVC {
+//            guard let experiment = viewModel.objects?[indexPath.row] else {
+//                return
+//            }
+//            let viewModel = ExperimentRunViewModel(experiment: experiment)
+//            viewModel.apiType = self.viewModel.apiType
+//            experimentRunVC.viewModel = viewModel
+//            self.navigationController?.pushViewController(experimentRunVC, animated: true)
+//        }
+        
+        let experimentRunVC = ExperimentRunViewController()
+        guard let experiment = viewModel.objects?[indexPath.row] else {
+            return
         }
+        
+        let viewModel = ExperimentRunViewModel(experiment: experiment)
+        viewModel.apiType = self.viewModel.apiType
+        experimentRunVC.viewModel = viewModel
+        self.navigationController?.pushViewController(experimentRunVC, animated: true)
     }
 }
 
