@@ -48,6 +48,9 @@ final class OnDeviceRemoteViewController: BaseViewController {
         configureTableView()
         configureRefreshControl()
         
+        remoteView.keyTextField.text = "a6cec2e6-bdae-431f-b664-355c2ca31f27"
+        remoteView.secretTextField.text = "ee2f5923-f086-4cdb-9593-17cfac9b5bb4"
+        
         if let _ = KeyChainManager.shared.getTokenOnDevice() {
             self.hasModel = true
         }

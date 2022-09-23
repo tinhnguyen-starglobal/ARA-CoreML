@@ -236,7 +236,8 @@ extension CameraViewController {
             if semaphoreCounter <= 0 { return }
             self.edgeConnection(resizeImage: resizeImage, imageWidth: inputImageWidth, imageHeight: inputImageHeight)
         case .clound:
-            return
+            if semaphoreCounter <= 0 { return }
+            self.edgeConnection(resizeImage: resizeImage, imageWidth: inputImageWidth, imageHeight: inputImageHeight)
         }
     }
     
@@ -384,21 +385,27 @@ extension CameraViewController {
 
         // Set the URLRequest to POST and to the specified URL
         var urlRequest = URLRequest(url: theURL!)
-        urlRequest.httpMethod = "PUT"
+        urlRequest.httpMethod = inferenceType == .clound ? "POST" : "PUT"
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
         // And the boundary is also set here
         urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        if inferenceType == .clound {
+            if let token = KeyChainManager.shared.getTokenOutDevice() {
+                urlRequest.setValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+            }
 
+        }
+        
         var data = Data()
 
         // Add the image data to the raw http request data
         //data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+        let fieldName = inferenceType == .clound ? "image" : "file"
         data.append("--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"file\"; filename=\"testImage.png\"\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"testImage.png\"\r\n".data(using: .utf8)!)
         data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
         
-        //data.append(image.jpegData(compressionQuality: 0.9)!)
         data.append(image.pngData()!)
 
         data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)

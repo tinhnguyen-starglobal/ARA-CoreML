@@ -134,6 +134,7 @@
 		1988A72328CF2BAC00B9C009 /* ListRadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72228CF2BAC00B9C009 /* ListRadioButtonView.swift */; };
 		1988A72528CF2C0800B9C009 /* RadioButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72428CF2C0800B9C009 /* RadioButtonTableViewCell.swift */; };
 		1988A72928CF8B6A00B9C009 /* EnvironmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A72828CF8B6A00B9C009 /* EnvironmentView.swift */; };
+		199F3F4328DD851F00C60833 /* Inference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199F3F4228DD851F00C60833 /* Inference.swift */; };
 		19C3DFF6288F129C000E005D /* CGImagePropertyOrientation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */; };
 		19C3DFF8288F13CE000E005D /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C3DFF7288F13CE000E005D /* Prediction.swift */; };
 		19EE7CF328B16E19002D8920 /* InferenceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EE7CF228B16E19002D8920 /* InferenceType.swift */; };
@@ -277,6 +278,7 @@
 		1988A72228CF2BAC00B9C009 /* ListRadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRadioButtonView.swift; sourceTree = "<group>"; };
 		1988A72428CF2C0800B9C009 /* RadioButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonTableViewCell.swift; sourceTree = "<group>"; };
 		1988A72828CF8B6A00B9C009 /* EnvironmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentView.swift; sourceTree = "<group>"; };
+		199F3F4228DD851F00C60833 /* Inference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inference.swift; sourceTree = "<group>"; };
 		19C3DFF5288F129C000E005D /* CGImagePropertyOrientation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+Extension.swift"; sourceTree = "<group>"; };
 		19C3DFF7288F13CE000E005D /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
 		19EE7CF228B16E19002D8920 /* InferenceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InferenceType.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				0DB4AAA626B29CB4001F5CD3 /* Scene.swift */,
 				0DB4AAB726B2C0E0001F5CD3 /* Experiment.swift */,
 				0DB4AABF26B2C63C001F5CD3 /* ExperimentRun.swift */,
+				199F3F4228DD851F00C60833 /* Inference.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1243,6 +1246,7 @@
 				19829A6328A4297C0036C7E7 /* CombineControlEvent.swift in Sources */,
 				0DB4AAB326B2BF77001F5CD3 /* ExperimentsVC.swift in Sources */,
 				19829A5428A422890036C7E7 /* TextFieldDecorator.swift in Sources */,
+				199F3F4328DD851F00C60833 /* Inference.swift in Sources */,
 				19829A8328A4D8340036C7E7 /* CloudComputingView.swift in Sources */,
 				1988A72328CF2BAC00B9C009 /* ListRadioButtonView.swift in Sources */,
 				195A62EA28ACA72900A65AA5 /* FPSCounter.swift in Sources */,
@@ -1464,7 +1468,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ALTOAI-Detect/Preview Content\"";
 				DEVELOPMENT_TEAM = 2W55W867ST;
 				ENABLE_PREVIEWS = YES;
@@ -1489,7 +1493,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ALTOAI-Detect/Preview Content\"";
 				DEVELOPMENT_TEAM = 2W55W867ST;
 				ENABLE_PREVIEWS = YES;

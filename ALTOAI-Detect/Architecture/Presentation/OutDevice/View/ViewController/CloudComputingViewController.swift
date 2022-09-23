@@ -52,6 +52,9 @@ final class CloudComputingViewController: BaseViewController {
         configureTableView()
         configureRefreshControl()
         
+        cloudComputingView.keyTextField.text = "db3b9641-b897-4f17-bc20-690a7db1de1d"
+        cloudComputingView.secretTextField.text = "0bedd876-c4ab-43c2-99e1-0522ab755fc2"
+
         if let _ = KeyChainManager.shared.getTokenOutDevice() {
             self.hasModel = true
         }
@@ -111,9 +114,9 @@ extension CloudComputingViewController {
         cloudComputingView.urlTextField.textPublisher
             .dropFirst()
             .sink { [weak self] value in
-            guard let self = self else { return }
-            self.presentEnvironment()
-        }.store(in: &self.cancellable)
+                guard let self = self else { return }
+                self.presentEnvironment()
+            }.store(in: &self.cancellable)
         
         cloudComputingView.keyTextField.textPublisher.sink { [weak self] value in
             guard let self = self else { return }

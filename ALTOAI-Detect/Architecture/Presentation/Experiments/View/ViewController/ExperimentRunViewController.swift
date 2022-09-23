@@ -125,9 +125,14 @@ extension ExperimentRunViewController: UITableViewDataSource {
         if let object = viewModel.objects?[indexPath.row] {
             cell.configureData(title: object.id)
             if let experimentId = viewModel.experiment?.id {
-                viewModel.checkIfModelDownloaded(experimentId: experimentId, runId: object.id) { yolo in
-                    cell.runButton.isEnabled = yolo != nil
-                    cell.statusImageView.image =  UIImage(named:yolo != nil ? "ic_ready" : "ic_download")
+                if viewModel.apiType == .onDevice {
+                    viewModel.checkIfModelDownloaded(experimentId: experimentId, runId: object.id) { yolo in
+                        cell.runButton.isEnabled = yolo != nil
+                        cell.statusImageView.image =  UIImage(named:yolo != nil ? "ic_ready" : "ic_download")
+                    }
+                } else {
+                    cell.runButton.isEnabled = true
+                    cell.statusImageView.isHidden = true
                 }
             }
         }
@@ -161,26 +166,48 @@ extension ExperimentRunViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if let object = viewModel.objects?[indexPath.row] {
-            self.tableView.displayAnimatedActivityIndicatorView()
-            viewModel.downloadModelIfNeeded(experimentRunId: object.id) { (yolo, errorString) in
-                self.tableView.hideAnimatedActivityIndicatorView()
-                self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                if let yolo = yolo {
+        if self.viewModel.apiType == .onDevice {
+            if let object = viewModel.objects?[indexPath.row] {
+                self.tableView.displayAnimatedActivityIndicatorView()
+                viewModel.downloadModelIfNeeded(experimentRunId: object.id) { [weak self] (yolo, errorString) in
+                    guard let self = self else { return }
+                    self.tableView.hideAnimatedActivityIndicatorView()
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    if let yolo = yolo {
+                        self.presentCamera(yolo, inferenceType: .local)
+                    } else {
+                        let alert = UIAlertController(title: nil, message: errorString, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                }
+            }
+        } else {
+            if let object = viewModel.objects?[indexPath.row] {
+                if let experimentId = viewModel.experiment?.id {
+                    
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     
                     if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraViewController {
-                        cameraVC.yolo = yolo
-                        cameraVC.inferenceType = .local
+                        cameraVC.inferenceType = .clound
+                        let outDeviceURL = KeyChainManager.shared.getOutDeviceURL() ?? Constants.DemoServer.baseURL
+                        cameraVC.edgeComputingUrl = outDeviceURL + "/ar/data/experiments/\(experimentId)/run/\(object.id)/infer"
                         cameraVC.modalPresentationStyle = .fullScreen
                         self.present(cameraVC, animated: true, completion: nil)
                     }
-                } else {
-                    let alert = UIAlertController(title: nil, message: errorString, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
                 }
             }
+        }
+    }
+    
+    private func presentCamera(_ model: YOLO, inferenceType: InferenceType) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if let cameraVC = storyboard.instantiateViewController(withIdentifier: "CameraVCID") as? CameraViewController {
+            cameraVC.yolo = model
+            cameraVC.inferenceType = inferenceType
+            cameraVC.modalPresentationStyle = .fullScreen
+            self.present(cameraVC, animated: true, completion: nil)
         }
     }
 }
