@@ -14,5 +14,6 @@ target 'ALTOAI-Detect' do
   pod 'RandomColorSwift'
   pod 'SimpleKeychain'
   pod 'IQKeyboardManagerSwift'
+  pod 'ProgressHUD'
   
 end

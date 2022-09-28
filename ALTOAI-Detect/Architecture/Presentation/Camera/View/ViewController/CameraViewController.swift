@@ -1,5 +1,4 @@
 import UIKit
-import Vision
 import AVFoundation
 import CoreMedia
 import VideoToolbox
@@ -24,13 +23,13 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
     var yolo = YOLO()
     let group = DispatchGroup()
     let queue = DispatchQueue.global(qos: .userInteractive)
-    let semaphore = DispatchSemaphore(value: 2)
+
+    var inflightBuffer = 0
+    static let maxInflightBuffers = 2
+    let semaphore = DispatchSemaphore(value: CameraViewController.maxInflightBuffers)
     
     var frame_num = 0
     var videoCapture: VideoCapture!
-    
-    var request: VNCoreMLRequest!
-    var startTimes: [CFTimeInterval] = []
     
     var boundingBoxes = [BoundingBox]()
     var predictionsFE: [Prediction] = []
@@ -41,24 +40,18 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
     
     var framesDone = 0
     var frameCapturingStartTime = CACurrentMediaTime()
-    var semaphoreCounter = 1
+    
     
     var edgeComputingUrl: String?
-    
+    var semaphoreCounter = 1
     var inferenceType: InferenceType = .local
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         timeLabel.text = ""
-        
-        confidenceSlider.value = yolo.confidenceThreshold
-        confidenceValueLabel.text = "\(String(format: "%.2f", confidenceSlider.value))"
-        iouSlider.value = yolo.iouThreshold
-        iouValueLabel.text = "\(String(format: "%.2f", iouSlider.value))"
-        
+        fpsLabel.text = ""
+        configureSlider()
         setUp()
-        
         frameCapturingStartTime = CACurrentMediaTime()
     }
     
@@ -66,12 +59,12 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
         guard let videoCapture = videoCapture else { return }
         videoCapture.stopCapture()
         super.viewWillDisappear(animated)
+        semaphore.signal()
     }
     
     func setUp() {
         setUpBoundingBoxes()
         setUpCoreImage()
-//        setUpVision()
         setUpCamera()
     }
     
@@ -81,7 +74,6 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
     }
     
     // MARK: - Initialization
-    
     private func setUpBoundingBoxes() {
         boundingBoxes.forEach { boundingBox in
             boundingBox.shapeLayer.removeFromSuperlayer()
@@ -94,6 +86,13 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
         
         // Make colors for the bounding boxes. There is one color for each class,
         colors = randomColors(count: yolo.numClasses, luminosity: .light)
+    }
+    
+    private func configureSlider() {
+        confidenceSlider.value = yolo.confidenceThreshold
+        confidenceValueLabel.text = "\(String(format: "%.2f", confidenceSlider.value))"
+        iouSlider.value = yolo.iouThreshold
+        iouValueLabel.text = "\(String(format: "%.2f", iouSlider.value))"
     }
     
     private func setUpCoreImage() {
@@ -190,18 +189,12 @@ final class CameraViewController: UIViewController, UIDocumentPickerDelegate {
 
 // MARK: Implement methods
 extension CameraViewController {
-    private func updateElapsed(_ startTime: CFTimeInterval) {
-        DispatchQueue.main.async {
-            let elapsed = CACurrentMediaTime() - startTime
-            self.timeLabel.text = String(format: "%.5f", elapsed)
-            let fps = self.measureFPS()
-            self.fpsLabel.text = String(format: "%.2f", fps)
-        }
-    }
-    
-    func showOnMainThread(_ boundingBoxes: [Prediction]) {
+    func showOnMainThread(_ boundingBoxes: [Prediction], latency: CFTimeInterval) {
         DispatchQueue.main.async {
             self.showBoundingBoxes(predictions: boundingBoxes)
+            self.timeLabel.text = String(format: "%.5f", latency)
+            let fps = self.measureFPS()
+            self.fpsLabel.text = String(format: "%.2f", fps)
         }
     }
     
@@ -221,7 +214,6 @@ extension CameraViewController {
     func predict(pixelBuffer: CVPixelBuffer) {
         // Measure how long it takes to predict a single video frame.
         let startTime = CACurrentMediaTime()
-        updateElapsed(startTime)
         guard let resizeImage = self.resizeImage(pixelBuffer: pixelBuffer) else { return }
         let inputImageWidth = CGFloat(CVPixelBufferGetWidth(pixelBuffer))
         let inputImageHeight = CGFloat(CVPixelBufferGetHeight(pixelBuffer))
@@ -231,25 +223,25 @@ extension CameraViewController {
         case .local:
             self.semaphore.wait()
             self.saveImageToDisk(pixelBuffer: pixelBuffer, resizeImage: resizeImage)
-            self.onDeviceInference()
+            guard let resizedPixelBuffer = resizedPixelBuffer else { return }
+            if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
+                let elapsed = CACurrentMediaTime() - startTime
+                showOnMainThread(boundingBoxes, latency: elapsed)
+            }
+            self.semaphore.signal()
         case .edge:
             if semaphoreCounter <= 0 { return }
-            self.edgeConnection(resizeImage: resizeImage, imageWidth: inputImageWidth, imageHeight: inputImageHeight)
+            self.edgeConnection(resizeImage: resizeImage, imageWidth: inputImageWidth, imageHeight: inputImageHeight, startTime: startTime)
         case .clound:
             if semaphoreCounter <= 0 { return }
-            self.edgeConnection(resizeImage: resizeImage, imageWidth: inputImageWidth, imageHeight: inputImageHeight)
+            self.edgeConnection(resizeImage: resizeImage, imageWidth: inputImageWidth, imageHeight: inputImageHeight, startTime: startTime)
         }
     }
     
-    private func onDeviceInference() {
-        guard let resizedPixelBuffer = resizedPixelBuffer else { return }
-        if let boundingBoxes = try? yolo.predict(image: resizedPixelBuffer) {
-            showOnMainThread(boundingBoxes)
-            self.semaphore.signal()
-        }
-    }
-    
-    private func edgeConnection(resizeImage: UIImage, imageWidth: CGFloat, imageHeight: CGFloat) {
+    private func edgeConnection(resizeImage: UIImage, imageWidth: CGFloat, imageHeight: CGFloat, startTime: CFTimeInterval) {
+//        self.semaphore.wait()
+        self.semaphore.wait()
+        self.semaphoreCounter -= 1
         self.getBBsFromAPI(image: resizeImage, imagew: imageWidth, imageh: imageHeight, completionHandler: { [weak self] data, _, error in
             guard let self = self else { return }
             
@@ -281,17 +273,16 @@ extension CameraViewController {
                             }
                         }
                     }
+                    self.semaphore.signal()
+                    self.semaphoreCounter += 1
                 }
+                print("Predictions: \(self.predictionsFE.count)")
+                let elapsed = CACurrentMediaTime() - startTime
+                self.showOnMainThread(self.predictionsFE, latency: elapsed)
             }  else {
                 print(error.debugDescription)
             }
         })
-    
-        group.notify(queue: DispatchQueue.main) {
-            print("Notify group of queue!!!!!!")
-            print("Predictions: \(self.predictionsFE.count)")
-            self.showOnMainThread(self.predictionsFE)
-        }
     }
 }
 
@@ -412,16 +403,7 @@ extension CameraViewController {
 
         urlRequest.httpBody = data
         
-        self.group.enter()
-        self.semaphore.wait()
-        self.semaphoreCounter -= 1
         dataTask = defaultSession.dataTask(with: urlRequest, completionHandler: { [weak self] data, response, error in
-            guard let self = self else { return }
-            defer {
-                self.group.leave()
-                self.semaphore.signal()
-                self.semaphoreCounter += 1
-            }
             completionHandler(data, response, error)
         })
         dataTask?.resume()
@@ -490,38 +472,6 @@ extension CameraViewController {
     }
 }
 
-// MARK: Predict using Vision
 extension CameraViewController {
-    // Old methods
-    func setUpVision() {
-        guard let model = yolo.model, let visionModel = try? VNCoreMLModel(for: model.model) else {
-            print("Error: could not create Vision model")
-            return
-        }
-
-        request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
-
-        // NOTE: If you choose another crop/scale option, then you must also
-        // change how the BoundingBox objects get scaled when they are drawn.
-        // Currently they assume the full input image is used.
-        request.imageCropAndScaleOption = .scaleFill
-    }
     
-    func predictUsingVision(pixelBuffer: CVPixelBuffer) {
-        // Measure how long it takes to predict a single video frame. Note that
-        // predict() can be called on the next frame while the previous one is
-        // still being processed. Hence the need to queue up the start times.
-        startTimes.append(CACurrentMediaTime())
-        // Vision will automatically resize the input image.
-        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer/*, orientation: CGImagePropertyOrientation.init(UIDevice.current.orientation)*/)
-        try? handler.perform([request])
-    }
-    
-    func visionRequestDidComplete(request: VNRequest, error: Error?) {
-        if let observations = request.results as? [VNCoreMLFeatureValueObservation],
-           let features = observations.first?.featureValue.multiArrayValue {
-            let boundingBoxes = yolo.computeBoundingBoxes(features: features)
-//            showOnMainThread(boundingBoxes)
-        }
-    }
 }
